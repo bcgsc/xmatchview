@@ -9,10 +9,10 @@
    XMatchView.py v0.2  March 2005/May 2005/January 2006
 
 ### SYNOPSIS
-   Allows users to align 2 DNA sequences in fasta format using cross_match and displays the alignment in a variety of image formats
-   xmatchview is written in python and runs on linux and windows. It serves as a visual tool for analyzing cross_match alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
+   xmatchview and xmatchview-conifer are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match and displays the alignment in a variety of image formats.
+   xmatchview and xmatchview-conifer are written in python and run on linux and windows. They serve as visual tools for analyzing cross_match alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
 
-### LICENSE
+### LICENSE PREAMBLE
    Copyright (c) 2005-2017 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
    xmatchview is a utility for comparing, visually, two DNA/RNA sequences
 
@@ -29,24 +29,48 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+### IMPLEMENTATION
+-------------
+
+xmatchview and xmatchview-conifer are implemented in PYTHON and run on any OS where PYTHON is installed.
+
+
+### COMMUNITY GUIDELINES
+-------------
+
+I encourage the community to contribute to the development of this software, by providing suggestions for improving the code and/or directly contributing to the open source code for these tools. Users and developers may report software issues, bug fix requests, comments, etc, at <https://github.com/warrenlr/RAILS>
+
 
 ### INSTALL
+
+Download the tar ball, gunzip and extract the files on your system using:
+
+<pre>
+gunzip xmatchview-0.3.tar.gz 
+tar -xvf xmatchview-0.3.tar
+</pre>
+
+### DEPENDENCIES
+-------------
+
 <pre>
    A) you will need to do the following before you can proceed:
-      1)Download python2.3 or 2.4 from: http://www.python.org/ and change the shebang line to reflect this
-      2)Download the Python Imaging Library (PIL) from: http://www.pythonware.com/products/pil/
-      3)Copy true type fonts from c:\WINDOWS\Fonts to a unix directory and change the line truetype= below to reflect the location of your ttf
-      4)Change the sys.path.append line below to reflect the location of PIL
-      5)Make sure cross_match is in your $PATH or change the line cross_match_exec= below
-      6)Copy the image pbp.gif to the same directory where the XMatchView.py program resides, make a fake gif with that name or comment the whole "###Just for fun code block" below
+      1) Download python2.3 or 2.4 from: http://www.python.org/ and change the shebang line to reflect this
+      2) Download the Python Imaging Library (PIL) from: http://www.pythonware.com/products/pil/
+      3) Copy true type fonts from c:\WINDOWS\Fonts to a unix directory and change the line truetype= below to reflect the location of your ttf
+      4) Download cross_match, see http://www.phrap.org
+      5) Change the sys.path.append line below to reflect the location of PIL
+      6) Make sure cross_match is in your $PATH or change the line cross_match_exec= below
+      7) Copy the image pbp.gif to the same directory where the XMatchView.py program resides, make a fake gif with that name or comment the whole "###Just for fun code block" below
 
    B) If you're running this program remotely, but on the GSC servers make sure you are running it on xhost01.bcgsc.ca
    C) You can run xmatchview.py on Windows XP, provided that you have installed python and PIL and that you changed the script line that specifies the location of the fonts to reflect their location in your windows computer. However, you won't be able to run crossmatch with it, unless you have obtained cross_match for windows.
 </pre>
 
-### RUN
+### USAGE 
+---------------
 
-A non-GUI version of xmatchview (xmatchview.py) exists and is included with this release.
+A non-GUI command-line version of xmatchview (xmatchview.py) exists and is included with this release.
 
 <pre>
 Usage: ['xmatchview.py'] v0.3
@@ -65,7 +89,18 @@ Usage: ['xmatchview.py'] v0.3
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 </pre>
 
-### What's new in v0.3
+### CITING xmatchview/xmatchview-conifer
+-------------
+
+Thank you for using, developing and promoting this free software.
+If you use xmatchview/xmatchview-conifer for you research, please cite:
+
+<pre>
+Warren RL. 2017. Visualizing genome synteny with xmatchview. TBA.
+</pre>
+
+
+### WHAT'S NEW in v0.3
 ------------------
 <pre>
 -Plot colinear blocks and sequence relationships with transparent color (alpha, supplied with -a).
