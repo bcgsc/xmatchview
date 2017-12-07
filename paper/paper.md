@@ -34,4 +34,8 @@ As seen on Fig. 1, the xmatchview display consists of three main components: 1) 
 ![alt text](https://github.com/warrenlr/xmatchview/blob/master/paper/images/Fig3.png "Figure 3. Sequence comparisons of the flowering locus gene FTL1 in Norway and Sitka spruce genes, *P. abies* and *P. sitchensis* with xmatchview-conifer (Genbank accessions JN039333.1 and KT263970.1). The position of exons is indicated by the black rectangles outside on the outer edge of the tree representation.")
 **Figure 3. Sequence comparisons of the flowering locus gene FTL1 in Norway and Sitka spruce genes, _P. abies_ and _P. sitchensis_ with xmatchview-conifer (Genbank accessions JN039333.1 and KT263970.1)**. The position of exons is indicated by the black rectangles outside on the outer edge of the tree representation.
 
+# Funding
+
+This work has been partly supported by the National Human Genome Research Institute of the National Institutes of Health (under award number R01HG007182). Additional funds were received through Genome Canada, Genome Quebec, Genome British Columbia and Genome Alberta for the Spruce-Up (243FOR) project (www.spruce-up.ca). The content reported here is solely the responsibility of the author, and does not necessarily represent the official views of the National Institutes of Health or other funding organizations.
+
 # References
