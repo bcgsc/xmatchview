@@ -68,10 +68,10 @@ Usage: ['xmatchview.py'] v0.3
 ### What's new in v0.3
 ------------------
 
-Plot colinear blocks and sequence relationships with transparent color (alpha, supplied with -a)
-Plot the position of exons (yellow half rectangle) on the reference and query DNA segments (-e and -y arguments, optional)
-Plot the position of Ns (red ticks) in query and reference sequences 
-Bug fixes
+-Plot colinear blocks and sequence relationships with transparent color (alpha, supplied with -a).
+-Plot the position of exons (yellow half rectangle) on the reference and query DNA segments (-e and -y arguments, optional).
+-Plot the position of Ns (red ticks) in query and reference sequences .
+-Bug fixes.
 
 ---
 Please find the v0.2 release in the corresponding subdirectory
