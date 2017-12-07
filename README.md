@@ -89,6 +89,23 @@ Usage: ['xmatchview.py'] v0.3
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 </pre>
 
+<pre>
+Usage: ['xmatchview-conifer.py'] v0.1
+-x crossmatch file
+-s reference genome fasta file
+-q query contig/genome fasta file
+-e reference exon coordinates tsv file (start end) - optional
+-y query exon coordinates tsv file (start end) - optional
+-m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
+-b minimum length (bp) of similarity block to display
+-c scale (pixel to basepair scale, for displaying the image)
+-r basepair length leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
+-l label for the tree trunk (6 characters or less for best result)
+-a alpha value, from 0 (transparent) to 255 (solid, default)
+-f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better.
+* Files for the -s and -q options must correspond to fasta files used to run cross_match
+</pre>
+
 ### CITING xmatchview/xmatchview-conifer
 -------------
 
