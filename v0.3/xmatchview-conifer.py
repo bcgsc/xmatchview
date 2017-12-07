@@ -796,7 +796,7 @@ def main():
         protein=int(v)
 
     if (crossmatch_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s" % (sys.argv[0:])
+      print "Usage: %s v0.1" % (sys.argv[0:])
       print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
