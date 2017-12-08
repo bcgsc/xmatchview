@@ -475,7 +475,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       decay = data['decay']
 
 
-      ####draw exons on side of ref
+      ####draw features/exons on side of ref
       ###REF gene model
     
       x1ref = data['x']
@@ -491,7 +491,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           a2 = data['x'] + exend
           b1 = (mrref * a1 ) + brref
           b2 = (mrref * a2 ) + brref
-          draw.polygon((a1,b1-9,a1,b1,a2,b2,a2,b2-9),outline=color['black'], fill=color['black'])###exons
+          draw.polygon((a1,b1-9,a1,b1,a2,b2,a2,b2-9),outline=color['black'], fill=color['black'])###features/exons
 
       ###QRY gene model
       x1qry = data['x']
@@ -508,7 +508,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           a2 = data['x'] + exend
           b1 = (mqqry * a1 ) + bqqry
           b2 = (mqqry * a2 ) + bqqry
-          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color['black'])###exons
+          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color['black'])###features/exons
 
       ####REFERENCE
       for ref in reference_list:
@@ -800,8 +800,8 @@ def main():
       print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
-      print "-e reference exon coordinates tsv file (start end) - optional"
-      print "-y query exon coordinates tsv file (start end) - optional"
+      print "-e reference features (eg. exons) coordinates tsv file (start end) - optional"
+      print "-y query features (eg. exons) coordinates tsv file (start end) - optional"
       print "-m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
       print "-b minimum length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
@@ -838,7 +838,7 @@ def main():
     checkFile(reference_file)
     checkFile(query_file)
 
-    ###OPTIONAL, FOR EXON REPRESENTATION
+    ###OPTIONAL, FOR FEATURES/EXON REPRESENTATION
     (refexon,qryexon) = ({},{})
     if(ref_exon_file != None and qry_exon_file != None):
         checkFile(ref_exon_file)

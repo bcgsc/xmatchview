@@ -74,18 +74,19 @@ A non-GUI command-line version of xmatchview (xmatchview.py) exists and is inclu
 
 <pre>
 Usage: ['xmatchview.py'] v0.3
+Usage: ['xmatchview.py'] v0.3
 -x crossmatch file
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference exon coordinates tsv file (start end) - optional
--y query exon coordinates tsv file (start end) - optional
+-e reference features (eg. exons) coordinates tsv file (start end) - optional
+-y query features (eg. exons) coordinates tsv file (start end) - optional
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
--r length of similarity block to display
--c scale (for displaying the image)
--l leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
+-r length (bp) of similarity block to display
+-c scale (pixel to basepair scale, for displaying the image)
+-l leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
 -f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better.
 -a alpha value, from 0 (transparent) to 255 (solid, default)
--p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0)
+-p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 </pre>
 
@@ -94,8 +95,8 @@ Usage: ['xmatchview-conifer.py'] v0.1
 -x crossmatch file
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference exon coordinates tsv file (start end) - optional
--y query exon coordinates tsv file (start end) - optional
+-e reference features (eg. exons) coordinates tsv file (start end) - optional
+-y query features (eg. exons) coordinates tsv file (start end) - optional
 -m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b minimum length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
