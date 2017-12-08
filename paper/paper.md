@@ -7,7 +7,7 @@ tags:
  - cross_match
  - xmatchview
 authors:
- - name: Rene L Warren
+ - name: René L. Warren
    orcid: 0000-0002-9890-2293
    affiliation: 1
 affiliations:
