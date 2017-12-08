@@ -338,15 +338,15 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
             elif cumul==3:
                color_now="green"
             elif cumul==4:
-               color_now="dirtyred"
-            elif cumul==5:
-               color_now="purple"
-            elif cumul==6:
-               color_now="salmon"
-            elif cumul==7:
                color_now="orange"
-            elif cumul>=8:
-               color_now="yellow"
+            elif cumul>=5:
+               color_now="dirtyred"
+            #elif cumul==6:
+            #   color_now="salmon"
+            #elif cumul==7:
+            #   color_now="orange"
+            #elif cumul>=8:
+            #   color_now="yellow"
 
             extension=((200-(2*id))+data['mis_bar'])   #RESTRICT SI AXIS y was 20
             compressed=(pos/scale)+data['x']           #x
@@ -410,7 +410,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['blue'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "1X", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "Single copy", font=arial_20, fill=color['black'])
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['cyan'])
       bdraw.text((data['x_legend_picto']+25,y_legend), "2X", font=arial_20, fill=color['black'])
@@ -418,20 +418,20 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['green'])
       bdraw.text((data['x_legend_picto']+25,y_legend), "3X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['dirtyred'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
       bdraw.text((data['x_legend_picto']+25,y_legend), "4X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['purple'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "5X", font=arial_20, fill=color['black'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['dirtyred'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "5X and over", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['salmon'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "6X", font=arial_20, fill=color['black'])
-      y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "7X", font=arial_20, fill=color['black'])
-      y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['yellow'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=arial_20, fill=color['black'])
+      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['salmon'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "6X", font=arial_20, fill=color['black'])
+      #y_legend+=25
+      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "7X", font=arial_20, fill=color['black'])
+      #y_legend+=25
+      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['yellow'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=arial_20, fill=color['black'])
       y_legend+=40
 
       bdraw.text((data['x_legend_picto'],y_legend), "Collinear Blocks", font=arialbi_20, fill=color['black'])
@@ -451,6 +451,16 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 
       bdraw.rectangle((data['x_legend_picto']-5,y_legend+5,data['x_legend_picto']+25,y_legend+7), fill=color['red'])
       bdraw.text((data['x_legend_picto']+30,y_legend), "Mismatch threshold", font=arial_20, fill=color['black'])
+      y_legend+=30
+
+      bdraw.rectangle((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+(data['reference_thick']/2)), outline=color['black'], fill=color['yellow'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Sequence features", font=arial_20, fill=color['black'])
+      y_legend+=30
+      
+
+      bdraw.rectangle((data['x_legend_picto']+5,y_legend,data['x_legend_picto']+10,y_legend+data['reference_thick']), outline=color['red'], fill=color['red'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Ambiguous bases (Ns)", font=arial_20, fill=color['black'])
+      y_legend+=30
 
       ####
       for ref in reference_list:
@@ -605,19 +615,19 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       #xm_name = xm_regex.match(crossmatch_file)
       #file = xm_name.group(1) + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
 
-      ####draw exons on side of ref
+      ####draw features (eg. exons) on side of ref
       ###REF gene model
       
       for scaledexstart in refexon:
           #print "ex start: %i" % exstart
           exstart = data['x'] + scaledexstart
           exend = data['x'] + refexon[scaledexstart] 
-          draw.rectangle((exstart,data['ref_y'],exend,data['ref_y']+(data['reference_thick']/2)),outline=color['black'], fill=color['yellow'])###exons
+          draw.rectangle((exstart,data['ref_y'],exend,data['ref_y']+(data['reference_thick']/2)),outline=color['yellow'], fill=color['yellow'])###features/exons
       if refname != qryname:
           for scaledexstart in qryexon:
               exstart = data['x'] + scaledexstart
               exend = data['x'] + qryexon[scaledexstart]
-              draw.rectangle((exstart,data['ref_y']+decay+(data['reference_thick']/2),exend,data['ref_y']+decay+data['reference_thick']),outline=color['black'], fill=color['yellow'])###exons
+              draw.rectangle((exstart,data['ref_y']+decay+(data['reference_thick']/2)+1,exend,data['ref_y']+decay+data['reference_thick']),outline=color['yellow'], fill=color['yellow'])###features/exons
 
       ### draw start position of Ns
       for nstart in refnpos:
@@ -693,15 +703,15 @@ def main():
       print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
-      print "-e reference exon coordinates tsv file (start end) - optional"
-      print "-y query exon coordinates tsv file (start end) - optional"
+      print "-e reference features (eg. exons) coordinates tsv file (start end) - optional"
+      print "-y query features (eg. exons) coordinates tsv file (start end) - optional"
       print "-m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
-      print "-r length of similarity block to display"
+      print "-r length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-l leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
+      print "-l leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
       print "-f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better."
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
-      print "-p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0)";
+      print "-p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-";
       print "* Files for the -s and -q options must correspond to fasta files used to run cross_match"
       sys.exit(1)
 
@@ -730,7 +740,7 @@ def main():
    checkFile(reference_file)
    checkFile(query_file)
 
-   ###OPTIONAL, FOR EXON REPRESENTATION
+   ###OPTIONAL, FOR FEATURES/EXON REPRESENTATION
    (refexon,qryexon) = ({},{})
    if(ref_exon_file != None and qry_exon_file != None):
       checkFile(ref_exon_file)
