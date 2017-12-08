@@ -12,7 +12,7 @@ authors:
    affiliation: 1
 affiliations:
  - name: BC Cancer Agency, Genome Sciences Centre, Vancouver, BC, Canada
-index: 1
+   index: 1
 date: 6 December 2017
 bibliography: paper.bib
 ---
