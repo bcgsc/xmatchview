@@ -3,7 +3,7 @@
 #example bash script for running cross_match and xmatchview 
 
 if [ $# -ne 6 ]; then
-        echo "Usage: $(basename $0) <QUERY FASTA> <REFERENCE FASTA> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QUERYexon.tsv> <REFexon.tsv>"
+        echo "Usage: $(basename $0) <QUERY FASTA> <REFERENCE FASTA> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QUERYfeatures.tsv> <REFfeatures.tsv>"
         exit 1
 fi
 

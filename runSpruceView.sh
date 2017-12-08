@@ -1,7 +1,7 @@
 #!/bin/bash
 #RLW 2017
 if [ $# -ne 7 ]; then
-        echo "Usage: $(basename $0) <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QRY EXON> <REF EXON>"
+        echo "Usage: $(basename $0) <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QRY FEATURES> <REF FEATURES>"
         exit 1
 fi
 
