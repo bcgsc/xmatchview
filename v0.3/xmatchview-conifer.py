@@ -502,7 +502,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           a2 = data['x'] + exend
           b1 = (mrref * a1 ) + brref
           b2 = (mrref * a2 ) + brref
-          draw.polygon((a1,b1-9,a1,b1,a2,b2,a2,b2-9),outline=color['black'], fill=color[refexon[exstart]['color']])###features/exons
+          draw.polygon((a1,b1-11,a1,b1,a2,b2,a2,b2-11),outline=color['black'], fill=color[refexon[exstart]['color']])###features/exons
 
       ###QRY gene model
       x1qry = data['x']
