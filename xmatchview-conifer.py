@@ -45,7 +45,7 @@ def readExon(exon_file,scale):
 
        exon[xstart]['end']=xend
        exon[xstart]['color']=color
-       print "%i,%i with %s" %(xstart,xend,color)
+       #print "%i,%i with %s" %(xstart,xend,color)
 
    xon_obj.close()
 
