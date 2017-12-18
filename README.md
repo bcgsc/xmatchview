@@ -74,12 +74,11 @@ A non-GUI command-line version of xmatchview (xmatchview.py) exists and is inclu
 
 <pre>
 Usage: ['xmatchview.py'] v0.3
-Usage: ['xmatchview.py'] v0.3
 -x crossmatch file
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference features (eg. exons) coordinates tsv file (start end) - optional
--y query features (eg. exons) coordinates tsv file (start end) - optional
+-e reference features (eg. exons) coordinates tsv file (start end *) - optional
+-y query features (eg. exons) coordinates tsv file (start end *) - optional
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -r length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
@@ -87,16 +86,13 @@ Usage: ['xmatchview.py'] v0.3
 -f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better.
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-
-* Files for the -s and -q options must correspond to fasta files used to run cross_match
-</pre>
 
-<pre>
 Usage: ['xmatchview-conifer.py'] v0.1
 -x crossmatch file
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference features (eg. exons) coordinates tsv file (start end) - optional
--y query features (eg. exons) coordinates tsv file (start end) - optional
+-e reference features (eg. exons) coordinates tsv file (start end *) - optional
+-y query features (eg. exons) coordinates tsv file (start end *) - optional
 -m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b minimum length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
@@ -104,7 +100,11 @@ Usage: ['xmatchview-conifer.py'] v0.1
 -l label for the tree trunk (6 characters or less for best result)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better.
-* Files for the -s and -q options must correspond to fasta files used to run cross_match
+
+Note: Files for the -s and -q options must correspond to fasta files used to run cross_match
+
+* A third column may be used to specify the color of a feature (default feature color is yellow or black, for xmatchview and xmatchview-conifer, respectively). Users may specify any of these color names: yellow, blue, cyan, green, lime, red, sarin, forest, dirtyred, dirtyyellow, grey, lightgrey, orange, beige, black, white.
+
 </pre>
 
 ### CITING xmatchview/xmatchview-conifer
@@ -122,8 +122,8 @@ Warren RL. 2017. Visualizing genome synteny with xmatchview. TBA.
 ------------------
 <pre>
 -Plot colinear blocks and sequence relationships with transparent color (alpha, supplied with -a).
--Plot the position of exons (yellow half rectangle) on the reference and query DNA segments (-e and -y arguments, optional).
--Plot the position of Ns (red ticks) in query and reference sequences .
+-Plot the position of exons on the reference and query DNA segments (-e and -y arguments, optional).
+-Plot the position of Ns in query and reference sequences.
 -Bug fixes.
 </pre>
 ---

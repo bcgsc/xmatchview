@@ -29,12 +29,24 @@ def readExon(exon_file,scale):
    xon_obj=open(exon_file, 'r')
    (xstart,xend)=(0,0)
    for line in xon_obj:
-       exonregex = re.compile("(\d+)\s+(\d+)")
+       exonregex = re.compile("(\d+)\s+(\d+)(\s+)?(\S+)?")
        duo = exonregex.match(line)
        xstart = float(int(duo.group(1))/scale)
        xend = float(int(duo.group(2))/scale)
+       color = duo.group(4)
+       if color == None:
+            color = "yellow"
        if not exon.has_key(xstart):
-            exon[xstart]=xend
+            exon[xstart] = {}
+            if not exon[xstart].has_key('end'):
+                exon[xstart]['end'] = {}
+            if not exon[xstart].has_key('color'):
+                exon[xstart]['color'] = {}
+
+       exon[xstart]['end']=xend
+       exon[xstart]['color']=color
+       print "%i,%i with %s" %(xstart,xend,color)
+
 
    xon_obj.close()
 
@@ -621,13 +633,13 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       for scaledexstart in refexon:
           #print "ex start: %i" % exstart
           exstart = data['x'] + scaledexstart
-          exend = data['x'] + refexon[scaledexstart] 
-          draw.rectangle((exstart,data['ref_y'],exend,data['ref_y']+(data['reference_thick']/2)),outline=color['yellow'], fill=color['yellow'])###features/exons
+          exend = data['x'] + refexon[scaledexstart]['end'] 
+          draw.rectangle((exstart,data['ref_y'],exend,data['ref_y']+(data['reference_thick']/2)),outline=color[refexon[scaledexstart]['color']], fill=color[refexon[scaledexstart]['color']])###features/exons
       if refname != qryname:
           for scaledexstart in qryexon:
               exstart = data['x'] + scaledexstart
-              exend = data['x'] + qryexon[scaledexstart]
-              draw.rectangle((exstart,data['ref_y']+decay+(data['reference_thick']/2)+1,exend,data['ref_y']+decay+data['reference_thick']),outline=color['yellow'], fill=color['yellow'])###features/exons
+              exend = data['x'] + qryexon[scaledexstart]['end']
+              draw.rectangle((exstart,data['ref_y']+decay+(data['reference_thick']/2)+1,exend,data['ref_y']+decay+data['reference_thick']),outline=color[qryexon[scaledexstart]['color']], fill=color[qryexon[scaledexstart]['color']])###features/exons
 
       ### draw start position of Ns
       for nstart in refnpos:

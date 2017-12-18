@@ -29,12 +29,23 @@ def readExon(exon_file,scale):
    xon_obj=open(exon_file, 'r')
    (xstart,xend)=(0,0)
    for line in xon_obj:
-       exonregex = re.compile("(\d+)\s+(\d+)")
+       exonregex = re.compile("(\d+)\s+(\d+)(\s+)?(\S+)?")
        duo = exonregex.match(line)
        xstart = float(int(duo.group(1))/scale)
        xend = float(int(duo.group(2))/scale)
+       color = duo.group(4)
+       if color == None:
+            color = "black"
        if not exon.has_key(xstart):
-            exon[xstart]=xend
+            exon[xstart] = {}
+            if not exon[xstart].has_key('end'):
+                exon[xstart]['end'] = {}
+            if not exon[xstart].has_key('color'):
+                exon[xstart]['color'] = {}
+
+       exon[xstart]['end']=xend
+       exon[xstart]['color']=color
+       print "%i,%i with %s" %(xstart,xend,color)
 
    xon_obj.close()
 
@@ -486,12 +497,12 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       mrref = (y2ref - y1ref ) / (x2ref - x1ref)
       brref = y2ref - (mrref * x2ref)
       for exstart in refexon:
-          exend = refexon[exstart]
+          exend = refexon[exstart]['end']
           a1 = data['x'] + exstart
           a2 = data['x'] + exend
           b1 = (mrref * a1 ) + brref
           b2 = (mrref * a2 ) + brref
-          draw.polygon((a1,b1-9,a1,b1,a2,b2,a2,b2-9),outline=color['black'], fill=color['black'])###features/exons
+          draw.polygon((a1,b1-9,a1,b1,a2,b2,a2,b2-9),outline=color['black'], fill=color[refexon[exstart]['color']])###features/exons
 
       ###QRY gene model
       x1qry = data['x']
@@ -503,12 +514,12 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       bqqry = y2qry - (mqqry * x2qry)
 
       for exstart in qryexon:
-          exend = qryexon[exstart]
+          exend = qryexon[exstart]['end']
           a1 = data['x'] + exstart
           a2 = data['x'] + exend
           b1 = (mqqry * a1 ) + bqqry
           b2 = (mqqry * a2 ) + bqqry
-          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color['black'])###features/exons
+          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color[qryexon[exstart]['color']])###features/exons
 
       ####REFERENCE
       for ref in reference_list:
