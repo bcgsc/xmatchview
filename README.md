@@ -38,7 +38,7 @@ xmatchview and xmatchview-conifer are implemented in PYTHON and run on any OS wh
 ### COMMUNITY GUIDELINES
 -------------
 
-I encourage the community to contribute to the development of this software, by providing suggestions for improving the code and/or directly contributing to the open source code for these tools. Users and developers may report software issues, bug fix requests, comments, etc, at <https://github.com/warrenlr/RAILS>
+I encourage the community to contribute to the development of this software, by providing suggestions for improving the code and/or directly contributing to the open source code for these tools. Users and developers may report software issues, bug fix requests, comments, etc, at <https://github.com/warrenlr/xmatchview>
 
 
 ### INSTALL
@@ -54,17 +54,12 @@ tar -xvf xmatchview-0.3.tar
 -------------
 
 <pre>
-   A) you will need to do the following before you can proceed:
-      1) Download python2.3 or 2.4 from: http://www.python.org/ and change the shebang line to reflect this
+You will need to do the following before you can proceed:
+      1) Download python2.3 or 2.4 from: http://www.python.org/  (The code may work with newer versions of python (not tested))
       2) Download the Python Imaging Library (PIL) from: http://www.pythonware.com/products/pil/
-      3) Copy true type fonts from c:\WINDOWS\Fonts to a unix directory and change the line truetype= below to reflect the location of your ttf
-      4) Download cross_match, see http://www.phrap.org
-      5) Change the sys.path.append line below to reflect the location of PIL
-      6) Make sure cross_match is in your $PATH or change the line cross_match_exec= below
-      7) Copy the image pbp.gif to the same directory where the XMatchView.py program resides, make a fake gif with that name or comment the whole "###Just for fun code block" below
-
-   B) If you're running this program remotely, but on the GSC servers make sure you are running it on xhost01.bcgsc.ca
-   C) You can run xmatchview.py on Windows XP, provided that you have installed python and PIL and that you changed the script line that specifies the location of the fonts to reflect their location in your windows computer. However, you won't be able to run crossmatch with it, unless you have obtained cross_match for windows.
+      3) Obtain true type fonts (ttf) and change the corresponding lines in xmatchview.py and xmatchview-conifer.py to reflect the location of the ttf. Alternatively, you could use fonts supplied by PIL instead (eg. ./pil/helvB12.pil)
+      4) Download cross_match for academic use, see http://www.phrap.org and http://www.phrap.org/consed/consed.html#howToGet
+      5) Make sure cross_match is in your $PATH
 </pre>
 
 ### USAGE 
