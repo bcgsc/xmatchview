@@ -381,20 +381,31 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       color=initColor(alpha)
  
       ###Set Font
+      #font_default = ImageFont.load("arial.pil")
 
-      ###Set Font
-      #medium_font=ImageFont.load_path("/home/rwarren/fonts/pil/helvB12.pil")
-      arial_18=ImageFont.truetype("/home/rwarren/fonts/truetype/arial.ttf",18)
-      arialb_18=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",18)
-      arial_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arial.ttf",20)
-      arialb_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",20)
-      ariali_20=ImageFont.truetype("/home/rwarren/fonts/truetype/ariali.ttf",20)
-      arialbi_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbi.ttf",20)
-      arialb_22=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",22)
-      arial_24=ImageFont.truetype("/home/rwarren/fonts/truetype/arial.ttf",24)
-      arialb_24=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",24)
-      ariali_24=ImageFont.truetype("/home/rwarren/fonts/truetype/ariali.ttf",24)
-      arialbi_24=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbi.ttf",24)
+      ### CHANGE TO THE LOCATION OF PIL FONTS ON YOUR SYSTEM
+      #pil_font_path = "/home/rwarren/fonts/pil/"
+
+      ### CHANGE TO THE LOCATION OF TRUE TYPE FONTS ON YOUR SYSTEM
+      truetype_font_path = "/home/rwarren/fonts/truetype/"
+
+      ###Set Font (truetype)
+      font_18=ImageFont.truetype(truetype_font_path + "arial.ttf",18)
+      font_20=ImageFont.truetype(truetype_font_path + "arial.ttf",20)
+      fontb_20=ImageFont.truetype(truetype_font_path + "arialbd.ttf",20)
+      fontbi_20=ImageFont.truetype(truetype_font_path + "arialbi.ttf",20)
+      fontb_22=ImageFont.truetype(truetype_font_path + "arialbd.ttf",22)
+      font_24=ImageFont.truetype(truetype_font_path + "arial.ttf",24)
+      fontb_24=ImageFont.truetype(truetype_font_path + "arialbd.ttf",24)
+
+      ###Set font (pil) (sizes are limited, made to be compatible with TT fonts)
+      #font_18=ImageFont.load_path(pil_font_path + "helvR14.pil")
+      #font_20=ImageFont.load_path(pil_font_path + "helvR18.pil")
+      #fontb_20=ImageFont.load_path(pil_font_path + "helvB18.pil")
+      #fontbi_20=ImageFont.load_path(pil_font_path + "helvBO18.pil")
+      #fontb_22=ImageFont.load_path(pil_font_path + "helvB24.pil")
+      #font_24=ImageFont.load_path(pil_font_path + "helvR24.pil")
+      #fontb_24=ImageFont.load_path(pil_font_path + "helvB24.pil")
 
       ###Define Image
       back = Image.new("RGBA", (data['width'],data['height']),(0,0,0,0))
@@ -407,70 +418,70 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       date=commands.getstatusoutput("date")
 
       ###Picto Legend
-      bdraw.text((data['x_legend_picto']+250,data['y_legend']), "XMatchView v0.3", font=arialb_22, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+280,data['y_legend']), "Legend", font=fontb_24, fill=color['black'])
       y_legend = data['y_legend']+30
-      bdraw.text((data['x_legend_picto'],y_legend), "Frequency Repeated", font=arialbi_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto'],y_legend), "Frequency Repeated", font=fontbi_20, fill=color['black'])
 
       ####
-      bdraw.text((data['x_legend'],y_legend), "Mismatch threshold : %i %%" % mismatch, font=arial_20, fill=color['black'])
-      bdraw.text((data['x_legend'],y_legend+20), "Minimum Block Length : %i bp" % block_length, font=arial_20, fill=color['black'])
-      bdraw.text((data['x_legend'],y_legend+40), "Scale (pixel:bp)  1:%i" % scale, font=arial_20, fill=color['black'])
-      #bdraw.text((data['x_legend'],y_legend+60), "%s" % date[1], font=arial_20, fill=color['black'])
-      #bdraw.text((data['x_legend'],y_legend+80), "rwarren@bcgsc.ca", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend'],y_legend), "Mismatch threshold : %i %%" % mismatch, font=font_20, fill=color['black'])
+      bdraw.text((data['x_legend'],y_legend+20), "Minimum Block Length : %i bp" % block_length, font=font_20, fill=color['black'])
+      bdraw.text((data['x_legend'],y_legend+40), "Scale (pixel:bp)  1:%i" % scale, font=font_20, fill=color['black'])
+      #bdraw.text((data['x_legend'],y_legend+60), "%s" % date[1], font=font_20, fill=color['black'])
+      #bdraw.text((data['x_legend'],y_legend+80), "rwarren@bcgsc.ca", font=font_20, fill=color['black'])
       ####
 
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['blue'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "Single copy", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "Single copy", font=font_20, fill=color['black'])
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['cyan'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "2X", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "2X", font=font_20, fill=color['black'])
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['green'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "3X", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "3X", font=font_20, fill=color['black'])
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "4X", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "4X", font=font_20, fill=color['black'])
       y_legend+=25
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['dirtyred'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "5X and over", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+25,y_legend), "5X and over", font=font_20, fill=color['black'])
       y_legend+=25
       #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['salmon'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "6X", font=arial_20, fill=color['black'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "6X", font=font_20, fill=color['black'])
       #y_legend+=25
       #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "7X", font=arial_20, fill=color['black'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "7X", font=font_20, fill=color['black'])
       #y_legend+=25
       #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['yellow'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=arial_20, fill=color['black'])
+      #bdraw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=font_20, fill=color['black'])
       y_legend+=40
 
-      bdraw.text((data['x_legend_picto'],y_legend), "Collinear Blocks", font=arialbi_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto'],y_legend), "Collinear Blocks", font=fontbi_20, fill=color['black'])
       y_legend+=30
 
       bdraw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto'],y_legend+25,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']+20,y_legend), outline=color['navy'], fill=color['lightblue'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Direct", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Direct", font=font_20, fill=color['black'])
 
       y_legend+=30
       bdraw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']-5,y_legend+25,data['x_legend_picto']+25,y_legend), outline=color['purple'], fill=color['salmon'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Inverted", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Inverted", font=font_20, fill=color['black'])
 
       y_legend+=40
 
-      bdraw.text((data['x_legend_picto'],y_legend), "Other", font=arialbi_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto'],y_legend), "Other", font=fontbi_20, fill=color['black'])
       y_legend+=30
 
       bdraw.rectangle((data['x_legend_picto']-5,y_legend+5,data['x_legend_picto']+25,y_legend+7), fill=color['red'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Mismatch threshold", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Mismatch threshold", font=font_20, fill=color['black'])
       y_legend+=30
 
       bdraw.rectangle((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+(data['reference_thick']/2)), outline=color['black'], fill=color['yellow'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Sequence features", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Sequence features", font=font_20, fill=color['black'])
       y_legend+=30
       
 
       bdraw.rectangle((data['x_legend_picto']+5,y_legend,data['x_legend_picto']+10,y_legend+data['reference_thick']), outline=color['red'], fill=color['red'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Ambiguous bases (Ns)", font=arial_20, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+30,y_legend), "Ambiguous bases (Ns)", font=font_20, fill=color['black'])
       y_legend+=30
 
       ####
@@ -479,7 +490,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
          last_coord=int(data['x']+reference_list[ref])
 
          ### draw top rectangle for REFERENCE
-         drawRectangle(bdraw, init_coord, last_coord,data['ref_y'],data['reference_thick'],color['black'],ref,arialb_20,color['black'])
+         drawRectangle(bdraw, init_coord, last_coord,data['ref_y'],data['reference_thick'],color['black'],ref,fontb_20,color['black'])
          x_range=range(init_coord, last_coord, 100)
 
          ### draw kbp scale
@@ -487,7 +498,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
             for position in x_range:
                base_number=int(((position-data['x'])*scale)/1000)
                bdraw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
-               bdraw.text((position-5, data['tick_up']-25), "%i" % base_number, font=arial_24, fill=color['black'])
+               bdraw.text((position-5, data['tick_up']-25), "%i" % base_number, font=font_20, fill=color['black'])
          else:
             for position in x_range:
                base_number=(position-data['x']) * scale
@@ -495,9 +506,9 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                base_number=base_number/1000
                bdraw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
                #print "%i %i %i >>> %.2f <<< %i,%i" % (data['x'],position,scale,base_number,data['x_legend_picto'],position)
-               bdraw.text((position-5, data['tick_up']-25), "%.1f" % base_number, font=arial_24, fill=color['black'])
+               bdraw.text((position-5, data['tick_up']-25), "%.1f" % base_number, font=font_24, fill=color['black'])
   
-      bdraw.text((data['x']+scaled_reflength+60,data['tick_up']-25), "kbp", font=arialb_24, fill=color['black'])
+      bdraw.text((data['x']+scaled_reflength+60,data['tick_up']-25), "kbp", font=fontb_24, fill=color['black'])
       ###Mismatch Axis
       #identity=int(0)
       identity = int(0) ### RESTRICT SI AXIS was 90
@@ -506,11 +517,11 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       ###Draw grid
       for grid in grid_range:
          bdraw.rectangle((data['x'],grid,data['x']+scaled_reflength+5,grid+2),color['lightgrey'])
-         bdraw.text((data['x']+scaled_reflength+10, grid-7), "%i " % identity, font=arial_18, fill=color['black'])
+         bdraw.text((data['x']+scaled_reflength+10, grid-7), "%i " % identity, font=font_18, fill=color['black'])
          identity += 10 ### RESTRICT SI AXIS was 1
 
       ###Draw grid metric
-      bdraw.text((data['x']+scaled_reflength+60, 150), "% Identity", font=arial_18, fill=color['black'])
+      bdraw.text((data['x']+scaled_reflength+60, 150), "% Identity", font=font_18, fill=color['black'])
 
       ###Draw Repeat Frequency
       plotFrequency(freq,reflength,scale,bdraw,color,data,leap)
@@ -528,7 +539,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
             start1_list=allhit[hit]
             stop=current_position + query_list[hit]
             if match != hit:
-               drawRectangle(bdraw,current_position,stop,data['ref_y']+decay,data['query_thick'],color['black'], hit, arialb_20, color['black'])
+               drawRectangle(bdraw,current_position,stop,data['ref_y']+decay,data['query_thick'],color['black'], hit, fontb_20, color['black'])
             s1_list_sort=start1_list.keys()
             s1_list_sort.sort()
             for start1 in s1_list_sort:

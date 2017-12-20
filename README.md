@@ -55,9 +55,9 @@ tar -xvf xmatchview-0.3.tar
 
 <pre>
 You will need to do the following before you can proceed:
-      1) Download python2.3 or 2.4 from: http://www.python.org/  (The code may work with newer versions of python (not tested))
+      1) Download python from: http://www.python.org/  (The code was developed and tested on python2.3 or 2.4 but may work with newer versions of python (not tested))
       2) Download the Python Imaging Library (PIL) from: http://www.pythonware.com/products/pil/
-      3) Obtain true type fonts (ttf) and change the corresponding lines in xmatchview.py and xmatchview-conifer.py to reflect the location of the ttf. Alternatively, you could use fonts supplied by PIL instead (eg. ./pil/helvB12.pil)
+      3) Either obtain PIL or true type fonts (ttf) and change the corresponding lines in xmatchview.py (387/390) and xmatchview-conifer.py (412/415) to reflect the location of the fonts. Alternatively, you could use fonts supplied by PIL instead (eg. ./pil/helvB12.pil)
       4) Download cross_match for academic use, see http://www.phrap.org and http://www.phrap.org/consed/consed.html#howToGet
       5) Make sure cross_match is in your $PATH
 </pre>
@@ -101,6 +101,33 @@ Note: Files for the -s and -q options must correspond to fasta files used to run
 * A third column may be used to specify the color of a feature (default feature color is yellow or black, for xmatchview and xmatchview-conifer, respectively). Users may specify any of these color names: yellow, blue, cyan, green, lime, red, sarin, forest, dirtyred, dirtyyellow, grey, lightgrey, orange, beige, black, white.
 
 </pre>
+
+### RUNNING THE cross_match/xmatchview/xmatchview-conifer PIPELINES
+------------- 
+Refer to:
+./runCompareTwoGenomesColinear.sh 
+Usage: runCompareTwoGenomesColinear.sh <QUERY FASTA> <REFERENCE FASTA> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QUERYfeatures.tsv> <REFfeatures.tsv>
+
+and:
+
+./runSpruceView.sh 
+Usage: runSpruceView.sh <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QRY FEATURES> <REF FEATURES>
+
+
+### TEST xmatchview.py / xmatchview-conifer.py
+-------------
+
+At the unix prompt, once the package is installed, change directory to 
+cd ./test
+
+Once you have downloaded pyhon and PIL and changed the paths to fonts in the xmatchview.py and xmatchview-conifer.py
+Execute:
+
+./runXMV-conifer.sh 
+./runXMV.sh
+
+If all went well, images such as those provided in the test folder should be generated
+
 
 ### CITING xmatchview/xmatchview-conifer
 -------------
