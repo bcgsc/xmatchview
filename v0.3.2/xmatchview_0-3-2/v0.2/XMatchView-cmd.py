@@ -1,10 +1,11 @@
-#!/usr/bin/python
-# xmatchview.py
-# Visualizing genome synteny
-# Rene L Warren 2005,2017
+#!/usr/local/python/2.3.3/bin/python2.3
+#Rene Warren 2005
 
 import sys
 import os
+sys.path.insert(0,'/home/rwarren/python/Development/SeqDev/lib')
+sys.path.insert(0,'/home/rwarren/python/standard/Imaging-1.1.4/PIL')
+
 import getopt
 import re
 import Image
@@ -23,34 +24,6 @@ def checkFile(file):
       sys.exit(1)
    else:
       print "exists."
-
-#---------------------------------------------
-def readExon(exon_file,scale):
-   exon = {}
-   xon_obj=open(exon_file, 'r')
-   (xstart,xend)=(0,0)
-   for line in xon_obj:
-       exonregex = re.compile("(\d+)\s+(\d+)(\s+)?(\S+)?")
-       duo = exonregex.match(line)
-       xstart = float(int(duo.group(1))/scale)
-       xend = float(int(duo.group(2))/scale)
-       color = duo.group(4)
-       if color == None:
-            color = "yellow"
-       if not exon.has_key(xstart):
-            exon[xstart] = {}
-            if not exon[xstart].has_key('end'):
-                exon[xstart]['end'] = {}
-            if not exon[xstart].has_key('color'):
-                exon[xstart]['color'] = {}
-
-       exon[xstart]['end']=xend
-       exon[xstart]['color']=color
-       #print "%i,%i with %s" %(xstart,xend,color)
-
-   xon_obj.close()
-
-   return exon
 
 #---------------------------------------------
 def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
@@ -228,15 +201,11 @@ def generateCoords(nocdt, size, leap, protein):
    return freq
 
 #---------------------------------------------
-def findOccurences(s, ch):
-    return [i for i, letter in enumerate(s) if letter == ch]
-
-#---------------------------------------------
 def readFasta(file, scale):
 
    (head_match, previous_contig,seq_length) = (None,None,0)
    L1={}
-   npos={}
+ 
 
    file_obj = open(file, 'r')
    
@@ -254,44 +223,41 @@ def readFasta(file, scale):
       seq_subset = seq_subset_regex.match(line)
       if seq_subset != None:
          seq_length += len(seq_subset.group(1))
-         npos=findOccurences(seq_subset.group(1).upper(), "N")
-         zpos=findOccurences(seq_subset.group(1).upper(), "Z")
-
+    
    (seq_length, scale)=(int(seq_length), int(scale))
    L1[previous_contig] = float(seq_length/scale)                                #for the last sequence
 
    file_obj.close()
 
+
    print "scaled down %s =%f total=%i " % (previous_contig, L1[previous_contig], seq_length)
 
-   return (L1, seq_length, npos, previous_contig, zpos)
+   return (L1, seq_length)
 
 #---------------------------------------------
-def initColor(alpha):
+def initColor():
    color={}
 
    #allocate colors
-   color["white"] = (255,255,255,255)
-   color["black"] = (0,0,0,255)
-   color["swamp"] = (150,150,30,255)
-   color["blue"] = (0,102,204,255)
-   color["yellow"] = (255,255,0,255)
-   color["cyan"] = (0,255,255,255)
-   color["purple"] = (255,0,255,alpha)
-   color["green"] = (100,250,25,255)
-   color["lime"] = (57,255,20,255)
-   color["red"] = (250,25,75,255)
-   color["sarin"] = (255,66,0,255)
-   color["forest"] = (25,175,0,255)
-   color["dirtyred"] = (200,0,120,255)
-   color["navy"] = (0,0,150,alpha)
-   color["dirtyyellow"] = (200,200,75,255)
-   color["grey"] = (153,153,153,255)
-   color["lightgrey"] = (220,220,220,355)
-   color["salmon"] = (255,153,153,alpha)
-   color["lightblue"] = (153,204,255,alpha)
-   color["orange"] = (255,153,51,255)
-   color["beige"] = (222,184,135,255)
+   color["white"] = (255,255,255)
+   color["black"] = (0,0,0)
+   color["swamp"] = (150,150,30)
+   color["blue"] = (0,102,204)
+   color["yellow"] = (255,255,0)
+   color["cyan"] = (0,255,255)
+   color["purple"] = (255,0,255)
+   color["green"] = (100,250,25)
+   color["red"] = (250,25,75)
+   color["forrest"] = (25,175,0)
+   color["dirtyred"] = (200,0,120)
+   color["navy"] = (0,0,150)
+   color["dirtyyellow"] = (200,200,75)
+   color["grey"] = (153,153,153)
+   color["lightgrey"] = (220,220,220)
+   color["salmon"] = (255,153,153)
+   color["lightblue"] = (153,204,255)
+   color["orange"] = (255,153,51)
+   color["beige"] = (222,184,135)
 
    return color
 
@@ -313,8 +279,8 @@ def initGraph():
    data['x_legend']=600
    data['y_legend']=750
    data['x_legend_picto']=100
-   data['tick_up']=25
-   data['tick_down']=40
+   data['thick_up']=25
+   data['thick_down']=40
 
    return data
 
@@ -322,8 +288,7 @@ def initGraph():
 def drawRectangle(draw,start,end,y,thickness,bar_color,text,font,text_color):
    
    draw.rectangle((start,y,end,y+thickness), bar_color)
-   #draw.text((start-80, y-2), text, font=font, fill=text_color)###position of SEQUENCE label
-   draw.text((end+5, y-2), text, font=font, fill=text_color)###position of SEQUENCE label
+   draw.text((start-80, y), text, font=font, fill=text_color)
 
 #---------------------------------------------
 def plotFrequency(freq,size,scale,draw,color,data,leap):
@@ -334,7 +299,7 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
       if freq.has_key(pos):
          freq_list=freq[pos]
          previous=data['mis_bar']
-         identity_range=range(99,-1,-1)## RESTRICT SI AXIS was 9
+         identity_range=range(99,-1,-1)
          for id in identity_range:
             cumul=int(0)
             for freq_keys in freq_list:
@@ -350,17 +315,17 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
             elif cumul==3:
                color_now="green"
             elif cumul==4:
-               color_now="orange"
-            elif cumul>=5:
                color_now="dirtyred"
-            #elif cumul==6:
-            #   color_now="salmon"
-            #elif cumul==7:
-            #   color_now="orange"
-            #elif cumul>=8:
-            #   color_now="yellow"
+            elif cumul==5:
+               color_now="purple"
+            elif cumul==6:
+               color_now="salmon"
+            elif cumul==7:
+               color_now="orange"
+            elif cumul>=8:
+               color_now="yellow"
 
-            extension=((200-(2*id))+data['mis_bar'])   #RESTRICT SI AXIS y was 20
+            extension=((200-(2*id))+data['mis_bar'])   #y
             compressed=(pos/scale)+data['x']           #x
             
             if color_now != "white":
@@ -371,7 +336,7 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
 
 
 #---------------------------------------------
-def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, refname, qryname, refzpos, qryzpos, fontpath):
+def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein):
 
       scaled_reflength=int(reflength/scale)
 
@@ -379,157 +344,110 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       data=initGraph()
 
       ###Get colors
-      color=initColor(alpha)
+      color=initColor()
+ 
+      ###Set Font
 
       ###Set Font
-      arialfont = fontpath + "/arial.ttf"
-      pilfont = fontpath + "/helvR14.pil"
-
-      #default all font sizes to default (it is quite small, you must provide a valid path for best results)
-      font_18=ImageFont.load_default()
-      font_20=ImageFont.load_default()
-      fontb_20=ImageFont.load_default()
-      fontbi_20=ImageFont.load_default()
-      fontb_22=ImageFont.load_default()
-      font_24=ImageFont.load_default()
-      fontb_24=ImageFont.load_default()
-
-      if os.path.exists(arialfont): ### Will check for truetype first, they look better
-          ###Set Font (truetype)
-          font_18=ImageFont.truetype(fontpath + "/arial.ttf",18)
-          font_20=ImageFont.truetype(fontpath + "/arial.ttf",20)
-          fontb_20=ImageFont.truetype(fontpath + "/arialbd.ttf",20)
-          fontbi_20=ImageFont.truetype(fontpath + "/arialbi.ttf",20)
-          fontb_22=ImageFont.truetype(fontpath + "/arialbd.ttf",22)
-          font_24=ImageFont.truetype(fontpath + "/arial.ttf",24)
-          fontb_24=ImageFont.truetype(fontpath + "/arialbd.ttf",24)
-      elif os.path.exists(pilfont): ### Will settle for PIL font, if ttf do not exist. Otherwise, sticking with default.
-          ###Set font (pil) (sizes are limited, made to be compatible with TT fonts)
-          font_18=ImageFont.load_path(fontpath + "/helvR14.pil")
-          font_20=ImageFont.load_path(fontpath + "/helvR18.pil")
-          fontb_20=ImageFont.load_path(fontpath + "/helvB18.pil")
-          fontbi_20=ImageFont.load_path(fontpath + "/helvBO18.pil")
-          fontb_22=ImageFont.load_path(fontpath + "/helvB24.pil")
-          font_24=ImageFont.load_path(fontpath + "/helvR24.pil")
-          fontb_24=ImageFont.load_path(fontpath + "/helvB24.pil")
+      #medium_font=ImageFont.load_path("/home/rwarren/fonts/pil/helvB12.pil")
+      arial_18=ImageFont.truetype("/home/rwarren/fonts/truetype/arial.ttf",18)
+      arialb_18=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",18)
+      arial_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arial.ttf",20)
+      arialb_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",20)
+      ariali_20=ImageFont.truetype("/home/rwarren/fonts/truetype/ariali.ttf",20)
+      arialbi_20=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbi.ttf",20)
+      arialb_22=ImageFont.truetype("/home/rwarren/fonts/truetype/arialbd.ttf",22)
 
       ###Define Image
-      back = Image.new("RGBA", (data['width'],data['height']),(0,0,0,0))
-      bdraw = ImageDraw.Draw(back)
-
-      poly = Image.new("RGBA", (data['width'],data['height']))
-      draw = ImageDraw.Draw(poly)
+      im = Image.new("RGB", (data['width'],data['height']),color['white'])
+      draw = ImageDraw.Draw(im)
 
       ###Draw Legend
       date=commands.getstatusoutput("date")
 
       ###Picto Legend
-      bdraw.text((data['x_legend_picto']+280,data['y_legend']), "Legend", font=fontb_24, fill=color['black'])
+      draw.text((data['x_legend_picto']+50,data['y_legend']), "Legend", font=arialb_22, fill=color['black'])
       y_legend = data['y_legend']+30
-      bdraw.text((data['x_legend_picto'],y_legend), "Frequency Repeated", font=fontbi_20, fill=color['black'])
+      draw.text((data['x_legend_picto'],y_legend), "Frequency Repeated", font=arialbi_20, fill=color['black'])
 
       ####
-      bdraw.text((data['x_legend'],y_legend), "Mismatch threshold : %i %%" % mismatch, font=font_20, fill=color['black'])
-      bdraw.text((data['x_legend'],y_legend+20), "Minimum Block Length : %i bp" % block_length, font=font_20, fill=color['black'])
-      bdraw.text((data['x_legend'],y_legend+40), "Scale (pixel:bp)  1:%i" % scale, font=font_20, fill=color['black'])
-      #bdraw.text((data['x_legend'],y_legend+60), "%s" % date[1], font=font_20, fill=color['black'])
+      draw.text((data['x_legend'],y_legend), "Mismatch threshold %i" % mismatch, font=arial_20, fill=color['black'])
+      draw.text((data['x_legend'],y_legend+20), "Minimum Block Length=%i" % block_length, font=arial_20, fill=color['black'])
+      draw.text((data['x_legend'],y_legend+40), "Scale=1:%i" % scale, font=arial_20, fill=color['black'])
+      draw.text((data['x_legend'],y_legend+60), "%s" % date[1], font=arial_20, fill=color['black'])
+      draw.text((data['x_legend'],y_legend+80), "rwarren@bcgsc.ca", font=arial_20, fill=color['black'])
       ####
 
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['blue'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "Single copy", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['blue'])
+      draw.text((data['x_legend_picto']+25,y_legend), "1X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['cyan'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "2X", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['cyan'])
+      draw.text((data['x_legend_picto']+25,y_legend), "2X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['green'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "3X", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['green'])
+      draw.text((data['x_legend_picto']+25,y_legend), "3X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "4X", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['dirtyred'])
+      draw.text((data['x_legend_picto']+25,y_legend), "4X", font=arial_20, fill=color['black'])
       y_legend+=25
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['dirtyred'])
-      bdraw.text((data['x_legend_picto']+25,y_legend), "5X and over", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['purple'])
+      draw.text((data['x_legend_picto']+25,y_legend), "5X", font=arial_20, fill=color['black'])
       y_legend+=25
-      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['salmon'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "6X", font=font_20, fill=color['black'])
-      #y_legend+=25
-      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "7X", font=font_20, fill=color['black'])
-      #y_legend+=25
-      #bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['yellow'])
-      #bdraw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=font_20, fill=color['black'])
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['salmon'])
+      draw.text((data['x_legend_picto']+25,y_legend), "6X", font=arial_20, fill=color['black'])
+      y_legend+=25
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['orange'])
+      draw.text((data['x_legend_picto']+25,y_legend), "7X", font=arial_20, fill=color['black'])
+      y_legend+=25
+      draw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+20,y_legend+20), outline=color['black'], fill=color['yellow'])
+      draw.text((data['x_legend_picto']+25,y_legend), "8X and over", font=arial_20, fill=color['black'])
       y_legend+=40
 
-      bdraw.text((data['x_legend_picto'],y_legend), "Collinear Blocks", font=fontbi_20, fill=color['black'])
+      draw.text((data['x_legend_picto'],y_legend), "Collinear Blocks", font=arialbi_20, fill=color['black'])
       y_legend+=30
 
-      bdraw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto'],y_legend+25,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']+20,y_legend), outline=color['navy'], fill=color['lightblue'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Direct", font=font_20, fill=color['black'])
+      draw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto'],y_legend+25,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']+20,y_legend), outline=color['navy'], fill=color['lightblue'])
+      draw.text((data['x_legend_picto']+30,y_legend), "Direct", font=arial_20, fill=color['black'])
 
       y_legend+=30
-      bdraw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']-5,y_legend+25,data['x_legend_picto']+25,y_legend), outline=color['purple'], fill=color['salmon'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Inverted", font=font_20, fill=color['black'])
+      draw.polygon((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+25,data['x_legend_picto']-5,y_legend+25,data['x_legend_picto']+25,y_legend), outline=color['purple'], fill=color['salmon'])
+      draw.text((data['x_legend_picto']+30,y_legend), "Inverted", font=arial_20, fill=color['black'])
 
       y_legend+=40
 
-      bdraw.text((data['x_legend_picto'],y_legend), "Other", font=fontbi_20, fill=color['black'])
+      draw.text((data['x_legend_picto'],y_legend), "Other", font=arialbi_20, fill=color['black'])
       y_legend+=30
 
-      bdraw.rectangle((data['x_legend_picto']-5,y_legend+5,data['x_legend_picto']+25,y_legend+7), fill=color['red'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Mismatch threshold", font=font_20, fill=color['black'])
-      y_legend+=30
-
-      bdraw.rectangle((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+(data['reference_thick']/2)), outline=color['black'], fill=color['yellow'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Sequence features", font=font_20, fill=color['black'])
-      y_legend+=30
-      
-
-      bdraw.rectangle((data['x_legend_picto']+5,y_legend,data['x_legend_picto']+10,y_legend+data['reference_thick']), outline=color['red'], fill=color['red'])
-      bdraw.text((data['x_legend_picto']+30,y_legend), "Ambiguous bases (Ns)", font=font_20, fill=color['black'])
-      y_legend+=30
+      draw.rectangle((data['x_legend_picto']-5,y_legend+5,data['x_legend_picto']+25,y_legend+7), fill=color['red'])
+      draw.text((data['x_legend_picto']+30,y_legend), "Mismatch threshold", font=arial_20, fill=color['black'])
 
       ####
       for ref in reference_list:
          init_coord=int(data['x'])
          last_coord=int(data['x']+reference_list[ref])
 
-         ### draw top rectangle for REFERENCE
-         drawRectangle(bdraw, init_coord, last_coord,data['ref_y'],data['reference_thick'],color['black'],ref,fontb_20,color['black'])
+         drawRectangle(draw,init_coord, last_coord,data['ref_y'],data['reference_thick'],color['black'],ref,arialb_18,color['black'])
          x_range=range(init_coord, last_coord, 100)
 
-         ### draw kbp scale
-         if reflength >= 10000:
-            for position in x_range:
-               base_number=int(((position-data['x'])*scale)/1000)
-               bdraw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
-               bdraw.text((position-5, data['tick_up']-25), "%i" % base_number, font=font_20, fill=color['black'])
-         else:
-            for position in x_range:
-               base_number=(position-data['x']) * scale
-               base_number=float(base_number)
-               base_number=base_number/1000
-               bdraw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
-               #print "%i %i %i >>> %.2f <<< %i,%i" % (data['x'],position,scale,base_number,data['x_legend_picto'],position)
-               bdraw.text((position-5, data['tick_up']-25), "%.1f" % base_number, font=font_24, fill=color['black'])
-  
-      bdraw.text((data['x']+scaled_reflength+60,data['tick_up']-25), "kbp", font=fontb_24, fill=color['black'])
+         for position in x_range:
+            draw.rectangle((position,data['thick_up'],position+2,data['thick_down']),color['black'])
+            base_number=int(((position-data['x'])*scale)/1000)
+            draw.text((position-10, data['thick_up']-25), "%i kb" % base_number, font=arial_18, fill=color['black'])
+
       ###Mismatch Axis
-      #identity=int(0)
-      identity = int(0) ### RESTRICT SI AXIS was 90
+      identity=int(0)
       grid_range=range(data['mis_bar'], data['ref_y'], 20)
 
-      ###Draw grid
       for grid in grid_range:
-         bdraw.rectangle((data['x'],grid,data['x']+scaled_reflength+5,grid+2),color['lightgrey'])
-         bdraw.text((data['x']+scaled_reflength+10, grid-7), "%i " % identity, font=font_18, fill=color['black'])
-         identity += 10 ### RESTRICT SI AXIS was 1
+         draw.rectangle((data['x'],grid,data['x']+scaled_reflength+5,grid+2),color['lightgrey'])
+         draw.text((data['x']+scaled_reflength+10, grid-7), "%i " % identity, font=arial_18, fill=color['black'])
+         identity += 10
 
-      ###Draw grid metric
-      bdraw.text((data['x']+scaled_reflength+60, 150), "% Identity", font=font_18, fill=color['black'])
+      draw.text((data['x']+scaled_reflength+60, 150), "% Identity", font=arial_18, fill=color['black'])
 
       ###Draw Repeat Frequency
-      plotFrequency(freq,reflength,scale,bdraw,color,data,leap)
+      plotFrequency(freq,reflength,scale,draw,color,data,leap)
 
       ###Draw Threshold
       threshold_line= data['mis_bar'] + (200-(2*mismatch))
@@ -543,8 +461,8 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
          for hit in allhit:
             start1_list=allhit[hit]
             stop=current_position + query_list[hit]
-            if match != hit:
-               drawRectangle(bdraw,current_position,stop,data['ref_y']+decay,data['query_thick'],color['black'], hit, fontb_20, color['black'])
+            if match != hit: 
+               drawRectangle(draw,current_position,stop,data['ref_y']+decay,data['query_thick'],color['black'], hit, arialb_18, color['black'])
             s1_list_sort=start1_list.keys()
             s1_list_sort.sort()
             for start1 in s1_list_sort:
@@ -560,6 +478,8 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                      e2_list_sort=end2_list.keys()
                      e2_list_sort.sort()
                      for end2 in e2_list_sort:
+                        outline_color="forrest"
+                        fill_color="lightblue"
 
                         if start2 > end2:
                            outline_color="purple"
@@ -568,6 +488,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                            outline_color="navy"
                            fill_color="lightblue"
                         ###draw ORF on upper
+                        draw.rectangle((data['x']+start1,data['ref_y'],data['x']+end1,data['ref_y']+data['reference_thick']), outline=color["black"], fill=color["lightgrey"])
                         size_ref = end1 - start1
                         size_qry = end2 - start2
                         buf_ref = ((size_ref - (size_ref/3)) / 2)
@@ -578,7 +499,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                         ee2 = end2 - buf_qry
                         print "%s (%i-%i) hits %s  ::  mismatch %.2f target(%i)  block %i target (%i) " % (match,start1,end1,hit,end2_list[end2],mismatch,size_ref,block_length)
 
-                        if match == hit:### COMPARE 1 SEQUENCE AGAINST ITSELF
+                        if match == hit:
                            if start1 <= start2:
 
                               repeat_size = start2 - start1
@@ -587,49 +508,24 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                               size_chunk += 50
 
                               if protein:
+                                 draw.rectangle((data['x']+ss1,data['ref_y']+data['reference_thick']+7,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"]) 
                                  if end2_list[end2] <= mismatch: ###does it pass the mismatch cutoff?
-                                     ss1 = int(ss1)
-                                     ss2 = int(ss2)
-                                     bdraw.rectangle((data['x']+ss1,data['ref_y']+data['reference_thick']+7,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"])###REF1
-                                     bdraw.rectangle((data['x']+ss2,data['ref_y']+data['reference_thick']+7,data['x']+ee2,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"])###REF2
-                                     draw.arc((data['x']+ss1,data['ref_y']+data['reference_thick']+15-size_chunk,data['x']+ss2,data['ref_y']+data['reference_thick']+17+size_chunk),360,180, color[outline_color])
-                                     back.paste(poly, mask=poly)
-                                     del draw
-                                     poly = Image.new("RGBA", (data['width'],data['height']))
-                                     draw = ImageDraw.Draw(poly)
+                                    draw.arc((data['x']+ss1,data['ref_y']+data['reference_thick']+15-size_chunk,data['x']+ss2,data['ref_y']+data['reference_thick']+17+size_chunk),360,180, color[outline_color])
                               else:
                                  if end2_list[end2] <= mismatch: ###does it pass the mismatch cutoff?
-                                     start1 = int(start1)
-                                     start2 = int(start2)
-                                     draw.rectangle((data['x']+start1,data['ref_y'],data['x']+end1,data['ref_y']+data['reference_thick']), outline=color[outline_color], fill=color[fill_color])###REF LEFT REPEAT COLINEAR BLOCKS
-                                     draw.rectangle((data['x']+start2,data['ref_y'],data['x']+end2,data['ref_y']+data['reference_thick']), outline=color[outline_color], fill=color[fill_color])###REF RIGHT REPEAT COLINEAR BLOCKS
-                                     draw.arc((data['x']+start1,data['ref_y']+data['reference_thick']-size_chunk,data['x']+start2,data['ref_y']+data['reference_thick']+size_chunk),360,180, color[outline_color])###DRAW ARC AT REPEAT EDGE ONLY 
-                                     back.paste(poly, mask=poly)
-                                     del draw
-                                     poly = Image.new("RGBA", (data['width'],data['height']))
-                                     draw = ImageDraw.Draw(poly)
-                                 
-                        else:###COMPARE 2 SEQS
+                                    draw.arc((data['x']+start1,data['ref_y']+data['reference_thick']-size_chunk,data['x']+start2,data['ref_y']+data['reference_thick']+size_chunk),360,180, color[outline_color]) 
+                        else:
+                           draw.rectangle((data['x']+start2,data['ref_y']+decay,data['x']+end2,data['ref_y']+decay+data['reference_thick']), outline=color["black"], fill=color["lightgrey"])
 
                            if protein:
+                              draw.rectangle((data['x']+ss1,data['ref_y']+data['reference_thick']+7,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"])
+                              draw.rectangle((data['x']+ss2,data['ref_y']+decay-17,data['x']+ee2,data['ref_y']+decay-7), outline=color["black"], fill=color["red"])
                            
                               if end2_list[end2] <= mismatch: ###does it pass the mismatch cutoff?
                                  draw.polygon((data['x']+ss1,data['ref_y']+data['reference_thick']+17,data['x']+ss2,data['ref_y']+decay-17,data['x']+ee2,data['ref_y']+decay-17,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color[outline_color], fill=color[fill_color])
-                                 draw.rectangle((data['x']+ss1,data['ref_y']+data['reference_thick']+7,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"]) ###REF
-                                 draw.rectangle((data['x']+ss2,data['ref_y']+decay-17,data['x']+ee2,data['ref_y']+decay-7), outline=color["black"], fill=color["red"])###QRY
-                                 back.paste(poly, mask=poly)
-                                 del draw
-                                 poly = Image.new("RGBA", (data['width'],data['height']))
-                                 draw = ImageDraw.Draw(poly)
                            else:
                               if end2_list[end2] <= mismatch: ###does it pass the mismatch cutoff?
                                  draw.polygon((data['x']+start1,data['ref_y']+data['reference_thick'],data['x']+start2,data['ref_y']+decay,data['x']+end2,data['ref_y']+decay,data['x']+end1,data['ref_y']+data['reference_thick']), outline=color[outline_color], fill=color[fill_color])
-                                 draw.rectangle((data['x']+start1,data['ref_y'],data['x']+end1,data['ref_y']+data['reference_thick']), outline=color[outline_color], fill=color[fill_color]) ###REF COLINEAR BLOCKS
-                                 draw.rectangle((data['x']+start2,data['ref_y']+decay,data['x']+end2,data['ref_y']+decay+data['reference_thick']), outline=color[outline_color], fill=color[fill_color])###QRY COLINEAR BLOCKS
-                                 back.paste(poly, mask=poly)
-                                 del draw
-                                 poly = Image.new("RGBA", (data['width'],data['height']))
-                                 draw = ImageDraw.Draw(poly)
 
 
       #enhancer = ImageEnhance.Sharpness(im)
@@ -641,61 +537,22 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       #xm_regex = re.compile('(\S+)\.\S+')
       #xm_name = xm_regex.match(crossmatch_file)
       #file = xm_name.group(1) + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
-
-      ####draw features (eg. exons) on side of ref
-      ###REF gene model
-      
-      for scaledexstart in refexon:
-          #print "ex start: %i" % exstart
-          exstart = data['x'] + scaledexstart
-          exend = data['x'] + refexon[scaledexstart]['end'] 
-          draw.rectangle((exstart,data['ref_y'],exend,data['ref_y']+(data['reference_thick']/2)),outline=color[refexon[scaledexstart]['color']], fill=color[refexon[scaledexstart]['color']])###features/exons
-      if refname != qryname:
-          for scaledexstart in qryexon:
-              exstart = data['x'] + scaledexstart
-              exend = data['x'] + qryexon[scaledexstart]['end']
-              draw.rectangle((exstart,data['ref_y']+decay+(data['reference_thick']/2)+1,exend,data['ref_y']+decay+data['reference_thick']),outline=color[qryexon[scaledexstart]['color']], fill=color[qryexon[scaledexstart]['color']])###features/exons
-
-      ### draw start position of Ns
-      for nstart in refnpos:
-          nstart = data['x'] + (nstart/scale)
-          draw.line((nstart,data['ref_y']+1,nstart,data['ref_y']+data['reference_thick']-1),color['red'],width=1)
-          #print "N: %i" % nstart
-      #print ">>>%s  %s" % (refname,qryname)
-      if refname != qryname:
-          for nstart in qrynpos:
-              nstart = data['x'] + (nstart/scale)
-              draw.line((nstart,data['ref_y']+decay+1,nstart,data['ref_y']+decay+data['reference_thick']-1),color['red'],width=1)
-              #print "N: %i" % nstart
-
-      ### draw start position of sequences, delimited by Zs
-      for nstart in refzpos:
-          nstart = data['x'] + (nstart/scale)
-          draw.line((nstart,data['ref_y']+1,nstart,data['ref_y']+data['reference_thick']-1),color['lime'],width=1)
-          #print "N: %i" % nstart
-      #print ">>>%s  %s" % (refname,qryname)
-      if refname != qryname:
-          for nstart in qryzpos:
-              nstart = data['x'] + (nstart/scale)
-              draw.line((nstart,data['ref_y']+decay+1,nstart,data['ref_y']+decay+data['reference_thick']-1),color['lime'],width=1)
-              #print "N: %i" % nstart        
-
-      back.paste(poly, mask=poly)
-      file = "xmv-" + crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
+      file = crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
       print "Saving %s..." % file
-      back.save(open(file, 'wb'), formatdict[format])
+      im.save(open(file, 'wb'), formatdict[format])
       print "done."
       return file
 
 #---------------------------------------------
 def main():
    
-   opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:b:f:p:e:y:a:")
+   opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:l:f:p:")
 
-   (ref_exon_file, qry_exon_file, crossmatch_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
-   (mismatch, block_length, scale, leap, protein, alpha)=(0,0,0,0,0,255)
+   (crossmatch_file, reference_file, query_file, format)=(None,None,None,None)
+   (mismatch, block_length, scale, leap, protein)=(0,0,0,0,0)
    (reference, reflength)=([],[])
-   formatdict = {'png':'PNG','gif':'GIF','tiff':'TIFF','jpeg':'JPEG'}
+   #formatdict = {'PNG':'png','GIF':'gif','TIFF':'tiff','BMP':'bmp','JPEG':'jpeg','EPS':'ps'}
+   formatdict = {'png':'PNG','gif':'GIF','tiff':'TIFF','bmp':'BMP','jpeg':'JPEG','ps':'EPS'}
 
    for o, v in opts:
       if o == "-x":
@@ -706,44 +563,35 @@ def main():
         query_file=str(v)
       if o == "-m": 
         mismatch=int(v)
-      if o == "-b":
+      if o == "-r":
         block_length=int(v)
       if o == "-c":
         scale=int(v)
-      if o == "-r":
+      if o == "-l":
         leap=int(v)
       if o == "-f":
         format=str(v)
-      if o == "-e":
-        ref_exon_file=str(v)
-      if o == "-y":
-        qry_exon_file=str(v)
-      if o == "-a":
-        alpha = int(v)
       if o == "-p":
-        fontpath=str(v)
+        protein=int(v)
+
 
    if (crossmatch_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v0.3.2" % (sys.argv[0:])
+      print "Usage: %s" % (sys.argv[0:])
       print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
-      print "-e reference features (eg. exons) coordinates tsv file (start end) - optional"
-      print "-y query features (eg. exons) coordinates tsv file (start end) - optional"
       print "-m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
-      print "-b length (bp) of similarity block to display"
-      print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
-      print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
-      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
-      print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
-      #print "-z transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-";
+      print "-r length of similarity block to display"
+      print "-c scale (for displaying the image)"
+      print "-l leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50"
+      print "-f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better.\n"
+      print "-p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0)\n";
       print "* Files for the -s and -q options must correspond to fasta files used to run cross_match"
       sys.exit(1)
 
    #====Graph Format
    if not formatdict.has_key(format):
-      print "Not a valid Graph Format.  Please Select: bmp, jpeg, png, ps, gif, or tiff"
+      print "Not a valid Graph Format.  Please Select: bmp, jpeg, png, ps, gif, pdf or tiff"
       sys.exit(1)
 
    #====Mismatch checks
@@ -756,32 +604,14 @@ def main():
       print "Not a possible scale. Make sure you select a number >1."
       sys.exit(1)
 
-   #====Alpha checks
-   if (alpha<0 or alpha >255):
-     print "-a must be a valid number between 0-255"
-     sys.exit(1)
-
    #====File checks
    checkFile(crossmatch_file)
    checkFile(reference_file)
    checkFile(query_file)
 
-   ###OPTIONAL, FOR FEATURES/EXON REPRESENTATION
-   (refexon,qryexon) = ({},{})
-   if(ref_exon_file != None and qry_exon_file != None):
-      checkFile(ref_exon_file)
-      checkFile(qry_exon_file)
-      print "Reading reference exon file..."
-      refexon=readExon(ref_exon_file,scale)
-      print "Reading query exon file..."
-      qryexon=readExon(qry_exon_file,scale)
-      print "done."
-
    #====Parse Fasta Files
-   (refnpos,qrynpos) = ({},{})
-   (refname, qryname) = (None, None)
-   (reference, reflength, refnpos, refname, refzpos)=readFasta(reference_file, scale)
-   (query, qrylength, qrynpos, qryname, qryzpos)=readFasta(query_file, scale)
+   (reference, reflength)=readFasta(reference_file, scale)
+   (query, qrylength)=readFasta(query_file, scale)
 
    print "Reading Crossmatch file..."
    (nocdt, match, query_hit)=readCrossMatch(crossmatch_file, mismatch, block_length, reference, scale)
@@ -790,7 +620,7 @@ def main():
    (freq)=generateCoords(nocdt, reflength, leap, protein)
    print "done."
    print "Drawing repeats..."
-   drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, refname, qryname, refzpos, qryzpos, fontpath)
+   drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein)
 
 #---------------------------------------------
 #Main Call

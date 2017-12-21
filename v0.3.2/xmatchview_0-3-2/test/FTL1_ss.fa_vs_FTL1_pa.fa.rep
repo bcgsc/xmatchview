@@ -1,0 +1,169 @@
+/home/pubseq/BioSw/phrap/current/cross_match FTL1_pa.fa FTL1_ss.fa -minmatch 5 -minscore 10 -masklevel 101 
+cross_match version 1.080721
+
+Run date:time  171211:081724
+Query file(s):  FTL1_pa.fa
+Subject file(s):   FTL1_ss.fa
+Presumed sequence type (from score matrix): DNA
+
+Pairwise comparison algorithm: banded Smith-Waterman
+
+Score matrix (set by value of penalty: -2)
+    A   C   G   T   N   X
+A   1  -2  -2  -2   0  -3
+C  -2   1  -2  -2   0  -3
+G  -2  -2   1  -2   0  -3
+T  -2  -2  -2   1   0  -3
+N   0   0   0   0   0   0
+X  -3  -3  -3  -3   0  -3
+
+Gap penalties: gap_init: -4, gap_ext: -3, ins_gap_ext: -3, del_gap_ext: -3, 
+Using complexity-adjusted scores. Assumed background frequencies:
+ Aa: 0.250  Cc: 0.250  Gg: 0.250  Tt: 0.250  Nn: 0.000  : 0.000  
+
+minmatch: 5, maxmatch: 20, max_group_size: 0 (turned off), minscore: 10, near_minscore: 10, bandwidth: 14, indexwordsize: 5, indexwordsize2: 4
+word_raw: 0
+vector_bound: 0
+gap1_minscore: 17, gap1_dropoff: -12
+masklevel: 101 (minmargin irrelevant)
+splice_edge_length: 0, allocation: 1 bytes
+min_intron_length: 30, max_intron_length: 10000, max_overlap: 20, min_exon_length: 6 
+
+Sequence file: FTL1_pa.fa    1 entries
+Residue counts:
+  A      843
+  C      415
+  G      355
+  T      998
+Total   2611 residues
+
+4 distinct alphabetic chars have freq > 1% -- 
+
+Allocated space: 5225 seqs, 24 ids, 2 descrips
+
+NO QUALITY FILE FTL1_pa.fa.qual WAS FOUND. REMAINING INPUT QUALITIES SET TO 15.
+Base_llr -5.55, intron_coeff: -0.00288828
+Num. pairs: 46
+Maximal single base matches (low complexity regions):
+JN039333.1_Picea_abies   Aa   Score:   12   Residues:  1601 -  1612
+
+ 609  3.59 0.72 0.84  JN039333.1_Picea_abies       97   931 (1680)    KT263970.1_Picea_sitchensis        1   834 (1541)  
+  46  6.35 0.00 0.00  JN039333.1_Picea_abies      204   266 (2345)    KT263970.1_Picea_sitchensis      169   231 (2144)  
+  52  3.08 0.00 0.00  JN039333.1_Picea_abies      265   329 (2282)    KT263970.1_Picea_sitchensis      108   172 (2203)  
+  10  0.00 0.00 0.00  JN039333.1_Picea_abies      369   379 (2232)    KT263970.1_Picea_sitchensis      546   556 (1819)  
+  13  5.88 0.00 0.00  JN039333.1_Picea_abies      417   433 (2178)    KT263970.1_Picea_sitchensis      407   423 (1952)  
+  26 10.64 0.00 0.00  JN039333.1_Picea_abies      437   483 (2128)    KT263970.1_Picea_sitchensis      388   434 (1941)  
+  10  8.70 0.00 0.00  JN039333.1_Picea_abies      440   462 (2149)  C KT263970.1_Picea_sitchensis   (1851)   524   502  
+  16  4.55 0.00 0.00  JN039333.1_Picea_abies      484   505 (2106)    KT263970.1_Picea_sitchensis      341   362 (2013)  
+  21  9.52 0.00 0.00  JN039333.1_Picea_abies      506   547 (2064)    KT263970.1_Picea_sitchensis      346   387 (1988)  
+  10  0.00 0.00 0.00  JN039333.1_Picea_abies      557   566 (2045)    KT263970.1_Picea_sitchensis      386   395 (1980)  
+  71 11.25 0.83 2.92  JN039333.1_Picea_abies      564   803 (1808)    KT263970.1_Picea_sitchensis      548   782 (1593)  
+  24 13.92 1.27 3.16  JN039333.1_Picea_abies      564   721 (1890)    KT263970.1_Picea_sitchensis      628   782 (1593)  
+  21 12.50 3.75 0.00  JN039333.1_Picea_abies      564   643 (1968)    KT263970.1_Picea_sitchensis      709   791 (1584)  
+  10  8.33 0.00 0.00  JN039333.1_Picea_abies      601   624 (1987)  C KT263970.1_Picea_sitchensis   (2008)   367   344  
+  17  4.88 4.88 0.00  JN039333.1_Picea_abies      603   643 (1968)    KT263970.1_Picea_sitchensis      973  1015 (1360)  
+  11  0.00 0.00 0.00  JN039333.1_Picea_abies      645   656 (1955)  C KT263970.1_Picea_sitchensis   (1817)   558   547  
+  95  8.86 2.11 1.27  JN039333.1_Picea_abies      648   884 (1727)    KT263970.1_Picea_sitchensis      463   701 (1674)  
+  12  4.17 4.17 0.00  JN039333.1_Picea_abies      698   721 (1890)    KT263970.1_Picea_sitchensis      982  1006 (1369)  
+  12  4.17 4.17 0.00  JN039333.1_Picea_abies      698   721 (1890)    KT263970.1_Picea_sitchensis     1178  1202 (1173)  
+ 201  9.24 5.35 1.46  JN039333.1_Picea_abies      730  1346 (1265)    KT263970.1_Picea_sitchensis      463  1103 (1272)  
+  11  0.00 0.00 0.00  JN039333.1_Picea_abies      775   792 (1819)  C KT263970.1_Picea_sitchensis   (1967)   408   391  
+  16  0.00 4.17 0.00  JN039333.1_Picea_abies      780   803 (1808)    KT263970.1_Picea_sitchensis      982  1006 (1369)  
+  16  0.00 4.17 0.00  JN039333.1_Picea_abies      780   803 (1808)    KT263970.1_Picea_sitchensis     1178  1202 (1173)  
+  31 14.66 4.74 1.72  JN039333.1_Picea_abies      811  1042 (1569)    KT263970.1_Picea_sitchensis      463   701 (1674)  
+  11  5.00 0.00 0.00  JN039333.1_Picea_abies      854   873 (1738)  C KT263970.1_Picea_sitchensis   (2012)   363   344  
+  28  5.41 8.11 0.00  JN039333.1_Picea_abies      858   931 (1680)    KT263970.1_Picea_sitchensis      979  1058 (1317)  
+  24  6.94 8.33 0.00  JN039333.1_Picea_abies      860   931 (1680)    KT263970.1_Picea_sitchensis     1177  1254 (1121)  
+  10 13.64 0.00 0.00  JN039333.1_Picea_abies      940   961 (1650)    KT263970.1_Picea_sitchensis      761   782 (1593)  
+  38 10.67 0.00 0.00  JN039333.1_Picea_abies      968  1042 (1569)    KT263970.1_Picea_sitchensis      547   621 (1754)  
+  38  7.23 0.00 2.41  JN039333.1_Picea_abies      969  1051 (1560)    KT263970.1_Picea_sitchensis      463   543 (1832)  
+  11  5.00 0.00 0.00  JN039333.1_Picea_abies     1012  1031 (1580)  C KT263970.1_Picea_sitchensis   (2012)   363   344  
+1034  2.75 0.70 2.26  JN039333.1_Picea_abies     1016  2434 (177)    KT263970.1_Picea_sitchensis      979  2375 (0)  
+  48  6.84 5.13 0.85  JN039333.1_Picea_abies     1018  1134 (1477)    KT263970.1_Picea_sitchensis     1177  1298 (1077)  
+  17  6.98 0.00 4.65  JN039333.1_Picea_abies     1216  1258 (1353)    KT263970.1_Picea_sitchensis      503   543 (1832)  
+  73  5.26 0.00 0.88  JN039333.1_Picea_abies     1222  1335 (1276)    KT263970.1_Picea_sitchensis      756   868 (1507)  
+  13  4.00 0.00 4.00  JN039333.1_Picea_abies     1225  1249 (1362)    KT263970.1_Picea_sitchensis      678   701 (1674)  
+  20  5.77 5.77 0.00  JN039333.1_Picea_abies     1340  1391 (1220)    KT263970.1_Picea_sitchensis      907   961 (1414)  
+  11 10.26 2.56 0.00  JN039333.1_Picea_abies     1354  1392 (1219)    KT263970.1_Picea_sitchensis     1130  1169 (1206)  
+  10  0.00 0.00 0.00  JN039333.1_Picea_abies     1528  1541 (1070)    KT263970.1_Picea_sitchensis     1692  1705 (670)  
+  63 11.30 0.00 0.00  JN039333.1_Picea_abies     1544  1658 (953)    KT263970.1_Picea_sitchensis     1716  1830 (545)  
+  14  8.33 4.17 0.00  JN039333.1_Picea_abies     1666  1689 (922)    KT263970.1_Picea_sitchensis     1834  1858 (517)  
+  19 11.76 0.00 0.00  JN039333.1_Picea_abies     1719  1752 (859)    KT263970.1_Picea_sitchensis     1487  1520 (855)  
+  29 10.34 0.00 0.00  JN039333.1_Picea_abies     1752  1809 (802)    KT263970.1_Picea_sitchensis     1639  1696 (679)  
+  10  0.00 0.00 0.00  JN039333.1_Picea_abies     1753  1764 (847)    KT263970.1_Picea_sitchensis     1475  1486 (889)  
+  53  8.70 0.00 3.48  JN039333.1_Picea_abies     1775  1889 (722)    KT263970.1_Picea_sitchensis     1489  1599 (776)  
+  10 12.00 0.00 4.00  JN039333.1_Picea_abies     1893  1917 (694)    KT263970.1_Picea_sitchensis     1607  1630 (745)  
+
+1 matching entries (first file).
+
+Discrepancy summary:
+Qual algn  cum    rcum    (%)    unalgn X    N  sub del ins  total (%)   cum  rcum (%)
+
+
+Score histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000    1     1 0.022      0     0 0.000      0     0 0.000      0     0 0.000  
+  609    1     2 0.043      0     0 0.000      0     0 0.000      0     0 0.000  
+  201    1     3 0.065      0     0 0.000      0     0 0.000      0     0 0.000  
+   95    1     4 0.087      0     0 0.000      0     0 0.000      0     0 0.000  
+   73    1     5 0.109      0     0 0.000      0     0 0.000      0     0 0.000  
+   71    1     6 0.130      0     0 0.000      0     0 0.000      0     0 0.000  
+   63    1     7 0.152      0     0 0.000      0     0 0.000      0     0 0.000  
+   53    1     8 0.174      0     0 0.000      0     0 0.000      0     0 0.000  
+   52    1     9 0.196      0     0 0.000      0     0 0.000      0     0 0.000  
+   48    1    10 0.217      0     0 0.000      0     0 0.000      0     0 0.000  
+   46    1    11 0.239      0     0 0.000      0     0 0.000      0     0 0.000  
+   38    2    13 0.283      0     0 0.000      0     0 0.000      0     0 0.000  
+   31    1    14 0.304      0     0 0.000      0     0 0.000      0     0 0.000  
+   29    1    15 0.326      0     0 0.000      0     0 0.000      0     0 0.000  
+   28    1    16 0.348      0     0 0.000      0     0 0.000      0     0 0.000  
+   26    1    17 0.370      0     0 0.000      0     0 0.000      0     0 0.000  
+   24    2    19 0.413      0     0 0.000      0     0 0.000      0     0 0.000  
+   21    2    21 0.457      0     0 0.000      0     0 0.000      0     0 0.000  
+   20    1    22 0.478      0     0 0.000      0     0 0.000      0     0 0.000  
+   19    1    23 0.500      0     0 0.000      0     0 0.000      0     0 0.000  
+   17    2    25 0.543      0     0 0.000      0     0 0.000      0     0 0.000  
+   16    3    28 0.609      0     0 0.000      0     0 0.000      0     0 0.000  
+   14    1    29 0.630      0     0 0.000      0     0 0.000      0     0 0.000  
+   13    2    31 0.674      0     0 0.000      0     0 0.000      0     0 0.000  
+   12    2    33 0.717      0     0 0.000      0     0 0.000      0     0 0.000  
+   11    5    38 0.826      0     0 0.000      0     0 0.000      0     0 0.000  
+   10    8    46 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+Start histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000   16    16 0.348      0     0 0.000      0     0 0.000      0     0 0.000  
+  968    1    17 0.370      0     0 0.000      0     0 0.000      0     0 0.000  
+  967    1    18 0.391      0     0 0.000      0     0 0.000      0     0 0.000  
+  939    1    19 0.413      0     0 0.000      0     0 0.000      0     0 0.000  
+  859    1    20 0.435      0     0 0.000      0     0 0.000      0     0 0.000  
+  857    1    21 0.457      0     0 0.000      0     0 0.000      0     0 0.000  
+  853    1    22 0.478      0     0 0.000      0     0 0.000      0     0 0.000  
+  810    1    23 0.500      0     0 0.000      0     0 0.000      0     0 0.000  
+  779    2    25 0.543      0     0 0.000      0     0 0.000      0     0 0.000  
+  774    1    26 0.565      0     0 0.000      0     0 0.000      0     0 0.000  
+  729    1    27 0.587      0     0 0.000      0     0 0.000      0     0 0.000  
+  697    2    29 0.630      0     0 0.000      0     0 0.000      0     0 0.000  
+  647    1    30 0.652      0     0 0.000      0     0 0.000      0     0 0.000  
+  644    1    31 0.674      0     0 0.000      0     0 0.000      0     0 0.000  
+  602    1    32 0.696      0     0 0.000      0     0 0.000      0     0 0.000  
+  600    1    33 0.717      0     0 0.000      0     0 0.000      0     0 0.000  
+  563    3    36 0.783      0     0 0.000      0     0 0.000      0     0 0.000  
+  556    1    37 0.804      0     0 0.000      0     0 0.000      0     0 0.000  
+  505    1    38 0.826      0     0 0.000      0     0 0.000      0     0 0.000  
+  483    1    39 0.848      0     0 0.000      0     0 0.000      0     0 0.000  
+  439    1    40 0.870      0     0 0.000      0     0 0.000      0     0 0.000  
+  436    1    41 0.891      0     0 0.000      0     0 0.000      0     0 0.000  
+  416    1    42 0.913      0     0 0.000      0     0 0.000      0     0 0.000  
+  368    1    43 0.935      0     0 0.000      0     0 0.000      0     0 0.000  
+  264    1    44 0.957      0     0 0.000      0     0 0.000      0     0 0.000  
+  203    1    45 0.978      0     0 0.000      0     0 0.000      0     0 0.000  
+   96    1    46 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+
+Splice histogram : displayed 5' splice, other 5' splice: displayed 3' splice, other 3' splice:
+
+
+Times in secs (cum)
+read queries   0 (  0)
+sort queries   0 (  0)
+find matches   0 (  0)
+         end   0 (  0)
