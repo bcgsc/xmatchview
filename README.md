@@ -71,7 +71,7 @@ You will need to do the following before you can proceed:
         helvR24.pil
         helvB24.pil
 
-        If fontpaths are not provided (not recommended), default fonts will be used to preserve code functionality. However, these systems fonts are very small and of limited utility.
+        If fontpaths are not provided (not recommended), default fonts will be used to preserve code functionality. However, these systems fonts are very small and of limited utility. To download the above fonts, simply search the internet for "arial.ttf", "arialbd.ttf" and "arialbi.ttf". The "helv*.pil" fonts sould be distributed with PIL.
 
       4) Download cross_match for academic use, see http://www.phrap.org and http://www.phrap.org/consed/consed.html#howToGet
       5) Make sure cross_match is in your $PATH
