@@ -1,6 +1,7 @@
-#!/home/rwarren/python/Python-2.4.2/bin/python2.4
-#XMatchView, spruceView
-#Rene Warren 2005,2015,2017
+#!/usr/bin/python
+# xmatchview-conifer.py
+# Visualizing genome synteny with an evergreen representation
+# Rene L Warren 2005,2015,2017
 
 import sys
 import os
@@ -391,7 +392,7 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
 
 
 #---------------------------------------------
-def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos):
+def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath):
 
       scaled_reflength=float(reflength/scale)
       scaled_qrylength=float(qrylength/scale)
@@ -406,39 +407,48 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       color=initColor(alpha)
 
       ###Set Font
-      #font_default = ImageFont.load("arial.pil")
+      arialfont = fontpath + "/arial.ttf"
+      pilfont = fontpath + "/helvR14.pil"
 
-      ### CHANGE TO THE LOCATION OF PIL FONTS ON YOUR SYSTEM
-      #pil_font_path = "/home/rwarren/fonts/pil/"
+      #default all font sizes to default (it is quite small, you must provide a valid path for best results)
+      font_18=ImageFont.load_default()
+      font_20=ImageFont.load_default()
+      fontb_20=ImageFont.load_default()
+      fontbi_20=ImageFont.load_default()
+      fontb_22=ImageFont.load_default()
+      font_24=ImageFont.load_default()
+      fontb_24=ImageFont.load_default()
+      font_28=ImageFont.load_default()
+      fontb_28=ImageFont.load_default()
+      fontbi_28=ImageFont.load_default()
+      fontb_92=ImageFont.load_default()
 
-      ### CHANGE TO THE LOCATION OF TRUE TYPE FONTS ON YOUR SYSTEM
-      truetype_font_path = "/home/rwarren/fonts/truetype/"
-
-      ###Set Font (truetype) 
-      font_18=ImageFont.truetype(truetype_font_path + "arial.ttf",18)
-      font_20=ImageFont.truetype(truetype_font_path + "arial.ttf",20)
-      fontb_20=ImageFont.truetype(truetype_font_path + "arialbd.ttf",20)
-      fontbi_20=ImageFont.truetype(truetype_font_path + "arialbi.ttf",20)
-      fontb_22=ImageFont.truetype(truetype_font_path + "arialbd.ttf",22)
-      font_24=ImageFont.truetype(truetype_font_path + "arial.ttf",24)
-      fontb_24=ImageFont.truetype(truetype_font_path + "arialbd.ttf",24)
-      font_28=ImageFont.truetype(truetype_font_path + "arial.ttf",28)
-      fontb_28=ImageFont.truetype(truetype_font_path + "arialbd.ttf",28)
-      fontbi_28=ImageFont.truetype(truetype_font_path + "arialbi.ttf",28)
-      fontb_92=ImageFont.truetype(truetype_font_path + "arialbd.ttf",92)
-
-      ###Set font (pil) (sizes are limited, made to be compatible with TT fonts) - to use, uncomment the lines below
-      #font_18=ImageFont.load_path(pil_font_path + "helvR14.pil")
-      #font_20=ImageFont.load_path(pil_font_path + "helvR18.pil")
-      #fontb_20=ImageFont.load_path(pil_font_path + "helvB18.pil")
-      #fontbi_20=ImageFont.load_path(pil_font_path + "helvBO18.pil")
-      #fontb_22=ImageFont.load_path(pil_font_path + "helvB24.pil")
-      #font_24=ImageFont.load_path(pil_font_path + "helvR24.pil")
-      #fontb_24=ImageFont.load_path(pil_font_path + "helvB24.pil")
-      #font_28=ImageFont.load_path(pil_font_path + "helvR24.pil")
-      #fontb_28=ImageFont.load_path(pil_font_path + "helvB24.pil")
-      #fontbi_28=ImageFont.load_path(pil_font_path + "helvBO24.pil")
-      #fontb_92=ImageFont.load_path(pil_font_path + "helvR24.pil")
+      if os.path.exists(arialfont): ### Will check for truetype first, they look better
+          ###Set Font (truetype)
+          font_18=ImageFont.truetype(fontpath + "/arial.ttf",18)
+          font_20=ImageFont.truetype(fontpath + "/arial.ttf",20)
+          fontb_20=ImageFont.truetype(fontpath + "/arialbd.ttf",20)
+          fontbi_20=ImageFont.truetype(fontpath + "/arialbi.ttf",20)
+          fontb_22=ImageFont.truetype(fontpath + "/arialbd.ttf",22)
+          font_24=ImageFont.truetype(fontpath + "/arial.ttf",24)
+          fontb_24=ImageFont.truetype(fontpath + "/arialbd.ttf",24)
+          font_28=ImageFont.truetype(fontpath + "/arial.ttf",28)
+          fontb_28=ImageFont.truetype(fontpath + "/arialbd.ttf",28)
+          fontbi_28=ImageFont.truetype(fontpath + "/arialbi.ttf",28)
+          fontb_92=ImageFont.truetype(fontpath + "/arialbd.ttf",92)
+      elif os.path.exists(pilfont): ### Will settle for PIL font, if ttf do not exist. Otherwise, sticking with default.
+          ###Set font (pil) (sizes are limited, made to be compatible with TT fonts)
+          font_18=ImageFont.load_path(fontpath + "/helvR14.pil")
+          font_20=ImageFont.load_path(fontpath + "/helvR18.pil")
+          fontb_20=ImageFont.load_path(fontpath + "/helvB18.pil")
+          fontbi_20=ImageFont.load_path(fontpath + "/helvBO18.pil")
+          fontb_22=ImageFont.load_path(fontpath + "/helvB24.pil")
+          font_24=ImageFont.load_path(fontpath + "/helvR24.pil")
+          fontb_24=ImageFont.load_path(fontpath + "/helvB24.pil")
+          font_28=ImageFont.load_path(fontpath + "/helvR24.pil")
+          fontb_28=ImageFont.load_path(fontpath + "/helvB24.pil")
+          fontbi_28=ImageFont.load_path(fontpath + "/helvBO24.pil")
+          fontb_92=ImageFont.load_path(fontpath + "/helvR24.pil")
 
       ###Define Image
       back = Image.new("RGBA", (data['width'],data['height']),(0,0,0,0))
@@ -776,7 +786,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       drawtl.text((data['x_legend_picto']+25,last_coord+25), "kbp", font=fontb_28, fill=color['black'])
       back.paste(ticklabel, mask=ticklabel)
       del drawtl
-      file = "xmv-conifer_" + crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
+      file = crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
       print "Saving %s..." % file
       back.save(open(file, 'wb'), formatdict[format])
       print "done."
@@ -786,11 +796,10 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 def main():
     opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:l:f:p:a:b:e:y:")
 
-    (ref_exon_file,qry_exon_file,crossmatch_file, reference_file, query_file, format)=(None,None,None,None,None,None)
+    (ref_exon_file,qry_exon_file,crossmatch_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
     (mismatch, block_length, scale, leap, protein, alpha)=(0,0,0,0,0,255)
     (reference, reflength)=([],[])
-   #formatdict = {'PNG':'png','GIF':'gif','TIFF':'tiff','BMP':'bmp','JPEG':'jpeg','EPS':'ps'}
-    formatdict = {'png':'PNG','gif':'GIF','tiff':'TIFF','bmp':'BMP','jpeg':'JPEG','ps':'EPS'}
+    formatdict = {'png':'PNG','gif':'GIF','tiff':'TIFF','jpeg':'JPEG'}
 
     for o, v in opts:
       if o == "-x":
@@ -818,10 +827,10 @@ def main():
       if o == "-a":
         alpha = int(v)
       if o == "-p":
-        protein=int(v)
+        fontpath=str(v)
 
     if (crossmatch_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v0.1" % (sys.argv[0:])
+      print "Usage: %s v0.1.1" % (sys.argv[0:])
       print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
@@ -833,14 +842,15 @@ def main():
       print "-r basepair length leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
       print "-l label for the tree trunk (6 characters or less for best result)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
-      print "-f file format (bmp, jpeg, png, ps, gif, pdf, tiff) NOTE: the png, ps, tiff and bmp are much better."
-      #print "-p transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0)\n";
+      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
+      print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
+      #print "-z transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) DEPRECATED\n";
       print "* Files for the -s and -q options must correspond to fasta files used to run cross_match"
       sys.exit(1)
 
    #====Graph Format
     if not formatdict.has_key(format):
-      print "Not a valid Graph Format.  Please Select: bmp, jpeg, png, ps, gif, pdf or tiff"
+      print "Not a valid Graph Format.  Please Select: jpeg, png, gif, or tiff"
       sys.exit(1)
 
    #====Mismatch checks
@@ -886,7 +896,7 @@ def main():
     (freq)=generateCoords(nocdt, reflength, leap, protein)
     print "done."
     print "Drawing repeats..."
-    drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos)
+    drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath)
 
 #---------------------------------------------
 #Main Call
