@@ -468,35 +468,35 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       ####
 
       y_legend+=35
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green10t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green10t'], fill=color['green10t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "99-100", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green9t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green9t'], fill=color['green9t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "95-97", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green8t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green8t'], fill=color['green8t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "90-94", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green7t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green7t'], fill=color['green7t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "85-89", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green6t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green6t'], fill=color['green6t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "80-84", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green5t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green5t'], fill=color['green5t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "75-79", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green4t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green4t'], fill=color['green4t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "70-74", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green3t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green3t'], fill=color['green3t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "65-69", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green2t'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green2t'], fill=color['green2t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "60-64", font=font_24, fill=color['black'])
       y_legend+=30
-      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['black'], fill=color['green1t'])
-      bdraw.text((data['x_legend_picto']+35,y_legend), "0-59", font=font_24, fill=color['black'])
+      bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green1t'], fill=color['green1t'])
+      bdraw.text((data['x_legend_picto']+35,y_legend), "1-59", font=font_24, fill=color['black'])
 
       y_legend+=35
       identity_threshold = 100-mismatch
@@ -786,7 +786,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       drawtl.text((data['x_legend_picto']+25,last_coord+25), "kbp", font=fontb_28, fill=color['black'])
       back.paste(ticklabel, mask=ticklabel)
       del drawtl
-      file = crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
+      file = "xmvconifer-" + crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
       print "Saving %s..." % file
       back.save(open(file, 'wb'), formatdict[format])
       print "done."
