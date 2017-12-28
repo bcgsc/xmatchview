@@ -5,8 +5,10 @@
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
 ### NAME
+   <pre>
    xmatchview.py v0.3  November 2017
    XMatchView.py v0.2  March 2005/May 2005/January 2006
+   </pre>
 
 ### SYNOPSIS
    xmatchview and xmatchview-conifer are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match and displays the alignment in a variety of image formats.
@@ -134,14 +136,16 @@ Usage: runSpruceView.sh <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARE
 -------------
 
 At the unix prompt, once the package is installed, change directory to 
+<pre>
 cd ./test
-
+</pre>
 Once you have downloaded pyhon and PIL and changed the paths to fonts in the xmatchview.py and xmatchview-conifer.py
 Execute:
-
+<pre>
 ./runXMV-conifer.sh 
+and
 ./runXMV.sh
-
+</pre>
 If all went well, images such as those provided in the test folder should be generated
 
 
@@ -152,7 +156,7 @@ Thank you for using, developing and promoting this free software.
 If you use xmatchview/xmatchview-conifer for you research, please cite:
 
 <pre>
-Warren RL. 2017. Visualizing genome synteny with xmatchview. TBA.
+Warren RL. 2017. Visualizing genome synteny with xmatchview. bioRxiv 238220; doi: https://doi.org/10.1101/238220
 </pre>
 
 
