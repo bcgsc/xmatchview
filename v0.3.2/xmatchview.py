@@ -7,7 +7,8 @@ import sys
 import os
 import getopt
 import re
-import Image
+# import Image ## https://stackoverflow.com/questions/17451711/typeerror-when-resizing-an-image-with-pil-in-python
+from PIL import Image
 import ImageDraw
 import ImageFont
 import ImageEnhance
