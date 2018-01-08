@@ -300,12 +300,12 @@ def initGraph():
    data={} 
   
    #default data points
-   data['width']=4500
+   data['width']=2400
    data['height']=1200
    data['ref_y']=250
    data['mis_bar']=50
    data['query_y']=70
-   data['x']=100
+   data['x']=50
    data['xlabel']=110
    data['bar_thick']=20
    data['query_thick']=15
@@ -681,7 +681,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
               #print "N: %i" % nstart        
 
       back.paste(poly, mask=poly)
-      file = crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
+      file = "xmv-" + crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
       print "Saving %s..." % file
       back.save(open(file, 'wb'), formatdict[format])
       print "done."
@@ -690,7 +690,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 #---------------------------------------------
 def main():
    
-   opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:l:f:p:e:y:a:")
+   opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:b:f:p:e:y:a:")
 
    (ref_exon_file, qry_exon_file, crossmatch_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
    (mismatch, block_length, scale, leap, protein, alpha)=(0,0,0,0,0,255)
@@ -706,11 +706,11 @@ def main():
         query_file=str(v)
       if o == "-m": 
         mismatch=int(v)
-      if o == "-r":
+      if o == "-b":
         block_length=int(v)
       if o == "-c":
         scale=int(v)
-      if o == "-l":
+      if o == "-r":
         leap=int(v)
       if o == "-f":
         format=str(v)
@@ -723,7 +723,6 @@ def main():
       if o == "-p":
         fontpath=str(v)
 
-
    if (crossmatch_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
       print "Usage: %s v0.3.2" % (sys.argv[0:])
       print "-x crossmatch file"
@@ -732,11 +731,11 @@ def main():
       print "-e reference features (eg. exons) coordinates tsv file (start end) - optional"
       print "-y query features (eg. exons) coordinates tsv file (start end) - optional"
       print "-m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
-      print "-r length (bp) of similarity block to display"
+      print "-b length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-l leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
-      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
+      print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
+      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
       print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
       #print "-z transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-";
       print "* Files for the -s and -q options must correspond to fasta files used to run cross_match"
