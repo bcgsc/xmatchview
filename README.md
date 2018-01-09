@@ -45,11 +45,10 @@ I encourage the community to contribute to the development of this software, by 
 
 ### INSTALL
 
-Download the tar ball, gunzip and extract the files on your system using:
+Download the tar file and extract the files on your system using:
 
 <pre>
-gunzip xmatchview-0.3.tar.gz 
-tar -xvf xmatchview-0.3.tar
+tar -xvf xmatchview_0-3-2.tar 
 </pre>
 
 ### DEPENDENCIES
@@ -89,12 +88,13 @@ Usage: ['xmatchview.py'] v0.3.2
 -e reference features (eg. exons) coordinates tsv file (start end) - optional
 -y query features (eg. exons) coordinates tsv file (start end) - optional
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
--r length (bp) of similarity block to display
+-b length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
--l leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
--f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
+-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
+-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
+* Files for the -s and -q options must correspond to fasta files used to run cross_match
 
 Usage: ['xmatchview-conifer.py'] v0.1.1
 -x crossmatch file
@@ -142,9 +142,9 @@ cd ./test
 Once you have downloaded pyhon and PIL and changed the paths to fonts in the xmatchview.py and xmatchview-conifer.py
 Execute:
 <pre>
-./runXMV-conifer.sh 
+./runXMV-conifer.sh FTL1_ss.fa_vs_FTL1_pa.fa.rep FTL1_ss.fa FTL1_pa.fa 200 10 1 FTL1_ss.txt FTL1_pa.txt
 and
-./runXMV.sh
+./runXMV.sh FTL1_ss.fa_vs_FTL1_pa.fa.rep FTL1_ss.fa FTL1_pa.fa 200 10 1 FTL1_ss.txt FTL1_pa.txt
 </pre>
 If all went well, images such as those provided in the test folder should be generated
 
