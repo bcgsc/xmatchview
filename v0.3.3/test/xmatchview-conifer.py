@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # xmatchview-conifer.py
 # Visualizing genome synteny with an evergreen representation
-# Rene L Warren 2005,2015,2017,2018
+# Rene L Warren 2005,2015,2017
 
 import sys
 import os
@@ -52,142 +52,6 @@ def readExon(exon_file,scale):
    xon_obj.close()
 
    return exon
-
-#---------------------------------------------
-def readPAF(paf_file,mismatch,block_length,reference,scale):
-
-   (nocdt,match,query_hit)=({},{},{})
-
-   xmatch_obj=open(paf_file, 'r')
-
-   for line in xmatch_obj:
-      ### reverse matches      qryname    qrystart qryend orient hitname       hitstart hitend match   block
-      ###                       1             2       3            4             5       6       7       8
-      rev_regex = re.compile("(\S+)\s+\S+\s+(\d+)\s+(\d+)\s+\-\s+(\S+)\s+\S+\s+(\d+)\s+(\d+)\s+(\S+)\s+(\S+)")
-      rm = rev_regex.match(line)
-      ###forward matches
-
-      fwd_regex = re.compile("(\S+)\s+\S+\s+(\d+)\s+(\d+)\s+\+\s+(\S+)\s+\S+\s+(\d+)\s+(\d+)\s+(\S+)\s+(\S+)")
-      fm = fwd_regex.match(line)
-
-      if rm != None:
-         #print "GR: %s" % line
-         #print "REVERSE: %s %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7), rm.group(8))
-
-         alignLen = float(rm.group(6)) - float(rm.group(5)) + 1
-         percentMis = 100 * float(( alignLen - float(rm.group(7))) / alignLen )
-         #percentMis = 100 * float((float(rm.group(8)) - float(rm.group(7))) / float(rm.group(8)))
-         #print "=== %.2f ===" % percentMis
-         (primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(str(rm.group(4)), float(rm.group(5)), float(rm.group(6)), str(rm.group(1)), float(rm.group(3)), float(rm.group(2)))
-
-         ####no autovivification in python
-         if not nocdt.has_key(primary_match):
-            nocdt[primary_match]={}
-         if not nocdt[primary_match].has_key(secondary_match):
-            nocdt[primary_match][secondary_match]={}
-         if not nocdt[primary_match][secondary_match].has_key(startFirstMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
-
-         nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-
-         if percentMis > mismatch:
-            continue  #will not display alignment lines below threshold
-         elif (primary_match == secondary_match) and (startSecondMatch == startFirstMatch):
-            break
-         elif (endFirstMatch - startFirstMatch) < block_length:
-            continue  #will skip smaller alignment
-         else:
-            if reference.has_key(primary_match):
-               startFirstMatch=startFirstMatch/scale
-               endFirstMatch=endFirstMatch/scale
-               startSecondMatch=startSecondMatch/scale
-               endSecondMatch=endSecondMatch/scale
-
-               print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
-
-               if not match.has_key(primary_match):
-                  match[primary_match]={}
-               if not match[primary_match].has_key(secondary_match):
-                  match[primary_match][secondary_match]={}
-               if not match[primary_match][secondary_match].has_key(startFirstMatch):
-                  match[primary_match][secondary_match][startFirstMatch]={}
-               if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
-
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-
-               if not query_hit.has_key(primary_match):
-                  query_hit[secondary_match]=int(0)
-
-               query_hit[secondary_match]=query_hit[secondary_match]+1
-
-      ###forward matches
-      elif fm != None:
-         #print "GF: %s" % line
-         #print "FORWARD: %s %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7), fm.group(8))
-
-         alignLen = float(fm.group(6)) - float(fm.group(5)) + 1
-         percentMis = 100 * float(( alignLen - float(fm.group(7))) / alignLen ) 
-         #percentMis = 100 * float((float(fm.group(8)) - float(fm.group(7))) / float(fm.group(8)))
-         (primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(str(fm.group(4)), float(fm.group(5)), float(fm.group(6)), str(fm.group(1)), float(fm.group(2)), float(fm.group(3)))
-         #print "=== %.2f ===" % percentMis
-         ####no autovivification in python
-         if not nocdt.has_key(primary_match):
-            nocdt[primary_match]={}
-         if not nocdt[primary_match].has_key(secondary_match):
-            nocdt[primary_match][secondary_match]={}
-         if not nocdt[primary_match][secondary_match].has_key(startFirstMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-         if not nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-            nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
-
-         nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-
-         if reference.has_key(primary_match):
-            startFirstMatch=startFirstMatch/scale
-            endFirstMatch=endFirstMatch/scale
-            startSecondMatch=startSecondMatch/scale
-            endSecondMatch=endSecondMatch/scale
-
-            print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
-
-            if not match.has_key(primary_match):
-               match[primary_match]={}
-            if not match[primary_match].has_key(secondary_match):
-               match[primary_match][secondary_match]={}
-            if not match[primary_match][secondary_match].has_key(startFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
-
-            match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-            if not query_hit.has_key(primary_match):
-               query_hit[secondary_match]=int(0)
-            query_hit[secondary_match]=query_hit[secondary_match]+1
-
-      #else:
-         #print "NO RE:%s" % line
-   xmatch_obj.close()
-
-   return nocdt, match, query_hit
 
 #---------------------------------------------
 def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
@@ -529,7 +393,7 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
 
 
 #---------------------------------------------
-def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, alignment_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath):
+def drawRelationship(reference_list, query_list, match_list, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath):
 
       scaled_reflength=float(reflength/scale)
       scaled_qrylength=float(qrylength/scale)
@@ -871,7 +735,9 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 
       ###getFileName
       #xm_regex = re.compile('(\S+)\.\S+')
-      ### draw start position of Ns
+      #xm_name = xm_regex.match(crossmatch_file)
+      #file = xm_name.group(1) + "_m" + str(mismatch) + "_b" + str(block_length) + "_l" + str(leap) + "_s" + str(scale) + "." + format
+            ### draw start position of Ns
       for nstart in refnpos:
           nstart = data['x'] + (nstart/scale)
           ny = (mrref * nstart) + brref
@@ -887,14 +753,12 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       charwidth = 65 ### approximate character width in pixels
       labellength = len(label)
       totaltrunklength = (labellength + 2) * charwidth ### the 2 is for a one-character buffer before/after
-      if((x2max - u2max) == 0):
-         print "It looks like there is nothing to plot, try increasing -m 99 -- FATAL"
-         sys.exit(1)
       mtrunk = (y2max - v2max ) / (x2max - u2max)
       btrunk = y2max - (mtrunk * x2max)
       ytrunk = y1ref
       if u2max > x2max:
           ytrunk = y1ref + decay
+
       xtrunk = (ytrunk - btrunk) / mtrunk
       #print "%i %i %i %i %.2f %.2f x1=%.2f y1=%.2f x2=%.2f+420 LAST=%.2f" % (u1,u2,v1,v2,mtrunk,btrunk,xtrunk,y1ref,xtrunk,last_coord)
       draw.rectangle((xtrunk+5,y1ref+data['reference_thick']+4,xtrunk+totaltrunklength,y1ref+decay-5), outline=color['brown'], fill=color['brown'])###trunk
@@ -923,7 +787,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       drawtl.text((data['x_legend_picto']+25,last_coord+25), "kbp", font=fontb_28, fill=color['black'])
       back.paste(ticklabel, mask=ticklabel)
       del drawtl
-      file = "xmvconifer-" + alignment_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
+      file = "xmvconifer-" + crossmatch_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
       print "Saving %s..." % file
       back.save(open(file, 'wb'), formatdict[format])
       print "done."
@@ -933,14 +797,14 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 def main():
     opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:l:f:p:a:b:e:y:")
 
-    (ref_exon_file, qry_exon_file, alignment_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
+    (ref_exon_file,qry_exon_file,crossmatch_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
     (mismatch, block_length, scale, leap, protein, alpha)=(0,0,0,0,0,255)
     (reference, reflength)=([],[])
     formatdict = {'png':'PNG','gif':'GIF','tiff':'TIFF','jpeg':'JPEG'}
 
     for o, v in opts:
       if o == "-x":
-        alignment_file=str(v)
+        crossmatch_file=str(v)
       if o == "-s":
         reference_file=str(v)
       if o == "-q":
@@ -966,9 +830,9 @@ def main():
       if o == "-p":
         fontpath=str(v)
 
-    if (alignment_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v0.1.2" % (sys.argv[0:])
-      print "-x alignment file (cross_match .rep or Pairwise mApping Format .paf) "
+    if (crossmatch_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
+      print "Usage: %s v0.1.1" % (sys.argv[0:])
+      print "-x crossmatch file"
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
       print "-e reference features (eg. exons) coordinates tsv file (start end) - optional"
@@ -1006,7 +870,7 @@ def main():
       sys.exit(1)
 
    #====File checks
-    checkFile(alignment_file)
+    checkFile(crossmatch_file)
     checkFile(reference_file)
     checkFile(query_file)
 
@@ -1026,21 +890,14 @@ def main():
     (reference, reflength, refnpos)=readFasta(reference_file, scale)
     (query, qrylength, qrynpos)=readFasta(query_file, scale)
 
-    print "Reading alignment file..."
-    (nocdt, match, query_hit) = ({},{},{})
-    if alignment_file.endswith("rep"):
-      (nocdt, match, query_hit)=readCrossMatch(alignment_file, mismatch, block_length, reference, scale)
-    elif alignment_file.endswith("paf"):
-      (nocdt, match, query_hit)=readPAF(alignment_file, mismatch, block_length, reference, scale)
-    else:
-      print "The alignment file provided (-x %s) does not end in .rep (cross_match) or .paf (PAF) -- fatal" % alignment_file
-      sys.exit(1)
+    print "Reading Crossmatch file..."
+    (nocdt, match, query_hit)=readCrossMatch(crossmatch_file, mismatch, block_length, reference, scale)
     print "done."
     print "Computing Repeat frequencies..."
     (freq)=generateCoords(nocdt, reflength, leap, protein)
     print "done."
     print "Drawing repeats..."
-    drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, alignment_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath)
+    drawRelationship(reference, query, match, scale, query_hit, mismatch, block_length, crossmatch_file, freq, reflength, leap, format, formatdict, protein, label, alpha, refexon, qryexon, qrylength, refnpos, qrynpos, fontpath)
 
 #---------------------------------------------
 #Main Call
