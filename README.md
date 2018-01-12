@@ -1,10 +1,10 @@
+![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
+
 # xmatchview
 ## Genome alignment visualization
 ## xmatchview v0.3 Rene L. Warren, 2005-2017
 ## email: rwarren [at] bcgsc [dot] ca
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
-
-![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
 
 ### NAME
    <pre>
