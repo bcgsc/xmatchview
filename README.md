@@ -4,6 +4,8 @@
 ## email: rwarren [at] bcgsc [dot] ca
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
+![Logo](http://https://github.com/warrenlr/xmatchview/xmv-logo.png)
+
 ### NAME
    <pre>
    xmatchview.py v0.3.3 January 2018
