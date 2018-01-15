@@ -1,3 +1,5 @@
+![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
+
 # xmatchview
 ## Genome alignment visualization
 ## xmatchview v0.3 Rene L. Warren, 2005-2017
@@ -120,6 +122,8 @@ Note: Files for the -s and -q options must correspond to fasta files used to run
 
 ### RUNNING THE cross_match/xmatchview/xmatchview-conifer PIPELINES
 ------------- 
+Demo shell scripts that pipeline cross_match and xmatchview/xmatchview-conifer are included with the distribution and provided for guidance (runCompareTwoGenomesColinear.sh and runSpruceView.sh, respectively).
+
 Refer to:
 <pre>
 ./runCompareTwoGenomesColinear.sh 
@@ -133,10 +137,18 @@ and:
 Usage: runSpruceView.sh <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QUERYfeatures.tsv> <REFERENCEfeatures.tsv> <PATH TO FONTS>
 </pre>
 
+
 ### TEST xmatchview.py / xmatchview-conifer.py
 -------------
+To test your xmatchview install on your system, we provide a test folder where you can run xmatchview and xmatchview-conifer, using the shell script commands below. If all goes well, and you used the arial fonts provided, the image you generate should be identical to:
+xmv-conifer_FTL1_ss.fa_vs_FTL1_pa.fa.rep_m10_b10_r1_c2_success.png
+and
+xmv_FTL1_ss.fa_vs_FTL1_pa.fa.rep_m10_r10_l1_c1_success.png 
 
-At the unix prompt, once the package is installed, change directory to 
+Once you confirmed that it works as expected, you may explore the full range of parameters to test functionality (see USAGE above) 
+
+
+At the unix prompt, once the package is installed, change directory to:
 <pre>
 cd ./test
 </pre>
