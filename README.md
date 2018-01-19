@@ -172,7 +172,8 @@ Thank you for using, developing and promoting this free software.
 If you use xmatchview/xmatchview-conifer for you research, please cite:
 
 <pre>
-Warren RL. 2017. Visualizing genome synteny with xmatchview. bioRxiv 238220; doi: https://doi.org/10.1101/238220
+Warren, RL (2018). Visualizing genome synteny with xmatchview. Journal of Open Source Software, 3(21), 497, https://doi.org/10.21105/joss.00497
+[![DOI](http://joss.theoj.org/papers/10.21105/joss.00497/status.svg)](https://doi.org/10.21105/joss.00497)
 </pre>
 
 ### WHAT'S NEW in v1.0
