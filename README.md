@@ -98,7 +98,7 @@ Usage: ['xmatchview.py'] v1.0
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
-* Files for the -s and -q options must correspond to fasta files used to run cross_match
+
 
 Usage: ['xmatchview-conifer.py'] v1.0
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf)
