@@ -386,12 +386,12 @@ def readFasta(file, scale):
              L1[previous_contig] = float(seq_length/scale)
              seq_length = 0                                        #resets the sequence length
           previous_contig = head_match.group(1)
-           
-      seq_subset_regex = re.compile('(.*)', re.I)
-      seq_subset = seq_subset_regex.match(line)
-      if seq_subset != None:
-         seq_length += len(seq_subset.group(1))
-         npos=findOccurences(seq_subset.group(1).upper(), "N")
+      else:     
+         seq_subset_regex = re.compile('(.*)', re.I)
+         seq_subset = seq_subset_regex.match(line)
+         if seq_subset != None:
+            seq_length += len(seq_subset.group(1))
+            npos=findOccurences(seq_subset.group(1).upper(), "N")
 
    (seq_length, scale)=(int(seq_length), int(scale))
    L1[previous_contig] = float(seq_length/scale)                                #for the last sequence
