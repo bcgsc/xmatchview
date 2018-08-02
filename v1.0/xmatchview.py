@@ -867,7 +867,7 @@ def main():
       print "-m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
       print "-b length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
+      print "-r leap length (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
       print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
       print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
