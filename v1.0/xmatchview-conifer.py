@@ -976,7 +976,7 @@ def main():
       print "-m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
       print "-b minimum length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-r length leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
+      print "-r basepair length leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
       print "-l label for the tree trunk (6 characters or less for best result)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
       print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."

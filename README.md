@@ -94,7 +94,7 @@ Usage: ['xmatchview.py'] v1.0
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
--r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
+-r leap length (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
@@ -109,7 +109,7 @@ Usage: ['xmatchview-conifer.py'] v1.0
 -m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b minimum length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
--r basepair length leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
+-r leap length (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
 -l label for the tree trunk (6 characters or less for best result)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
