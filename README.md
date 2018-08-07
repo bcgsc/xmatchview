@@ -87,8 +87,8 @@ You will need to do the following before you can proceed:
 <pre>
 Usage: ['xmatchview.py'] v1.0
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf)
--s reference genome fasta file (sequence in a single line)
--q query contig/genome fasta file (sequence in a single line)
+-s reference genome fasta file (sequence on a single line)
+-q query contig/genome fasta file (sequence on a single line)
 -e reference features (eg. exons) coordinates tsv file (start end *) - optional
 -y query features (eg. exons) coordinates tsv file (start end *) - optional
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
@@ -102,8 +102,8 @@ Usage: ['xmatchview.py'] v1.0
 
 Usage: ['xmatchview-conifer.py'] v1.0
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf)
--s reference genome fasta file (sequence in a single line)
--q query contig/genome fasta file (sequence in a single line)
+-s reference genome fasta file (sequence on a single line)
+-q query contig/genome fasta file (sequence on a single line)
 -e reference features (eg. exons) coordinates tsv file (start end *) - optional
 -y query features (eg. exons) coordinates tsv file (start end *) - optional
 -m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
@@ -115,12 +115,12 @@ Usage: ['xmatchview-conifer.py'] v1.0
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
 
-Note: Files for the -s and -q options must correspond to fasta files used to run cross_match.  Those files should each contain a single non-justified sequence (no line breaks)
+Note: Files for the -s and -q options must correspond to fasta files used to run cross_match.  Those files should each contain a single, non-justified, sequence (no line breaks).
 
 fasta file format:
 
 >yourSequence
-AATAGCAGCTACGACGACGCAGCGCGACGCAGCAGCACTACGAGACGCATCATCACAG...AATACAGACGCGACGACGCAGCATCATCGAGAC
+AATAGCAGCTACGACGACGCAGCGCGACGTTTCATCAA...AATACAGACGCGACGACGCAGCATCATCGAGAC
 
 
 * A third column may be used to specify the color of a feature (default feature color is yellow or black, for xmatchview and xmatchview-conifer, respectively). Users may specify any of these color names: yellow, blue, cyan, green, lime, red, sarin, forest, dirtyred, dirtyyellow, grey, lightgrey, orange, beige, black, white.
