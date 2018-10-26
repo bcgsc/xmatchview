@@ -388,16 +388,16 @@ def readFasta(file, scale):
              L1[previous_contig] = float(seq_length/scale)
              seq_length = 0                                        #resets the sequence length
           previous_contig = head_match.group(1)
-      else:     
-         seq_subset_regex = re.compile('(.*)', re.I)
-         seq_subset = seq_subset_regex.match(line)
-         if seq_subset != None:
-            seq_length += len(seq_subset.group(1))
-            npos=findOccurences(seq_subset.group(1).upper(), "N")
-            zpos=findOccurences(seq_subset.group(1).upper(), "Z")
+           
+      seq_subset_regex = re.compile('(.*)', re.I)
+      seq_subset = seq_subset_regex.match(line)
+      if seq_subset != None:
+         seq_length += len(seq_subset.group(1))
+         npos=findOccurences(seq_subset.group(1).upper(), "N")
+         zpos=findOccurences(seq_subset.group(1).upper(), "Z")
 
    (seq_length, scale)=(int(seq_length), int(scale))
-   L1[previous_contig] = float(seq_length/scale)                   #for the last sequence
+   L1[previous_contig] = float(seq_length/scale)                                #for the last sequence
 
    file_obj.close()
 
@@ -426,7 +426,7 @@ def initColor(alpha):
    color["navy"] = (0,0,150,alpha)
    color["dirtyyellow"] = (200,200,75,255)
    color["grey"] = (153,153,153,255)
-   color["lightgrey"] = (220,220,220,255)
+   color["lightgrey"] = (220,220,220,355)
    color["salmon"] = (255,153,153,alpha)
    color["lightblue"] = (153,204,255,alpha)
    color["orange"] = (255,153,51,255)
@@ -867,7 +867,7 @@ def main():
       print "-m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch"
       print "-b length (bp) of similarity block to display"
       print "-c scale (pixel to basepair scale, for displaying the image)"
-      print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
+      print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
       print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
       print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
