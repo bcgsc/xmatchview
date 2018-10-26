@@ -159,34 +159,41 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
 
          nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
 
-         if reference.has_key(primary_match):
-            startFirstMatch=startFirstMatch/scale
-            endFirstMatch=endFirstMatch/scale
-            startSecondMatch=startSecondMatch/scale
-            endSecondMatch=endSecondMatch/scale
+         if percentMis > mismatch:
+            continue  #will not display alignment lines below threshold
+         elif (primary_match == secondary_match) and (startSecondMatch == startFirstMatch):
+            break
+         elif (endFirstMatch - startFirstMatch) < block_length:
+            continue  #will skip smaller alignment
+         else:
+            if reference.has_key(primary_match):
+               startFirstMatch=startFirstMatch/scale
+               endFirstMatch=endFirstMatch/scale
+               startSecondMatch=startSecondMatch/scale
+               endSecondMatch=endSecondMatch/scale
 
-            print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
+               print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
 
-            if not match.has_key(primary_match):
-               match[primary_match]={}
-            if not match[primary_match].has_key(secondary_match):
-               match[primary_match][secondary_match]={}
-            if not match[primary_match][secondary_match].has_key(startFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
+               if not match.has_key(primary_match):
+                  match[primary_match]={}
+               if not match[primary_match].has_key(secondary_match):
+                  match[primary_match][secondary_match]={}
+               if not match[primary_match][secondary_match].has_key(startFirstMatch):
+                  match[primary_match][secondary_match][startFirstMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
 
-            match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-            if not query_hit.has_key(primary_match):
-               query_hit[secondary_match]=int(0)
-            query_hit[secondary_match]=query_hit[secondary_match]+1
+               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
+               if not query_hit.has_key(primary_match):
+                  query_hit[secondary_match]=int(0)
+               query_hit[secondary_match]=query_hit[secondary_match]+1
 
-      #else:
-         #print "NO RE:%s" % line
+         #else:
+            #print "NO RE:%s" % line
    xmatch_obj.close()
 
    return nocdt, match, query_hit
@@ -203,8 +210,6 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
       rev_regex = re.compile("(\s+)?\d+\s+(\S+)\s+\S+\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+\s+C\s+(\S+)\s+\S+\s+(\S+)\s+(\S+)")
       rm = rev_regex.match(line)
       ###forward matches
-
-
       fwd_regex = re.compile("(\s+)?\d+\s+(\S+)\s+\S+\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+")
       fm = fwd_regex.match(line)
 
@@ -292,34 +297,41 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
 
          nocdt[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
 
-         if reference.has_key(primary_match):
-            startFirstMatch=startFirstMatch/scale
-            endFirstMatch=endFirstMatch/scale
-            startSecondMatch=startSecondMatch/scale
-            endSecondMatch=endSecondMatch/scale
+         if percentMis > mismatch:
+            continue  #will not display alignment lines below threshold
+         elif (primary_match == secondary_match) and (startSecondMatch == startFirstMatch):
+            break
+         elif (endFirstMatch - startFirstMatch) < block_length:
+            continue  #will skip smaller alignment
+         else:
+            if reference.has_key(primary_match):
+               startFirstMatch=startFirstMatch/scale
+               endFirstMatch=endFirstMatch/scale
+               startSecondMatch=startSecondMatch/scale
+               endSecondMatch=endSecondMatch/scale
               
-            print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
+               print "%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch)
  
-            if not match.has_key(primary_match):
-               match[primary_match]={}
-            if not match[primary_match].has_key(secondary_match):
-               match[primary_match][secondary_match]={}
-            if not match[primary_match][secondary_match].has_key(startFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
-            if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
-               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
+               if not match.has_key(primary_match):
+                  match[primary_match]={}
+               if not match[primary_match].has_key(secondary_match):
+                  match[primary_match][secondary_match]={}
+               if not match[primary_match][secondary_match].has_key(startFirstMatch):
+                  match[primary_match][secondary_match][startFirstMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch].has_key(endFirstMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch].has_key(startSecondMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch]={}
+               if not match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch].has_key(endSecondMatch):
+                  match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]={}
 
-            match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
-            if not query_hit.has_key(primary_match):
-               query_hit[secondary_match]=int(0)
-            query_hit[secondary_match]=query_hit[secondary_match]+1
+               match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
+               if not query_hit.has_key(primary_match):
+                  query_hit[secondary_match]=int(0)
+               query_hit[secondary_match]=query_hit[secondary_match]+1
 
-      #else:
-         #print "NO RE:%s" % line      
+         #else:
+            #print "NO RE:%s" % line      
    xmatch_obj.close()
 
    return nocdt, match, query_hit
@@ -426,7 +438,7 @@ def initColor(alpha):
    color["navy"] = (0,0,150,alpha)
    color["dirtyyellow"] = (200,200,75,255)
    color["grey"] = (153,153,153,255)
-   color["lightgrey"] = (220,220,220,255)
+   color["lightgrey"] = (220,220,220,355)
    color["salmon"] = (255,153,153,alpha)
    color["lightblue"] = (153,204,255,alpha)
    color["orange"] = (255,153,51,255)
@@ -858,7 +870,7 @@ def main():
         fontpath=str(v)
 
    if (alignment_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v1.0" % (sys.argv[0:])
+      print "Usage: %s v1.1" % (sys.argv[0:])
       print "-x alignment file (cross_match .rep or Pairwise mApping Format .paf) "
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
