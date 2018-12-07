@@ -57,6 +57,7 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
 
    (nocdt,match,query_hit)=({},{},{})
 
+   ctline = 0
    xmatch_obj=open(paf_file, 'r')
 
    for line in xmatch_obj:
@@ -70,6 +71,7 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
       fm = fwd_regex.match(line)
 
       if rm != None:
+         ctline = 1
          #print "GR: %s" % line
          #print "REVERSE: %s %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7), rm.group(8))
 
@@ -132,6 +134,7 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
 
       ###forward matches
       elif fm != None:
+         ctline = 1
          #print "GF: %s" % line
          #print "FORWARD: %s %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7), fm.group(8))
 
@@ -193,12 +196,17 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
             #print "NO RE:%s" % line
    xmatch_obj.close()
 
+   if ctline == 0 :
+      print "There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % paf_file
+      sys.exit(1)
+
    return nocdt, match, query_hit
 
 #---------------------------------------------
 def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
 
    (nocdt,match,query_hit)=({},{},{})
+   ctline = 0
 
    xmatch_obj=open(crossmatch_file, 'r')
 
@@ -213,9 +221,10 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
       fm = fwd_regex.match(line)
 
       ###reverse first
-      if rm != None:
+      if rm != None and rm.group(3) != "0" and rm.group(6) != "0": 
+         ctline = 1
          #print "GR: %s" % line
-         #print "REVERSE: %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7))
+         #print "REVERSE: %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7))
 
          #(percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(rm.group(1)), rm.group(2), float(rm.group(3)), float(rm.group(4)), rm.group(5), float(rm.group(6)), float(rm.group(7)))
          (percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(rm.group(2)), rm.group(3), float(rm.group(4)), float(rm.group(5)), rm.group(6), float(rm.group(7)), float(rm.group(8)))
@@ -273,9 +282,10 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
 
 
       ###forward matches
-      elif fm != None:
+      elif fm != None and fm.group(3) != "0" and fm.group(6) != "0":
+         ctline = 1
          #print "GF: %s" % line
-         #print "FORWARD: %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7))
+         #print "FORWARD: %s %s >>%s<< %s %s >>%s<< %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7))
 #         (percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(fm.group(1)), fm.group(2), float(fm.group(3)), float(fm.group(4)), fm.group(5), float(fm.group(6)), float(fm.group(7)))
 
          (percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(fm.group(2)), fm.group(3), float(fm.group(4)), float(fm.group(5)), fm.group(6), float(fm.group(7)), float(fm.group(8)))
@@ -333,6 +343,10 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
          #else:
             #print "NO RE:%s" % line      
    xmatch_obj.close()
+
+   if ctline == 0 :
+      print "There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % crossmatch_file
+      sys.exit(1)
 
    return nocdt, match, query_hit
 
@@ -422,12 +436,14 @@ def initColor(alpha):
 
    #allocate colors
    color["white"] = (255,255,255,255)
+   #color["black"] = (255,255,255,255)#(0,0,0,255)
    color["black"] = (0,0,0,255)
    color["swamp"] = (150,150,30,255)
    color["blue"] = (0,102,204,255)
    color["yellow"] = (255,255,0,255)
    color["cyan"] = (0,255,255,255)
    color["purple"] = (255,0,255,255)
+   color["lime"] = (57,255,20,255)   ### XXX
    color["green"] = (100,250,25,255)
    color["red"] = (250,25,75,255)
    color["forest"] = (0,100,0,255)
@@ -484,7 +500,7 @@ def initGraph():
    data['query_thick']=15
    data['reference_thick']=15
    data['x_legend']=450
-   data['y_legend']=1500
+   data['y_legend']=1300 ###WAS 1500XXX
    data['x_legend_picto']=1500
    data['tick_up']=data['ref_y_skew'] - 120
    data['tick_down']=data['tick_up'] + 20
@@ -573,6 +589,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       fontb_28=ImageFont.load_default()
       fontbi_28=ImageFont.load_default()
       fontb_92=ImageFont.load_default()
+      fontb_80=ImageFont.load_default()
 
       if os.path.exists(arialfont): ### Will check for truetype first, they look better
           ###Set Font (truetype)
@@ -581,12 +598,26 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           fontb_20=ImageFont.truetype(fontpath + "/arialbd.ttf",20)
           fontbi_20=ImageFont.truetype(fontpath + "/arialbi.ttf",20)
           fontb_22=ImageFont.truetype(fontpath + "/arialbd.ttf",22)
+
           font_24=ImageFont.truetype(fontpath + "/arial.ttf",24)
           fontb_24=ImageFont.truetype(fontpath + "/arialbd.ttf",24)
+
+          ### XXX change
+          font_24=ImageFont.truetype(fontpath + "/arialbd.ttf",30)
+          fontb_24=ImageFont.truetype(fontpath + "/arialbd.ttf",32)
+
+
           font_28=ImageFont.truetype(fontpath + "/arial.ttf",28)
           fontb_28=ImageFont.truetype(fontpath + "/arialbd.ttf",28)
           fontbi_28=ImageFont.truetype(fontpath + "/arialbi.ttf",28)
+
+          ### XXX change
+          font_28=ImageFont.truetype(fontpath + "/arialbd.ttf",40)
+          fontb_28=ImageFont.truetype(fontpath + "/arialbd.ttf",40)
+          fontbi_28=ImageFont.truetype(fontpath + "/arialbi.ttf",34)
+
           fontb_92=ImageFont.truetype(fontpath + "/arialbd.ttf",92)
+          fontb_80=ImageFont.truetype(fontpath + "/arialbd.ttf",78)
       elif os.path.exists(pilfont): ### Will settle for PIL font, if ttf do not exist. Otherwise, sticking with default.
           ###Set font (pil) (sizes are limited, made to be compatible with TT fonts)
           font_18=ImageFont.load_path(fontpath + "/helvR14.pil")
@@ -600,6 +631,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           fontb_28=ImageFont.load_path(fontpath + "/helvB24.pil")
           fontbi_28=ImageFont.load_path(fontpath + "/helvBO24.pil")
           fontb_92=ImageFont.load_path(fontpath + "/helvR24.pil")
+          fontb_80=ImageFont.load_path(fontpath + "/helvR24.pil")
 
       ###Define Image
       back = Image.new("RGBA", (data['width'],data['height']),(0,0,0,0))
@@ -614,16 +646,16 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       date=commands.getstatusoutput("date")
 
       ###Picto Legend
-      y_legend = data['y_legend']+30
+      y_legend = data['y_legend']+ 230 ### WAS 30 XXX
       bdraw.text((data['x_legend_picto'],y_legend), "Sequence identity (%)", font=fontbi_28, fill=color['black'])
       ####
 
-      y_legend+=35
+      y_legend+=40 ### was 35 XXX
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green10t'], fill=color['green10t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "99-100", font=font_24, fill=color['black'])
       y_legend+=30
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green9t'], fill=color['green9t'])
-      bdraw.text((data['x_legend_picto']+35,y_legend), "95-97", font=font_24, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+35,y_legend), "95-98", font=font_24, fill=color['black'])
       y_legend+=30
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green8t'], fill=color['green8t'])
       bdraw.text((data['x_legend_picto']+35,y_legend), "90-94", font=font_24, fill=color['black'])
@@ -647,7 +679,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       bdraw.text((data['x_legend_picto']+35,y_legend), "60-64", font=font_24, fill=color['black'])
       y_legend+=30
       bdraw.rectangle((data['x_legend_picto'],y_legend,data['x_legend_picto']+30,y_legend+30), outline=color['green1t'], fill=color['green1t'])
-      bdraw.text((data['x_legend_picto']+35,y_legend), "1-59", font=font_24, fill=color['black'])
+      bdraw.text((data['x_legend_picto']+35,y_legend), "<60", font=font_24, fill=color['black'])
 
       y_legend+=35
       identity_threshold = 100-mismatch
@@ -677,7 +709,8 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           a2 = data['x'] + exend
           b1 = (mrref * a1 ) + brref
           b2 = (mrref * a2 ) + brref
-          draw.polygon((a1,b1-11,a1,b1,a2,b2,a2,b2-11),outline=color['black'], fill=color[refexon[exstart]['color']])###features/exons
+          #draw.polygon((a1,b1-11,a1,b1,a2,b2,a2,b2-11),outline=color['black'], fill=color[refexon[exstart]['color']])###features/exons
+          draw.polygon((a1,b1-11,a1,b1,a2,b2,a2,b2-11),outline=color[refexon[exstart]['color']], fill=color[refexon[exstart]['color']])###features/exons
 
       ###QRY gene model
       x1qry = data['x']
@@ -694,7 +727,8 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           a2 = data['x'] + exend
           b1 = (mqqry * a1 ) + bqqry
           b2 = (mqqry * a2 ) + bqqry
-          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color[qryexon[exstart]['color']])###features/exons
+          #draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color['black'], fill=color[qryexon[exstart]['color']])###features/exons
+          draw.polygon((a1,b1+(data['query_thick'])+2,a1,b1+(data['query_thick'])+11,a2,b2+(data['query_thick'])+11,a2,b2+(data['query_thick'])+2),outline=color[qryexon[exstart]['color']], fill=color[qryexon[exstart]['color']])###features/exons
 
       ####REFERENCE
       for ref in reference_list:
@@ -711,7 +745,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 
          print "REFERENCE x1=%i y1=%i x2=%i y2=%i M=%.2f  B=%.2f  " % (x1ref,y1ref,x2ref,y2ref,mref,bref)
          draw.polygon((init_coord-1,data['ref_y']-1,init_coord-1,data['ref_y']+data['reference_thick'],last_coord+1,data['ref_y_skew']+data['reference_thick'],last_coord+1,data['ref_y_skew']-3), outline=color['brown'], fill=color['brown'])### reference rectangle (top)
-         draw.text((last_coord+5, data['ref_y_skew']-7), ref, font=fontb_24, fill=color['green9'])###label for ref
+         draw.text((last_coord+5, data['ref_y_skew']-7), ref, font=fontb_24, fill=color['lime'])### XXX WAS fill=color['green9'])###label for ref
 
          back.paste(poly, mask=poly)
          del draw
@@ -721,7 +755,9 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
          x_range=range(int(init_coord), int(last_coord), 100)
 
          for position in x_range:
-            draw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
+            #draw.rectangle((position,data['tick_up'],position+2,data['tick_down']),color['black'])
+            #XXX
+            draw.rectangle((position,data['tick_up'],position+4,data['tick_down']),color['black'])
 
       ###Mismatch Axis
       #identity=int(0)
@@ -751,7 +787,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
             stop=current_position + query_list[hit]
             if match != hit: 
                draw.polygon((current_position-1,data['ref_y']+decay-1,current_position-1,data['ref_y']+data['query_thick']+decay+1,stop+1,data['ref_y']+decay+skew+data['query_thick']+2,stop+1,data['ref_y']+decay+skew), outline=color['brown'], fill=color['brown'])### Query rectangle (bottom)
-               draw.text((stop+5, data['ref_y']+decay+skew-3), hit, font=fontb_24, fill=color['green9'])### label for query 
+               draw.text((stop+5, data['ref_y']+decay+skew-3), hit, font=fontb_24, fill=color['lime'])### XXX WASfill=color['green9'])### label for query 
                back.paste(poly, mask=poly)
                del draw
                poly = Image.new("RGBA", (data['width'],data['height']))
@@ -804,7 +840,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
                         elif seqid >0:
                            fill_color="green1t"
                         #print "FILL= %s" % (fill_color)
-                        outline_color = "beige" 
+                        outline_color = "green10t" #"beige" 
                         #if start2 > end2:
                         #   outline_color="purple"
                         #   fill_color="salmon"
@@ -898,7 +934,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
           #print "N: %i" % nstart
 
       ### calculate placement of tree trunk/label
-      charwidth = 65 ### approximate character width in pixels
+      charwidth = 55 ### approximate character width in pixels
       labellength = len(label)
       totaltrunklength = (labellength + 2) * charwidth ### the 2 is for a one-character buffer before/after
       if((x2max - u2max) == 0):
@@ -912,7 +948,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       xtrunk = (ytrunk - btrunk) / mtrunk
       #print "%i %i %i %i %.2f %.2f x1=%.2f y1=%.2f x2=%.2f+420 LAST=%.2f" % (u1,u2,v1,v2,mtrunk,btrunk,xtrunk,y1ref,xtrunk,last_coord)
       draw.rectangle((xtrunk+5,y1ref+data['reference_thick']+4,xtrunk+totaltrunklength,y1ref+decay-5), outline=color['brown'], fill=color['brown'])###trunk
-      draw.text((xtrunk+charwidth,data['ref_y']+17), label, font=fontb_92, fill=color['beige'])###label
+      draw.text((xtrunk+charwidth,data['ref_y']+20), label, font=fontb_80, fill=color['beige'])###label
       back.paste(poly, mask=poly)
       ### end trunk code
       ### rotate plot to be able to place scale
@@ -925,14 +961,14 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
       if reflength >= 10000:
          for position in x_range:
             base_number=int(((position-data['x'])*scale)/1000)
-            drawtl.text((data['x_legend_picto']+25,position-15), "%i" % base_number, font=font_28, fill=color['black'])
+            drawtl.text((data['x_legend_picto']+25,position-18), "%i" % base_number, font=font_28, fill=color['black']) ### XXX
       else:
          for position in x_range:
             base_number=(position-data['x']) * scale
             base_number=float(base_number)
             base_number=base_number/1000
             #print "%i %i %i >>> %.2f <<< %i,%i" % (data['x'],position,scale,base_number,data['x_legend_picto'],position)
-            drawtl.text((data['x_legend_picto']+25,position-15), "%.1f" % base_number, font=font_28, fill=color['black'])
+            drawtl.text((data['x_legend_picto']+25,position-15), "%.1f" % base_number, font=font_28, fill=color['black'])### was position-15
 
       drawtl.text((data['x_legend_picto']+25,last_coord+25), "kbp", font=fontb_28, fill=color['black'])
       back.paste(ticklabel, mask=ticklabel)
@@ -981,7 +1017,7 @@ def main():
         fontpath=str(v)
 
     if (alignment_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v1.1" % (sys.argv[0:])
+      print "Usage: %s v1.1.1" % (sys.argv[0:])
       print "-x alignment file (cross_match .rep or Pairwise mApping Format .paf) "
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
