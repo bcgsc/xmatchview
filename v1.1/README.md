@@ -54,7 +54,7 @@ I encourage the community to contribute to the development of this software, by 
 Download the tar file and extract the files on your system using:
 
 <pre>
-tar -xvf xmatchview_1-1.tar 
+tar -xvf xmatchview_1-1-1.tar 
 </pre>
 
 ### DEPENDENCIES

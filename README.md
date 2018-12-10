@@ -2,12 +2,13 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.1 and xmatchview-conifer v1.1 Rene L. Warren, 2005-2018
+## xmatchview v0.3 Rene L. Warren, 2005-2018
 ## email: rwarren [at] bcgsc [dot] ca
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
 ### NAME
    <pre>
+   xmatchview.py v1.1.1   December 2018
    xmatchview.py v1.1   October 2018
    xmatchview.py v1.0   January 2018 - Post JOSS review
    xmatchview.py v0.3.3 January 2018
@@ -53,7 +54,7 @@ I encourage the community to contribute to the development of this software, by 
 Download the tar file and extract the files on your system using:
 
 <pre>
-tar -xvf xmatchview_1-1.tar 
+tar -xvf xmatchview_1-1-1.tar 
 </pre>
 
 ### DEPENDENCIES
@@ -86,7 +87,7 @@ You will need to do the following before you can proceed:
 ### USAGE 
 ---------------
 <pre>
-Usage: ['xmatchview.py'] v1.1
+Usage: ['xmatchview.py'] v1.1.1
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf)
 -s reference genome fasta file (sequence on a single line)
 -q query contig/genome fasta file (sequence on a single line)
@@ -101,7 +102,7 @@ Usage: ['xmatchview.py'] v1.1
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
 
 
-Usage: ['xmatchview-conifer.py'] v1.1
+Usage: ['xmatchview-conifer.py'] v1.1.1
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf)
 -s reference genome fasta file (sequence on a single line)
 -q query contig/genome fasta file (sequence on a single line)
@@ -185,6 +186,12 @@ Warren, RL (2018). Visualizing genome synteny with xmatchview. Journal of Open S
 
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00497/status.svg)](https://doi.org/10.21105/joss.00497)
 
+
+### WHAT'S NEW in v1.1.1
+------------------
+<pre>
+-Bug fixes (will now return an error when the alignment files are empty [instead of plotting empty graphs])
+</pre>
 
 ### WHAT'S NEW in v1.1
 ------------------

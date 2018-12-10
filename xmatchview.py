@@ -57,6 +57,7 @@ def readExon(exon_file,scale):
 def readPAF(paf_file,mismatch,block_length,reference,scale):
 
    (nocdt,match,query_hit)=({},{},{})
+   ctline = 0
 
    xmatch_obj=open(paf_file, 'r')
 
@@ -71,6 +72,7 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
       fm = fwd_regex.match(line)
 
       if rm != None:
+         ctline = 1
          #print "GR: %s" % line
          #print "REVERSE: %s %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7), rm.group(8))
 
@@ -133,6 +135,7 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
 
       ###forward matches
       elif fm != None:
+         ctline = 1
          #print "GF: %s" % line
          #print "FORWARD: %s %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7), fm.group(8))
 
@@ -196,12 +199,17 @@ def readPAF(paf_file,mismatch,block_length,reference,scale):
             #print "NO RE:%s" % line
    xmatch_obj.close()
 
+   if ctline == 0 :
+      print "There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % paf_file
+      sys.exit(1)
+
    return nocdt, match, query_hit
 
 #---------------------------------------------
 def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
 
    (nocdt,match,query_hit)=({},{},{})
+   ctline = 0
 
    xmatch_obj=open(crossmatch_file, 'r')
 
@@ -213,7 +221,8 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
       fwd_regex = re.compile("(\s+)?\d+\s+(\S+)\s+\S+\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+")
       fm = fwd_regex.match(line)
 
-      if rm != None:
+      if rm != None and rm.group(3) != "0" and rm.group(6) != "0":
+         ctline = 1
          #print "GR: %s" % line
          #print "REVERSE: %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7))
 
@@ -273,7 +282,8 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
 
 
       ###forward matches
-      elif fm != None:
+      elif fm != None and fm.group(3) != "0" and fm.group(6) != "0":
+         ctline = 1
          #print "GF: %s" % line
          #print "FORWARD: %s %s %s %s %s %s %s" % (fm.group(1), fm.group(2), fm.group(3), fm.group(4), fm.group(5), fm.group(6), fm.group(7))
 #         (percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(fm.group(1)), fm.group(2), float(fm.group(3)), float(fm.group(4)), fm.group(5), float(fm.group(6)), float(fm.group(7)))
@@ -333,6 +343,10 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,scale):
          #else:
             #print "NO RE:%s" % line      
    xmatch_obj.close()
+
+   if ctline == 0 :
+      print "There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % crossmatch_file
+      sys.exit(1)
 
    return nocdt, match, query_hit
 
@@ -870,7 +884,7 @@ def main():
         fontpath=str(v)
 
    if (alignment_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print "Usage: %s v1.1" % (sys.argv[0:])
+      print "Usage: %s v1.1.1" % (sys.argv[0:])
       print "-x alignment file (cross_match .rep or Pairwise mApping Format .paf) "
       print "-s reference genome fasta file"
       print "-q query contig/genome fasta file"
