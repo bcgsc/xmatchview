@@ -841,7 +841,10 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
               #print "N: %i" % nstart        
 
       back.paste(poly, mask=poly)
-      file = "xmv-" + alignment_file + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
+      file = os.path.join(
+         os.path.dirname(alignment_file),
+         "xmv-" + os.path.basename(alignment_file) + "_m" + str(mismatch) + "_b" + str(block_length) + "_r" + str(leap) + "_c" + str(scale) + "." + format
+      )
       print "Saving %s..." % file
       back.save(open(file, 'wb'), formatdict[format])
       print "done."
