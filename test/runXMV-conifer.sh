@@ -3,7 +3,7 @@
 # COMMAND TO RUN:
 # ./runXMV-conifer.sh FTL1_ss.fa_vs_FTL1_pa.fa.rep FTL1_ss.fa FTL1_pa.fa 200 10 1 FTL1_ss.txt FTL1_pa.txt
 
-if [ $# -ne 9 ]; then
+if [ $# -ne 8 ]; then
         echo "Usage: $(basename $0) <CROSS_MATCH .rep> <QUERY FASTA .fa> <REFERENCE FASTA .fa> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <SCALE> <QUERYfeatures.tsv> <REFERENCEfeatures.tsv>"
         exit 1
 fi
