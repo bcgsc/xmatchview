@@ -2,17 +2,17 @@
 #RLW 2017,2019
 if [ $# -ne 11 ]; then
         echo "Usage: $(basename $0)"
-        echo " <QUERY FASTA>"
-        echo " <REFERENCE/TARGET FASTA>"
-        echo " <ALPHA TRANSPARENCY 0-255>"
-        echo " <MISMATCH THRESHOLD>"
-        echo " <BLOCK LENGTH (bp)>"
-        echo " <LEAP LENGTH (bp)>"
-        echo " <SCALE (1:n)>"
-        echo " <QUERY features GFF .tsv>:"
-        echo " <REFERENCE features GFF .tsv>"
-        echo " <cross_match/minimap2>"
-        echo " <PATH-TO-FONTS>"
+        echo "  QUERY FASTA"
+        echo "  REFERENCE/SUBJECT/TARGET FASTA"
+        echo "  ALPHA TRANSPARENCY 0-255"
+        echo "  MISMATCH THRESHOLD"
+        echo "  BLOCK LENGTH (bp)"
+        echo "  LEAP LENGTH (bp)"
+        echo "  SCALE (1:n)"
+        echo "  QUERY features GFF .tsv"
+        echo "  REFERENCE features GFF .tsv"
+        echo "  cross_match/minimap2"
+        echo "  PATH-TO-FONTS"
         exit 1
 fi
 

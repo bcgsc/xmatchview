@@ -142,34 +142,34 @@ Refer to:
 ./runCompareTwoGenomesColinear.sh 
 
 Usage: runCompareTwoGenomesColinear.sh
- <QUERY FASTA>
- <REFERENCE/TARGET FASTA>
- <ALPHA TRANSPARENCY 0-255>
- <MISMATCH THRESHOLD>
- <BLOCK LENGTH (bp)>
- <LEAP LENGTH (bp)>
- <SCALE (1:n)>
- <QUERY features GFF .tsv>:
- <REFERENCE features GFF .tsv>
- <cross_match/minimap2>
- <PATH-TO-FONTS>
+ QUERY FASTA
+ REFERENCE/SUBJECT/TARGET FASTA
+ ALPHA TRANSPARENCY 0-255
+ MISMATCH THRESHOLD
+ BLOCK LENGTH (bp)
+ LEAP LENGTH (bp)
+ SCALE (1:n)
+ QUERY features GFF .tsv
+ REFERENCE features GFF .tsv
+ cross_match/minimap2
+ PATH-TO-FONTS
 
 and:
 
 ./runSpruceView.sh 
 
 Usage: runSpruceView.sh
- <QUERY FASTA>
- <REFERENCE/SUBJECT/TARGET FASTA>
- <ALPHA TRANSPARENCY 0-255>
- <MISMATCH THRESHOLD>
- <BLOCK LENGTH (bp)>
- <LABEL>
- <SCALE (1:n)>
- <QUERY features GFF .tsv>
- <REFERENCE features GFF .tsv>
- <cross_match/minimap2>
- <PATH-TO-FONTS>
+ QUERY FASTA
+ REFERENCE/SUBJECT/TARGET FASTA
+ ALPHA TRANSPARENCY 0-255
+ MISMATCH THRESHOLD
+ BLOCK LENGTH (bp)
+ LABEL
+ SCALE (1:n)
+ QUERY features GFF .tsv
+ REFERENCE features GFF .tsv
+ cross_match/minimap2
+ PATH-TO-FONTS
 
 
 Examples on how to run:
