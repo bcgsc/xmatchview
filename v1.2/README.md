@@ -2,12 +2,15 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v0.3 Rene L. Warren, 2005-2018
+## xmatchview v1.2 Rene L. Warren, 2005-2019
 ## email: rwarren [at] bcgsc [dot] ca
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
 ### NAME
    <pre>
+   xmatchview.py v1.2.0	October 2019
+   xmatchview.py v1.1.1   December 2018
+   xmatchview.py v1.1   October 2018
    xmatchview.py v1.0   January 2018 - Post JOSS review
    xmatchview.py v0.3.3 January 2018
    xmatchview.py v0.3   November 2017
@@ -15,11 +18,11 @@
    </pre>
 
 ### SYNOPSIS
-   xmatchview and xmatchview-conifer are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match and displays the alignment in a variety of image formats.
-   xmatchview and xmatchview-conifer are written in python and run on linux and windows. They serve as visual tools for analyzing cross_match alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
+   xmatchview and xmatchview-conifer are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats.
+   xmatchview and xmatchview-conifer are written in python and run on linux and windows. They serve as visual tools for analyzing cross_match and minimap2 alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
 
 ### LICENSE PREAMBLE
-   Copyright (c) 2005-2018 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
+   Copyright (c) 2005-2019 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
    xmatchview is a utility for comparing, visually, two DNA/RNA sequences
 
    This program is free software: you can redistribute it and/or modify
@@ -52,7 +55,7 @@ I encourage the community to contribute to the development of this software, by 
 Download the tar file and extract the files on your system using:
 
 <pre>
-tar -xvf xmatchview_1-0.tar 
+tar -xvf xmatchview_1-2-0.tar 
 </pre>
 
 ### DEPENDENCIES
@@ -85,43 +88,49 @@ You will need to do the following before you can proceed:
 ### USAGE 
 ---------------
 <pre>
-Usage: ['xmatchview.py'] v1.0
--x alignment file (cross_match .rep or Pairwise mApping Format .paf)
+Usage: ['./xmatchview.py'] v1.2.0
+-x alignment file (cross_match .rep or Pairwise mApping Format .paf) 
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference features (eg. exons) coordinates tsv file (start end *) - optional
--y query features (eg. exons) coordinates tsv file (start end *) - optional
+-e reference features (eg. exons) coordinates, GFF tsv file - optional
+-y query features (eg. exons) coordinates, GFF tsv file - optional
 -m mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
--r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -l=50)
+-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
+* Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-
-Usage: ['xmatchview-conifer.py'] v1.0
--x alignment file (cross_match .rep or Pairwise mApping Format .paf)
+Usage: ['./xmatchview-conifer.py'] v1.2.0
+-x alignment file (cross_match .rep or Pairwise mApping Format .paf) 
 -s reference genome fasta file
 -q query contig/genome fasta file
--e reference features (eg. exons) coordinates tsv file (start end *) - optional
--y query features (eg. exons) coordinates tsv file (start end *) - optional
+-e reference features (eg. exons) coordinates, GFF tsv file - optional
+-y query features (eg. exons) coordinates, GFF tsv file - optional
 -m maximum mismatch threshold (e.g. -m 10 allows representation of repeats having up to 10% mismatch
 -b minimum length (bp) of similarity block to display
 -c scale (pixel to basepair scale, for displaying the image)
--r basepair length leap to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)
 -l label for the tree trunk (6 characters or less for best result)
 -a alpha value, from 0 (transparent) to 255 (solid, default)
 -f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better.
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
+* Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-Note: Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-* A third column may be used to specify the color of a feature (default feature color is yellow or black, for xmatchview and xmatchview-conifer, respectively). Users may specify any of these color names: yellow, blue, cyan, green, lime, red, sarin, forest, dirtyred, dirtyyellow, grey, lightgrey, orange, beige, black, white.
+Note: Files for the -s and -q options must correspond to fasta files used to run cross_match or minimap2.  Those files should each contain a single, non-justified, sequence (no line breaks).
+
+fasta file format:
+
+>yourSequence
+AATAGCAGCTACGACGACGCAGCGCGACGTTTCATCAA...AATACAGACGCGACGACGCAGCATCATCGAGAC
+
+
+* A 10th column may be added to the GFF files supplied via -e/-y to specify the color of a feature (default feature color is yellow or black, for xmatchview and xmatchview-conifer, respectively). Users may specify any of these color names: yellow, blue, cyan, green, lime, red, sarin, forest, dirtyred, dirtyyellow, grey, lightgrey, orange, beige, black, white. Examples of .gff files are provided in the accompanied ./test folder 
 
 </pre>
 Users can control whether to show the position of sequence features on the reference and query (*-e* and *-y* options), show co-linear blocks of a certain length (*-b* option) when their mismatch rates are below a threshold (*-m* option). The histogram is generated by moving a sliding window with a step length (*-r* recommended between 10-50). The color space in xmatchview is RGBA and the alpha channel is used for visualizing the relationship between co-linear blocks (*-a* option, transparent to solid, 0 to 255).
-
 
 
 ### RUNNING THE cross_match/xmatchview/xmatchview-conifer PIPELINES
@@ -132,22 +141,53 @@ Refer to:
 <pre>
 ./runCompareTwoGenomesColinear.sh 
 
-Usage: runCompareTwoGenomesColinear.sh <QUERY FASTA> <REFERENCE FASTA> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <SCALE> <QUERYfeatures.tsv> <REFERENCEfeatures.tsv> <PATH TO FONTS>
+Usage: runCompareTwoGenomesColinear.sh
+ <QUERY FASTA>
+ <REFERENCE/TARGET FASTA>
+ <ALPHA TRANSPARENCY 0-255>
+ <MISMATCH THRESHOLD>
+ <BLOCK LENGTH (bp)>
+ <LEAP LENGTH (bp)>
+ <SCALE (1:n)>
+ <QUERY features GFF .tsv>:
+ <REFERENCE features GFF .tsv>
+ <cross_match/minimap2>
+ <PATH-TO-FONTS>
 
 and:
 
 ./runSpruceView.sh 
 
-Usage: runSpruceView.sh <QUERY FASTA> <REFERENCE FASTA> <LABEL> <ALPHA TRANSPARENCY 0-255> <MISMATCH THRESHOLD> <QUERYfeatures.tsv> <REFERENCEfeatures.tsv> <PATH TO FONTS>
+Usage: runSpruceView.sh
+ <QUERY FASTA>
+ <REFERENCE/SUBJECT/TARGET FASTA>
+ <ALPHA TRANSPARENCY 0-255>
+ <MISMATCH THRESHOLD>
+ <BLOCK LENGTH (bp)>
+ <LABEL>
+ <SCALE (1:n)>
+ <QUERY features GFF .tsv>
+ <REFERENCE features GFF .tsv>
+ <cross_match/minimap2>
+ <PATH-TO-FONTS>
+
+
+Examples on how to run:
+./runCompareTwoGenomesColinear.sh FTL1_pa.fa FTL1_ss.fa 200 99 100 1 2 FTL1_pa.gff FTL1_ss.gff cross_match ../../tarballs/fonts
+./runCompareTwoGenomesColinear.sh FTL1_pa.fa FTL1_ss.fa 200 99 100 1 2 FTL1_pa.gff FTL1_ss.gff minimap2 ../../tarballs/fonts
+
+./runSpruceView.sh FTL1_pa.fa FTL1_ss.fa 200 99 100 FTL1-test 2 FTL1_pa.gff FTL1_ss.gff cross_match ../../tarballs/fonts
+./runSpruceView.sh FTL1_pa.fa FTL1_ss.fa 200 99 100 FTL1-test 2 FTL1_pa.gff FTL1_ss.gff minimap2 ../../tarballs/fonts
+
 </pre>
 
 
 ### TEST xmatchview.py / xmatchview-conifer.py
 -------------
 To test your xmatchview install on your system, we provide a test folder where you can run xmatchview and xmatchview-conifer, using the shell script commands below. If all goes well, and you used the arial fonts provided, the image you generate should be identical to:
-xmv-conifer_FTL1_ss.fa_vs_FTL1_pa.fa.rep_m10_b10_r1_c2_success.png
-and
-xmv_FTL1_ss.fa_vs_FTL1_pa.fa.rep_m10_r10_l1_c1_success.png 
+
+./test/xmv-FTL1_pa.fa_vs_FTL1_ss.fa.rep_m10_b10_r1_c2_success.png
+./test/xmvconifer-FTL1_pa.fa_vs_FTL1_ss.fa.rep_m10_b10_c2_success.png
 
 Once you confirmed that it works as expected, you may explore the full range of parameters to test functionality (see USAGE above) 
 
@@ -159,9 +199,10 @@ cd ./test
 Once you have downloaded pyhon and PIL and changed the paths to fonts in the xmatchview.py and xmatchview-conifer.py
 Execute:
 <pre>
-./runXMV-conifer.sh FTL1_ss.fa_vs_FTL1_pa.fa.rep FTL1_ss.fa FTL1_pa.fa 200 10 1 FTL1_ss.txt FTL1_pa.txt
+./runXMV.sh FTL1_pa.fa_vs_FTL1_ss.fa.rep FTL1_pa.fa FTL1_ss.fa 200 10 2 FTL1_pa.gff FTL1_ss.gff
 and
-./runXMV.sh FTL1_ss.fa_vs_FTL1_pa.fa.rep FTL1_ss.fa FTL1_pa.fa 200 10 1 FTL1_ss.txt FTL1_pa.txt
+./runXMV-conifer.sh FTL1_pa.fa_vs_FTL1_ss.fa.rep FTL1_pa.fa FTL1_ss.fa 200 10 2 FTL1_pa.gff FTL1_ss.gff
+
 </pre>
 If all went well, images such as those provided in the test folder should be generated
 
@@ -178,6 +219,26 @@ Warren, RL (2018). Visualizing genome synteny with xmatchview. Journal of Open S
 
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.00497/status.svg)](https://doi.org/10.21105/joss.00497)
 
+### WHAT'S NEW in v1.2.0
+------------------
+<pre>
+-Bug fixes 
+-Aesthetic improvements to both xmatchview and xmatchview-conifer
+-Support for GFF files
+-Support for Multi-FASTA files
+</pre>
+
+### WHAT'S NEW in v1.1.1
+------------------
+<pre>
+-Bug fixes (will now return an error when the alignment files are empty [instead of plotting empty graphs])
+</pre>
+
+### WHAT'S NEW in v1.1
+------------------
+<pre>
+-Bug fixes (the forward synteny blocks were always printed, regardless of specified filters. This is fixed in both xmatchview and xmatchview-conifer v1.1)
+</pre>
 
 ### WHAT'S NEW in v1.0
 ------------------

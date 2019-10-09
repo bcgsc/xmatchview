@@ -595,7 +595,7 @@ def drawRelationship(reference_list, query_list, match_list, scale, query_hit, m
 
       ####
       bdraw.text((data['x_legend'],y_legend), "Mismatch threshold : %i %%" % mismatch, font=font_20, fill=color['black'])
-      bdraw.text((data['x_legend'],y_legend+20), "Minimum Block Length : %i bp" % block_length, font=font_20, fill=color['black'])
+      bdraw.text((data['x_legend'],y_legend+20), "Minimum block length : %i bp" % block_length, font=font_20, fill=color['black'])
       bdraw.text((data['x_legend'],y_legend+40), "Scale (pixel:bp)  1:%i" % scale, font=font_20, fill=color['black'])
       #bdraw.text((data['x_legend'],y_legend+60), "%s" % date[1], font=font_20, fill=color['black'])
       ####
