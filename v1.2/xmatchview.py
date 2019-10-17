@@ -1048,11 +1048,14 @@ def main():
 
    ###OPTIONAL, FOR FEATURES REPRESENTATION
    (refgff,qrygff) = ({},{})
-   if(ref_gff_file != None and qry_gff_file != None):
+   if(ref_gff_file != None):
       checkFile(ref_gff_file)
-      checkFile(qry_gff_file)
       print "Reading reference feature file %s ..." % (ref_gff_file)
       refgff=readGFF(ref_gff_file,scale)
+      print "done."
+
+   if(qry_gff_file != None):
+      checkFile(qry_gff_file)
       print "Reading query feature file %s ..." % (qry_gff_file)
       qrygff=readGFF(qry_gff_file,scale)
       print "done."
