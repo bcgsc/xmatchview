@@ -1015,7 +1015,7 @@ def main():
       print "-c scale (pixel to basepair scale, for displaying the image)"
       print "-r leap (bp) to evaluate repeat frequency (smaller numbers will increase the resolution, but will affect drastically the run time.  recommended -r=50)"
       print "-a alpha value, from 0 (transparent) to 255 (solid, default)"
-      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: the png and tiff are better."
+      print "-f output image file format (png, tiff, jpeg, or gif) NOTE: png and tiff recommended."
       print "-p full path to the directory with fonts on your system (please refer to the documentation for fonts used)"
       #print "-z transform bacterial ORF into protein (i.e. plot alignment between ORF products? 1/0) -not fully tested-";
       print "* Files for the -s and -q options must correspond to fasta files used to run cross_match"
@@ -1023,7 +1023,7 @@ def main():
 
    #====Graph Format
    if not formatdict.has_key(format):
-      print "Not a valid Graph Format.  Please Select: bmp, jpeg, png, ps, gif, or tiff"
+      print "Not a valid Graph Format.  Please Select: png, tiff, jpeg, or gif. NOTE: png and tiff recommended."
       sys.exit(1)
 
    #====Mismatch checks
