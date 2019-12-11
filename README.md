@@ -1,3 +1,7 @@
+[![Release](https://img.shields.io/github/release/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/releases)
+[![Downloads](https://img.shields.io/github/downloads/bcgsc/xmatchview/total?logo=github)](https://github.com/bcgsc/xmatchview/releases/download/v1.2.0/xmatchview_1-2.tar)
+[![Issues](https://img.shields.io/github/issues/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/issues)
+
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
 
 # xmatchview
@@ -210,7 +214,8 @@ If all went well, images such as those provided in the test folder should be gen
 ### CITING xmatchview/xmatchview-conifer
 -------------
 
-Thank you for using, developing and promoting this free software.
+Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/stargazers) and for using, developing and promoting this free software.
+
 If you use xmatchview/xmatchview-conifer for you research, please cite:
 
 <pre>
