@@ -6,7 +6,7 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2 Rene L. Warren, 2005-2019
+## xmatchview v1.2 Rene L. Warren, 2005-2020
 ## email: rwarren [at] bcgsc [dot] ca
 ## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
@@ -26,7 +26,7 @@
    xmatchview and xmatchview-conifer are written in python and run on linux and windows. They serve as visual tools for analyzing cross_match and minimap2 alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
 
 ### LICENSE PREAMBLE
-   Copyright (c) 2005-2019 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
+   Copyright (c) 2005-2020 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
    xmatchview is a utility for comparing, visually, two DNA/RNA sequences
 
    This program is free software: you can redistribute it and/or modify
@@ -214,7 +214,7 @@ If all went well, images such as those provided in the test folder should be gen
 ### CITING xmatchview/xmatchview-conifer
 -------------
 
-Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/stargazers) and for using, developing and promoting this free software.
+Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/stargazers) and for using, developing and promoting this free software!
 
 If you use xmatchview/xmatchview-conifer for you research, please cite:
 
