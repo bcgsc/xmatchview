@@ -8,7 +8,6 @@
 ## Genome alignment visualization
 ## xmatchview v1.2 Rene L. Warren, 2005-2020
 ## email: rwarren [at] bcgsc [dot] ca
-## Visit www.bcgsc.ca/bioinfo/software/xmatchview for additional information
 
 ### NAME
    <pre>
