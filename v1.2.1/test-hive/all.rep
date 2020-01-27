@@ -1,0 +1,432 @@
+cross_match 2019-nCoV.fa MERS-CoV.fa -minmatch 5 -minscore 10 -masklevel 101 
+cross_match version 1.080721
+
+Run date:time  200126:080632
+Query file(s):  2019-nCoV.fa
+Subject file(s):   MERS-CoV.fa
+Presumed sequence type (from score matrix): DNA
+
+Pairwise comparison algorithm: banded Smith-Waterman
+
+Score matrix (set by value of penalty: -2)
+    A   C   G   T   N   X
+A   1  -2  -2  -2   0  -3
+C  -2   1  -2  -2   0  -3
+G  -2  -2   1  -2   0  -3
+T  -2  -2  -2   1   0  -3
+N   0   0   0   0   0   0
+X  -3  -3  -3  -3   0  -3
+
+Gap penalties: gap_init: -4, gap_ext: -3, ins_gap_ext: -3, del_gap_ext: -3, 
+Using complexity-adjusted scores. Assumed background frequencies:
+ Aa: 0.250  Cc: 0.250  Gg: 0.250  Tt: 0.250  Nn: 0.000  : 0.000  
+
+minmatch: 5, maxmatch: 20, max_group_size: 0 (turned off), minscore: 10, near_minscore: 10, bandwidth: 14, indexwordsize: 5, indexwordsize2: 4
+word_raw: 0
+vector_bound: 0
+gap1_minscore: 17, gap1_dropoff: -12
+masklevel: 101 (minmargin irrelevant)
+splice_edge_length: 0, allocation: 1 bytes
+min_intron_length: 30, max_intron_length: 10000, max_overlap: 20, min_exon_length: 6 
+
+Sequence file: 2019-nCoV.fa    1 entries
+Residue counts:
+  A     9115
+  C     5605
+  G     5951
+  T     9802
+Total  30473 residues
+
+4 distinct alphabetic chars have freq > 1% -- 
+
+Allocated space: 60949 seqs, 11 ids, 2 descrips
+
+NO QUALITY FILE 2019-nCoV.fa.qual WAS FOUND. REMAINING INPUT QUALITIES SET TO 15.
+Base_llr -5.55, intron_coeff: -0.00288828
+Num. pairs: 62
+Maximal single base matches (low complexity regions):
+
+  11  7.14 0.00 0.00  2019-nCoV     1958  1971 (28502)    MERS-CoV     2031  2044 (27989)  
+  10 15.79 0.00 0.00  2019-nCoV     3627  3645 (26828)    MERS-CoV     3854  3872 (26161)  
+  12  8.70 0.00 0.00  2019-nCoV     7626  7648 (22825)    MERS-CoV     7505  7527 (22506)  
+  10  0.00 0.00 0.00  2019-nCoV     8012  8022 (22451)    MERS-CoV     8104  8114 (21919)  
+  11 15.38 0.00 0.00  2019-nCoV     8045  8070 (22403)    MERS-CoV     7936  7961 (22072)  
+  10 12.50 0.00 0.00  2019-nCoV     8264  8279 (22194)    MERS-CoV     8158  8173 (21860)  
+  11 10.00 0.00 0.00  2019-nCoV     9618  9637 (20836)    MERS-CoV     9542  9561 (20472)  
+  26 23.33 1.33 1.33  2019-nCoV    10019 10168 (20305)    MERS-CoV     9943 10092 (19941)  
+  10  0.00 0.00 0.00  2019-nCoV    10224 10234 (20239)    MERS-CoV    10148 10158 (19875)  
+  10  0.00 0.00 0.00  2019-nCoV    10329 10338 (20135)    MERS-CoV    11615 11624 (18409)  
+  11 14.29 0.00 0.00  2019-nCoV    10410 10430 (20043)    MERS-CoV    10343 10363 (19670)  
+  23 14.89 0.00 0.00  2019-nCoV    10472 10518 (19955)    MERS-CoV    10405 10451 (19582)  
+  15 12.00 0.00 0.00  2019-nCoV    10544 10568 (19905)    MERS-CoV    10477 10501 (19532)  
+  12 15.38 0.00 0.00  2019-nCoV    10674 10699 (19774)    MERS-CoV    10607 10632 (19401)  
+  15  5.56 0.00 0.00  2019-nCoV    10932 10949 (19524)    MERS-CoV    10856 10873 (19160)  
+  10 12.50 0.00 0.00  2019-nCoV    11730 11745 (18728)    MERS-CoV    11660 11675 (18358)  
+  17 25.35 0.00 0.00  2019-nCoV    11817 11887 (18586)    MERS-CoV    11747 11817 (18216)  
+  27 23.53 0.00 0.00  2019-nCoV    12276 12377 (18096)    MERS-CoV    12209 12310 (17723)  
+  10  0.00 0.00 6.67  2019-nCoV    12491 12505 (17968)    MERS-CoV    12374 12387 (17646)  
+  12 11.11 0.00 0.00  2019-nCoV    12642 12659 (17814)    MERS-CoV    12572 12589 (17444)  
+  13 18.75 0.00 0.00  2019-nCoV    12679 12710 (17763)    MERS-CoV    12612 12643 (17390)  
+  12  0.00 0.00 0.00  2019-nCoV    13158 13172 (17301)    MERS-CoV    13082 13096 (16937)  
+  14 20.97 1.61 1.61  2019-nCoV    13230 13291 (17182)    MERS-CoV    13154 13215 (16818)  
+  11 14.29 0.00 0.00  2019-nCoV    13320 13340 (17133)    MERS-CoV    13244 13264 (16769)  
+  11  6.25 0.00 0.00  2019-nCoV    13355 13370 (17103)    MERS-CoV    13279 13294 (16739)  
+  20 14.29 0.00 0.00  2019-nCoV    13538 13572 (16901)    MERS-CoV    13465 13499 (16534)  
+  12 14.29 0.00 0.00  2019-nCoV    13664 13684 (16789)    MERS-CoV    13597 13617 (16416)  
+  12 26.23 0.00 0.00  2019-nCoV    13801 13861 (16612)    MERS-CoV    13734 13794 (16239)  
+  13 11.54 3.85 0.00  2019-nCoV    13939 13964 (16509)    MERS-CoV    13869 13895 (16138)  
+  10  0.00 0.00 0.00  2019-nCoV    13940 13952 (16521)    MERS-CoV    14032 14044 (15989)  
+  40 21.74 0.00 0.72  2019-nCoV    13985 14122 (16351)    MERS-CoV    13916 14052 (15981)  
+ 173 28.11 0.96 0.96  2019-nCoV    14298 17943 (12530)    MERS-CoV    14228 17873 (12160)  
+  14 12.50 0.00 0.00  2019-nCoV    18064 18087 (12386)    MERS-CoV    17985 18008 (12025)  
+  11 17.39 0.00 0.00  2019-nCoV    18122 18144 (12329)    MERS-CoV    18043 18065 (11968)  
+  22 28.39 0.00 0.00  2019-nCoV    18256 18410 (12063)    MERS-CoV    18177 18331 (11702)  
+  10 16.67 0.00 0.00  2019-nCoV    18491 18514 (11959)    MERS-CoV    18412 18435 (11598)  
+  15 14.81 0.00 0.00  2019-nCoV    18611 18637 (11836)    MERS-CoV    18532 18558 (11475)  
+  17 24.36 0.00 0.00  2019-nCoV    18723 18800 (11673)    MERS-CoV    18644 18721 (11312)  
+  16 14.29 0.00 0.00  2019-nCoV    18871 18898 (11575)    MERS-CoV    18792 18819 (11214)  
+  10 12.50 0.00 0.00  2019-nCoV    19049 19064 (11409)    MERS-CoV    18970 18985 (11048)  
+  12  0.00 0.00 0.00  2019-nCoV    19108 19119 (11354)    MERS-CoV    19029 19040 (10993)  
+  53 22.95 2.32 1.47  2019-nCoV    19199 19673 (10800)    MERS-CoV    19108 19586 (10447)  
+  10  7.69 0.00 0.00  2019-nCoV    19692 19704 (10769)    MERS-CoV    19604 19616 (10417)  
+  20 20.69 0.00 0.00  2019-nCoV    19761 19818 (10655)    MERS-CoV    19673 19730 (10303)  
+  12  5.88 0.00 0.00  2019-nCoV    19926 19942 (10531)    MERS-CoV    19838 19854 (10179)  
+  18 27.22 0.00 0.00  2019-nCoV    20507 20664 (9809)    MERS-CoV    20410 20567 (9466)  
+  59 27.90 0.20 0.20  2019-nCoV    20798 21288 (9185)    MERS-CoV    20701 21191 (8842)  
+  15 20.00 0.00 0.00  2019-nCoV    21329 21373 (9100)    MERS-CoV    21232 21276 (8757)  
+  20  7.14 0.00 0.00  2019-nCoV    21543 21570 (8903)    MERS-CoV    21446 21473 (8560)  
+  16  5.00 0.00 0.00  2019-nCoV    23922 23941 (6532)  C MERS-CoV   (18876) 11157 11138  
+  18 23.68 0.00 0.00  2019-nCoV    24287 24362 (6111)    MERS-CoV    24361 24436 (5597)  
+  11 11.11 0.00 0.00  2019-nCoV    24341 24358 (6115)  C MERS-CoV   (19291) 10742 10725  
+  11 21.88 0.00 0.00  2019-nCoV    24421 24452 (6021)    MERS-CoV    24495 24526 (5507)  
+  10  6.67 0.00 0.00  2019-nCoV    24485 24499 (5974)    MERS-CoV    24559 24573 (5460)  
+  27  9.62 1.92 1.92  2019-nCoV    25209 25260 (5213)    MERS-CoV    25310 25361 (4672)  
+  18  8.33 0.00 0.00  2019-nCoV    26865 26888 (3585)    MERS-CoV    28151 28174 (1859)  
+  17 20.00 0.00 0.00  2019-nCoV    28424 28468 (2005)    MERS-CoV    28648 28692 (1341)  
+  18 19.05 0.00 0.00  2019-nCoV    28604 28645 (1828)    MERS-CoV    28825 28866 (1167)  
+  10  0.00 0.00 0.00  2019-nCoV    28638 28647 (1826)  C MERS-CoV   (23604)  6429  6420  
+  15  9.52 0.00 0.00  2019-nCoV    29026 29046 (1427)    MERS-CoV    29253 29273 (760)  
+  12  6.67 0.00 0.00  2019-nCoV    29189 29203 (1270)    MERS-CoV    29416 29430 (603)  
+  11 15.00 0.00 0.00  2019-nCoV    29617 29636 (837)    MERS-CoV    29848 29867 (166)  
+
+1 matching entries (first file).
+
+Discrepancy summary:
+Qual algn  cum    rcum    (%)    unalgn X    N  sub del ins  total (%)   cum  rcum (%)
+
+
+Score histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+  173    1     1 0.016      0     0 0.000      0     0 0.000      0     0 0.000  
+   59    1     2 0.032      0     0 0.000      0     0 0.000      0     0 0.000  
+   53    1     3 0.048      0     0 0.000      0     0 0.000      0     0 0.000  
+   40    1     4 0.065      0     0 0.000      0     0 0.000      0     0 0.000  
+   27    2     6 0.097      0     0 0.000      0     0 0.000      0     0 0.000  
+   26    1     7 0.113      0     0 0.000      0     0 0.000      0     0 0.000  
+   23    1     8 0.129      0     0 0.000      0     0 0.000      0     0 0.000  
+   22    1     9 0.145      0     0 0.000      0     0 0.000      0     0 0.000  
+   20    3    12 0.194      0     0 0.000      0     0 0.000      0     0 0.000  
+   18    4    16 0.258      0     0 0.000      0     0 0.000      0     0 0.000  
+   17    3    19 0.306      0     0 0.000      0     0 0.000      0     0 0.000  
+   16    2    21 0.339      0     0 0.000      0     0 0.000      0     0 0.000  
+   15    5    26 0.419      0     0 0.000      0     0 0.000      0     0 0.000  
+   14    2    28 0.452      0     0 0.000      0     0 0.000      0     0 0.000  
+   13    2    30 0.484      0     0 0.000      0     0 0.000      0     0 0.000  
+   12    9    39 0.629      0     0 0.000      0     0 0.000      0     0 0.000  
+   11   10    49 0.790      0     0 0.000      0     0 0.000      0     0 0.000  
+   10   13    62 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+Start histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000   62    62 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+
+Splice histogram : displayed 5' splice, other 5' splice: displayed 3' splice, other 3' splice:
+
+
+Times in secs (cum)
+read queries   0 (  0)
+sort queries   0 (  0)
+find matches   0 (  0)
+         end   0 (  0)
+cross_match 2019-nCoV.fa SARS-CoV.fa -minmatch 5 -minscore 10 -masklevel 101 
+cross_match version 1.080721
+
+Run date:time  200126:080543
+Query file(s):  2019-nCoV.fa
+Subject file(s):   SARS-CoV.fa
+Presumed sequence type (from score matrix): DNA
+
+Pairwise comparison algorithm: banded Smith-Waterman
+
+Score matrix (set by value of penalty: -2)
+    A   C   G   T   N   X
+A   1  -2  -2  -2   0  -3
+C  -2   1  -2  -2   0  -3
+G  -2  -2   1  -2   0  -3
+T  -2  -2  -2   1   0  -3
+N   0   0   0   0   0   0
+X  -3  -3  -3  -3   0  -3
+
+Gap penalties: gap_init: -4, gap_ext: -3, ins_gap_ext: -3, del_gap_ext: -3, 
+Using complexity-adjusted scores. Assumed background frequencies:
+ Aa: 0.250  Cc: 0.250  Gg: 0.250  Tt: 0.250  Nn: 0.000  : 0.000  
+
+minmatch: 5, maxmatch: 20, max_group_size: 0 (turned off), minscore: 10, near_minscore: 10, bandwidth: 14, indexwordsize: 5, indexwordsize2: 4
+word_raw: 0
+vector_bound: 0
+gap1_minscore: 17, gap1_dropoff: -12
+masklevel: 101 (minmargin irrelevant)
+splice_edge_length: 0, allocation: 1 bytes
+min_intron_length: 30, max_intron_length: 10000, max_overlap: 20, min_exon_length: 6 
+
+Sequence file: 2019-nCoV.fa    1 entries
+Residue counts:
+  A     9115
+  C     5605
+  G     5951
+  T     9802
+Total  30473 residues
+
+4 distinct alphabetic chars have freq > 1% -- 
+
+Allocated space: 60949 seqs, 11 ids, 2 descrips
+
+NO QUALITY FILE 2019-nCoV.fa.qual WAS FOUND. REMAINING INPUT QUALITIES SET TO 15.
+Base_llr -5.55, intron_coeff: -0.00288828
+Num. pairs: 18
+Maximal single base matches (low complexity regions):
+
+  23  0.00 0.00 0.00  2019-nCoV        4    28 (30445)    SARS-CoV    29193 29217 (534)  
+ 660 22.96 1.11 0.95  2019-nCoV       29  3173 (27300)    SARS-CoV       13  3162 (26589)  
+  57 24.55 1.03 1.03  2019-nCoV     3363  3749 (26724)    SARS-CoV     3280  3666 (26085)  
+  23 16.98 0.00 0.00  2019-nCoV     3972  4024 (26449)    SARS-CoV     3883  3935 (25816)  
+7577 17.13 0.29 0.28  2019-nCoV     4120 21589 (8884)    SARS-CoV     4031 21502 (8249)  
+  10  7.69 0.00 0.00  2019-nCoV    12326 12338 (18135)    SARS-CoV    12153 12165 (17586)  
+  10 20.69 0.00 0.00  2019-nCoV    21684 21712 (8761)    SARS-CoV    21609 21637 (8114)  
+  12 24.14 0.00 0.00  2019-nCoV    21724 21781 (8692)    SARS-CoV    21649 21706 (8045)  
+  30 25.33 0.00 0.00  2019-nCoV    21812 21961 (8512)    SARS-CoV    21716 21865 (7886)  
+  10 17.14 2.86 0.00  2019-nCoV    22070 22104 (8369)    SARS-CoV    21962 21997 (7754)  
+  12 14.89 2.13 2.13  2019-nCoV    22128 22174 (8299)    SARS-CoV    22020 22066 (7685)  
+  11 18.52 0.00 0.00  2019-nCoV    22203 22229 (8244)    SARS-CoV    22095 22121 (7630)  
+  10  0.00 0.00 0.00  2019-nCoV    22272 22282 (8191)    SARS-CoV    22164 22174 (7577)  
+  11 16.67 0.00 0.00  2019-nCoV    22362 22385 (8088)    SARS-CoV    22236 22259 (7492)  
+  19 15.38 0.00 0.00  2019-nCoV    22413 22451 (8022)    SARS-CoV    22287 22325 (7426)  
+2776 17.22 0.81 1.26  2019-nCoV    22555 29875 (598)    SARS-CoV    22429 29716 (35)  
+  10  0.00 0.00 0.00  2019-nCoV    27233 27242 (3231)    SARS-CoV    27133 27142 (2609)  
+  10  7.69 0.00 0.00  2019-nCoV    27884 27896 (2577)    SARS-CoV    27779 27791 (1960)  
+
+1 matching entries (first file).
+
+Discrepancy summary:
+Qual algn  cum    rcum    (%)    unalgn X    N  sub del ins  total (%)   cum  rcum (%)
+
+
+Score histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000    2     2 0.111      0     0 0.000      0     0 0.000      0     0 0.000  
+  660    1     3 0.167      0     0 0.000      0     0 0.000      0     0 0.000  
+   57    1     4 0.222      0     0 0.000      0     0 0.000      0     0 0.000  
+   30    1     5 0.278      0     0 0.000      0     0 0.000      0     0 0.000  
+   23    2     7 0.389      0     0 0.000      0     0 0.000      0     0 0.000  
+   19    1     8 0.444      0     0 0.000      0     0 0.000      0     0 0.000  
+   12    2    10 0.556      0     0 0.000      0     0 0.000      0     0 0.000  
+   11    2    12 0.667      0     0 0.000      0     0 0.000      0     0 0.000  
+   10    6    18 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+Start histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000   16    16 0.889      0     0 0.000      0     0 0.000      0     0 0.000  
+   28    1    17 0.944      0     0 0.000      0     0 0.000      0     0 0.000  
+    3    1    18 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+
+Splice histogram : displayed 5' splice, other 5' splice: displayed 3' splice, other 3' splice:
+
+
+Times in secs (cum)
+read queries   0 (  0)
+sort queries   0 (  0)
+find matches   0 (  0)
+         end   0 (  0)
+cross_match MERS-CoV.fa SARS-CoV.fa -minmatch 5 -minscore 10 -masklevel 101 
+cross_match version 1.080721
+
+Run date:time  200126:080603
+Query file(s):  MERS-CoV.fa
+Subject file(s):   SARS-CoV.fa
+Presumed sequence type (from score matrix): DNA
+
+Pairwise comparison algorithm: banded Smith-Waterman
+
+Score matrix (set by value of penalty: -2)
+    A   C   G   T   N   X
+A   1  -2  -2  -2   0  -3
+C  -2   1  -2  -2   0  -3
+G  -2  -2   1  -2   0  -3
+T  -2  -2  -2   1   0  -3
+N   0   0   0   0   0   0
+X  -3  -3  -3  -3   0  -3
+
+Gap penalties: gap_init: -4, gap_ext: -3, ins_gap_ext: -3, del_gap_ext: -3, 
+Using complexity-adjusted scores. Assumed background frequencies:
+ Aa: 0.250  Cc: 0.250  Gg: 0.250  Tt: 0.250  Nn: 0.000  : 0.000  
+
+minmatch: 5, maxmatch: 20, max_group_size: 0 (turned off), minscore: 10, near_minscore: 10, bandwidth: 14, indexwordsize: 5, indexwordsize2: 4
+word_raw: 0
+vector_bound: 0
+gap1_minscore: 17, gap1_dropoff: -12
+masklevel: 101 (minmargin irrelevant)
+splice_edge_length: 0, allocation: 1 bytes
+min_intron_length: 30, max_intron_length: 10000, max_overlap: 20, min_exon_length: 6 
+
+Sequence file: MERS-CoV.fa    1 entries
+Residue counts:
+  A     7862
+  C     6074
+  G     6280
+  T     9817
+Total  30033 residues
+
+4 distinct alphabetic chars have freq > 1% -- 
+
+Allocated space: 60069 seqs, 10 ids, 2 descrips
+
+NO QUALITY FILE MERS-CoV.fa.qual WAS FOUND. REMAINING INPUT QUALITIES SET TO 15.
+Base_llr -5.55, intron_coeff: -0.00288828
+Num. pairs: 92
+Maximal single base matches (low complexity regions):
+
+  12 21.05 0.00 0.00  MERS-CoV       21    58 (29975)    SARS-CoV       37    74 (29677)  
+  13  0.00 0.00 0.00  MERS-CoV      217   229 (29804)    SARS-CoV      195   207 (29544)  
+  23 17.02 0.00 0.00  MERS-CoV     3683  3729 (26304)    SARS-CoV     3373  3419 (26332)  
+  22  6.25 3.12 0.00  MERS-CoV     3951  3982 (26051)    SARS-CoV     3640  3672 (26079)  
+  10  0.00 0.00 0.00  MERS-CoV     4466  4475 (25558)    SARS-CoV     4261  4270 (25481)  
+  10  0.00 0.00 0.00  MERS-CoV     4565  4574 (25459)    SARS-CoV     4601  4610 (25141)  
+  10  0.00 0.00 0.00  MERS-CoV     6258  6267 (23766)    SARS-CoV     6005  6014 (23737)  
+  10  7.69 0.00 0.00  MERS-CoV     7138  7150 (22883)    SARS-CoV     7179  7191 (22560)  
+  15 11.54 0.00 0.00  MERS-CoV     7505  7530 (22503)    SARS-CoV     7540  7565 (22186)  
+  11  0.00 0.00 0.00  MERS-CoV     7998  8009 (22024)    SARS-CoV     8012  8023 (21728)  
+  10  7.14 0.00 0.00  MERS-CoV     8249  8262 (21771)    SARS-CoV     8269  8282 (21469)  
+  10  7.14 0.00 0.00  MERS-CoV     8886  8899 (21134)    SARS-CoV     8879  8892 (20859)  
+  14 20.51 0.00 0.00  MERS-CoV     8938  8976 (21057)    SARS-CoV     8931  8969 (20782)  
+  10  0.00 0.00 0.00  MERS-CoV     9448  9460 (20573)    SARS-CoV     9423  9435 (20316)  
+  11 10.00 0.00 0.00  MERS-CoV     9542  9561 (20472)    SARS-CoV     9532  9551 (20200)  
+  12 10.53 0.00 0.00  MERS-CoV     9838  9856 (20177)    SARS-CoV     9828  9846 (19905)  
+  11  0.00 0.00 0.00  MERS-CoV     9881  9891 (20142)    SARS-CoV     9871  9881 (19870)  
+  13  9.52 0.00 0.00  MERS-CoV     9943  9963 (20070)    SARS-CoV     9933  9953 (19798)  
+  12 26.32 0.00 0.00  MERS-CoV    10070 10126 (19907)    SARS-CoV    10060 10116 (19635)  
+  13 13.33 0.00 3.33  MERS-CoV    10223 10252 (19781)    SARS-CoV    10205 10233 (19518)  
+  14  5.88 0.00 0.00  MERS-CoV    10347 10363 (19670)    SARS-CoV    10328 10344 (19407)  
+  12 18.60 0.00 0.00  MERS-CoV    10409 10451 (19582)    SARS-CoV    10390 10432 (19319)  
+  15 14.29 0.00 0.00  MERS-CoV    10477 10504 (19529)    SARS-CoV    10458 10485 (19266)  
+  20 15.79 0.00 0.00  MERS-CoV    10835 10872 (19161)    SARS-CoV    10825 10862 (18889)  
+  14 18.75 0.00 0.00  MERS-CoV    11636 11667 (18366)    SARS-CoV    11620 11651 (18100)  
+  43 20.35 0.00 0.00  MERS-CoV    11732 11844 (18189)    SARS-CoV    11716 11828 (17923)  
+  14 17.24 0.00 0.00  MERS-CoV    11912 11940 (18093)    SARS-CoV    11896 11924 (17827)  
+  29 25.00 0.00 0.00  MERS-CoV    12224 12351 (17682)    SARS-CoV    12205 12332 (17419)  
+  10  7.69 0.00 0.00  MERS-CoV    12780 12792 (17241)    SARS-CoV    12764 12776 (16975)  
+  11  0.00 0.00 0.00  MERS-CoV    13109 13119 (16914)    SARS-CoV    13099 13109 (16642)  
+  11  0.00 0.00 0.00  MERS-CoV    13111 13121 (16912)    SARS-CoV    12795 12805 (16946)  
+  13 21.05 0.00 0.00  MERS-CoV    13157 13194 (16839)    SARS-CoV    13147 13184 (16567)  
+  12 14.29 0.00 0.00  MERS-CoV    13244 13264 (16769)    SARS-CoV    13234 13254 (16497)  
+  10 12.50 0.00 0.00  MERS-CoV    13279 13294 (16739)    SARS-CoV    13269 13284 (16467)  
+  10  7.69 0.00 0.00  MERS-CoV    13422 13434 (16599)    SARS-CoV    13180 13192 (16559)  
+  18 16.67 0.00 0.00  MERS-CoV    13465 13500 (16533)    SARS-CoV    13452 13487 (16264)  
+  10 11.76 0.00 0.00  MERS-CoV    13513 13529 (16504)    SARS-CoV    13494 13510 (16241)  
+  26  8.33 0.00 0.00  MERS-CoV    13585 13620 (16413)    SARS-CoV    13566 13601 (16150)  
+  16 14.29 0.00 0.00  MERS-CoV    13734 13761 (16272)    SARS-CoV    13715 13742 (16009)  
+  10  0.00 0.00 0.00  MERS-CoV    13836 13846 (16187)    SARS-CoV    13820 13830 (15921)  
+  15 17.50 2.50 0.00  MERS-CoV    13916 13955 (16078)    SARS-CoV    13899 13939 (15812)  
+  27 16.67 0.00 0.00  MERS-CoV    14002 14055 (15978)    SARS-CoV    13986 14039 (15712)  
+  14 14.63 2.44 2.44  MERS-CoV    14173 14213 (15820)    SARS-CoV    14157 14197 (15554)  
+  17 25.81 0.00 0.00  MERS-CoV    14245 14337 (15696)    SARS-CoV    14229 14321 (15430)  
+  15 22.45 0.00 0.00  MERS-CoV    14360 14408 (15625)    SARS-CoV    14344 14392 (15359)  
+  16 12.00 0.00 0.00  MERS-CoV    14504 14528 (15505)    SARS-CoV    14488 14512 (15239)  
+  10  7.69 0.00 0.00  MERS-CoV    14581 14593 (15440)    SARS-CoV    14565 14577 (15174)  
+ 128 26.83 0.00 0.00  MERS-CoV    14603 15325 (14708)    SARS-CoV    14587 15309 (14442)  
+  29 11.36 0.00 0.00  MERS-CoV    15432 15475 (14558)    SARS-CoV    15416 15459 (14292)  
+  61 27.25 0.00 0.00  MERS-CoV    15636 16002 (14031)    SARS-CoV    15620 15986 (13765)  
+  11 23.08 0.00 0.00  MERS-CoV    16069 16107 (13926)    SARS-CoV    16053 16091 (13660)  
+  43 26.05 0.00 0.00  MERS-CoV    16177 16391 (13642)    SARS-CoV    16161 16375 (13376)  
+  19 17.78 0.00 0.00  MERS-CoV    16419 16463 (13570)    SARS-CoV    16403 16447 (13304)  
+  17 28.80 0.00 0.00  MERS-CoV    16516 16640 (13393)    SARS-CoV    16500 16624 (13127)  
+  36 20.79 0.00 0.00  MERS-CoV    16681 16781 (13252)    SARS-CoV    16665 16765 (12986)  
+  10 11.11 0.00 0.00  MERS-CoV    16791 16808 (13225)    SARS-CoV    16775 16792 (12959)  
+  17 13.79 0.00 0.00  MERS-CoV    16918 16946 (13087)    SARS-CoV    16902 16930 (12821)  
+  39 28.55 0.88 0.88  MERS-CoV    17026 17820 (12213)    SARS-CoV    17010 17804 (11947)  
+  14  5.56 0.00 0.00  MERS-CoV    17985 18002 (12031)    SARS-CoV    17978 17995 (11756)  
+  12 13.04 0.00 0.00  MERS-CoV    18232 18254 (11779)    SARS-CoV    18225 18247 (11504)  
+  16 17.14 0.00 0.00  MERS-CoV    18292 18326 (11707)    SARS-CoV    18285 18319 (11432)  
+  20  4.35 0.00 0.00  MERS-CoV    18394 18416 (11617)    SARS-CoV    18387 18409 (11342)  
+  14  5.56 0.00 0.00  MERS-CoV    18531 18548 (11485)    SARS-CoV    18524 18541 (11210)  
+  29 19.74 0.00 0.00  MERS-CoV    18644 18719 (11314)    SARS-CoV    18637 18712 (11039)  
+  16 19.51 0.00 0.00  MERS-CoV    18778 18818 (11215)    SARS-CoV    18771 18811 (10940)  
+  11  9.09 0.00 4.55  MERS-CoV    18965 18986 (11047)    SARS-CoV    18958 18978 (10773)  
+  12 19.35 0.00 0.00  MERS-CoV    19097 19127 (10906)    SARS-CoV    19102 19132 (10619)  
+  50 23.90 0.63 1.57  MERS-CoV    19147 19464 (10569)    SARS-CoV    19152 19466 (10285)  
+  14 25.29 0.00 0.00  MERS-CoV    19507 19593 (10440)    SARS-CoV    19509 19595 (10156)  
+  10 26.32 0.00 0.00  MERS-CoV    19675 19731 (10302)    SARS-CoV    19677 19733 (10018)  
+  13 20.59 0.00 0.00  MERS-CoV    20226 20259 (9774)    SARS-CoV    20237 20270 (9481)  
+  11  0.00 0.00 0.00  MERS-CoV    20275 20285 (9748)    SARS-CoV    20286 20296 (9455)  
+  11 21.05 0.00 0.00  MERS-CoV    20410 20447 (9586)    SARS-CoV    20421 20458 (9293)  
+  13 10.53 0.00 0.00  MERS-CoV    20491 20509 (9524)    SARS-CoV    20502 20520 (9231)  
+  29  5.71 0.00 0.00  MERS-CoV    20533 20567 (9466)    SARS-CoV    20544 20578 (9173)  
+  22 28.11 1.02 1.02  MERS-CoV    20701 21191 (8842)    SARS-CoV    20712 21202 (8549)  
+  11 19.23 0.00 0.00  MERS-CoV    21247 21272 (8761)    SARS-CoV    21258 21283 (8468)  
+  15 13.79 0.00 0.00  MERS-CoV    21445 21473 (8560)    SARS-CoV    21456 21484 (8267)  
+  10  0.00 0.00 0.00  MERS-CoV    22110 22119 (7914)    SARS-CoV    21736 21745 (8006)  
+  10 10.53 0.00 0.00  MERS-CoV    24097 24115 (5918)    SARS-CoV    23888 23906 (5845)  
+  10  7.14 0.00 0.00  MERS-CoV    24194 24207 (5826)    SARS-CoV    23979 23992 (5759)  
+  16 22.64 0.00 0.00  MERS-CoV    24362 24414 (5619)    SARS-CoV    24147 24199 (5552)  
+  10  0.00 0.00 0.00  MERS-CoV    24449 24458 (5575)    SARS-CoV    24132 24141 (5610)  
+  10 21.21 0.00 0.00  MERS-CoV    25121 25153 (4880)    SARS-CoV    24879 24911 (4840)  
+  22 16.67 0.00 0.00  MERS-CoV    25310 25357 (4676)    SARS-CoV    25068 25115 (4636)  
+  16  0.00 0.00 0.00  MERS-CoV    27772 27788 (2245)  C SARS-CoV   (8130) 21621 21605  
+  11 18.52 0.00 0.00  MERS-CoV    28648 28674 (1359)    SARS-CoV    28257 28283 (1468)  
+  23 24.10 0.00 0.00  MERS-CoV    28826 28908 (1125)    SARS-CoV    28438 28520 (1231)  
+  15  9.52 0.00 0.00  MERS-CoV    29253 29273 (760)    SARS-CoV    28859 28879 (872)  
+  12  6.67 0.00 0.00  MERS-CoV    29416 29430 (603)    SARS-CoV    29022 29036 (715)  
+  10  0.00 0.00 0.00  MERS-CoV    29583 29592 (441)    SARS-CoV    29358 29367 (384)  
+  11 15.00 0.00 0.00  MERS-CoV    29848 29867 (166)    SARS-CoV    29458 29477 (274)  
+
+1 matching entries (first file).
+
+Discrepancy summary:
+Qual algn  cum    rcum    (%)    unalgn X    N  sub del ins  total (%)   cum  rcum (%)
+
+
+Score histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+  128    1     1 0.011      0     0 0.000      0     0 0.000      0     0 0.000  
+   61    1     2 0.022      0     0 0.000      0     0 0.000      0     0 0.000  
+   50    1     3 0.033      0     0 0.000      0     0 0.000      0     0 0.000  
+   43    2     5 0.054      0     0 0.000      0     0 0.000      0     0 0.000  
+   39    1     6 0.065      0     0 0.000      0     0 0.000      0     0 0.000  
+   36    1     7 0.076      0     0 0.000      0     0 0.000      0     0 0.000  
+   29    4    11 0.120      0     0 0.000      0     0 0.000      0     0 0.000  
+   27    1    12 0.130      0     0 0.000      0     0 0.000      0     0 0.000  
+   26    1    13 0.141      0     0 0.000      0     0 0.000      0     0 0.000  
+   23    2    15 0.163      0     0 0.000      0     0 0.000      0     0 0.000  
+   22    3    18 0.196      0     0 0.000      0     0 0.000      0     0 0.000  
+   20    2    20 0.217      0     0 0.000      0     0 0.000      0     0 0.000  
+   19    1    21 0.228      0     0 0.000      0     0 0.000      0     0 0.000  
+   18    1    22 0.239      0     0 0.000      0     0 0.000      0     0 0.000  
+   17    3    25 0.272      0     0 0.000      0     0 0.000      0     0 0.000  
+   16    6    31 0.337      0     0 0.000      0     0 0.000      0     0 0.000  
+   15    6    37 0.402      0     0 0.000      0     0 0.000      0     0 0.000  
+   14    8    45 0.489      0     0 0.000      0     0 0.000      0     0 0.000  
+   13    6    51 0.554      0     0 0.000      0     0 0.000      0     0 0.000  
+   12    8    59 0.641      0     0 0.000      0     0 0.000      0     0 0.000  
+   11   12    71 0.772      0     0 0.000      0     0 0.000      0     0 0.000  
+   10   21    92 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+Start histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000   90    90 0.978      0     0 0.000      0     0 0.000      0     0 0.000  
+  216    1    91 0.989      0     0 0.000      0     0 0.000      0     0 0.000  
+   20    1    92 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+
+Splice histogram : displayed 5' splice, other 5' splice: displayed 3' splice, other 3' splice:
+
+
+Times in secs (cum)
+read queries   0 (  0)
+sort queries   0 (  0)
+find matches   0 (  0)
+         end   0 (  0)
