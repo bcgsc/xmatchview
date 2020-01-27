@@ -25,13 +25,13 @@
 ### SYNOPSIS
    xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats.
 
-xmatchview
+## xmatchview
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv.png)
 
-xmatchview-conifer
+## xmatchview-conifer
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-c.png)
 
-xmatchview-hive
+## xmatchview-hive
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-h.png)
 
    xmatchview and xmatchview-conifer are written in python and run on linux and windows. xmatchview-hive is written in PERL and runs on any system where PERL is installed. They serve as visual tools for analyzing cross_match and minimap2 alignments. Cross_match (Green, P. (1994) http://www.phrap.org) uses an implementation of the Smith-Waterman algorithm for comparing DNA sequences that is sensitive.
