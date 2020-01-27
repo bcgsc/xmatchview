@@ -7,7 +7,7 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2 Rene L. Warren, 2005-2020
+## xmatchview v1.2.1 Rene L. Warren, 2005-2020
 ## email: rwarren [at] bcgsc [dot] ca
 
 ### NAME
@@ -23,7 +23,7 @@
    </pre>
 
 ### SYNOPSIS
-   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats.
+   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats (png, tiff). xmatchview-hive outputs xml-scalable vector graphics (svg)
 
 ## xmatchview
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv.png)
@@ -74,7 +74,7 @@ I encourage the community to contribute to the development of this software, by 
 Download the tar file and extract the files on your system using:
 
 <pre>
-tar -xvf xmatchview_1-2-2.tar 
+tar -xvf xmatchview_1-2-1.tar 
 </pre>
 
 ### DEPENDENCIES
