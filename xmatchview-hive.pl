@@ -48,6 +48,9 @@ my $width = 2000;
 my $height = 2000;
 my $mid = $height / 2;
 my $midwidth = $width / 2;
+my $xlegend = 0;
+my $ylegend= 0;
+
 
 # xml / SVG
 open(SVG, ">$out") || die "Can't write to $out -- fatal.\n";
@@ -65,6 +68,7 @@ foreach my $name (keys %$info){
 
       my $xt=$x1+5;
       my $yt=$y2-5;
+      $ylegend = $yt;
 
       print SVG "<path d=\"M $x1 $y1 L $x1 $y2\" stroke=\"black\" stroke-width=\"5\" fill=\"transparent\"/>\n";
       print SVG "<text font-size=\"2.5em\" x=\"$xt\" y=\"$yt\">$name</text>\n";
@@ -83,6 +87,8 @@ foreach my $name (keys %$info){
 
       my $xt=$x2+5;
       my $yt=$y2+5;
+
+      $xlegend=$xt;
 
       print SVG "<path d=\"M $x1 $y1 L $x2 $y2\" stroke=\"black\" stroke-width=\"5\" fill=\"transparent\"/>\n";
       print SVG "<text font-size=\"2.5em\" x=\"$xt\" y=\"$yt\">$name</text>\n";
@@ -485,7 +491,7 @@ if($xmf=~/\.paf$/){
             my $yq1e = $yq1 + 0.1*$yq1 + ($yq1-$ystart_axis3)*1.2;
             my $yq2e = $yq2 + 0.1*$yq2 + ($yq2-$ystart_axis3)*1.2;
 
-            print SVG "<path d=\"M $xq2 $yq2 L $xq1 $yq1 Q $mid $yq1e $xt1 $yt1 L $xt2 $yt2 Q $mid $yq2e $xq2 $yq2\" stroke=\"$identity\" stroke-width=\"0.5\" fill=\"$identity\" fill-opacity=\"$op\"/>\n";
+            print SVG "<path d=\"M $xq2 $yq2 L $xq1 $yq1 Q $midwidth $yq1e $xt1 $yt1 L $xt2 $yt2 Q $midwidth $yq2e $xq2 $yq2\" stroke=\"$identity\" stroke-width=\"0.5\" fill=\"$identity\" fill-opacity=\"$op\"/>\n";
 
          }elsif($info->{$q}{'axis'}==1 && $info->{$t}{'axis'}==3){
 
@@ -523,16 +529,17 @@ my @f=("#005824","#238b45","#41ae76","#66c2a4","#99d8c9","#ccece6","#edf8fb");
 my @r=("#99000d","#cb181d","#ef3b2c","#fb6a4a","#fc9272","#fcbba1","#fee5d9");
 my @cat=("100","90+","80+","70+","60+","50+","0-49");
 
-my $xt = $width-700;
-my $xtl = $xt+50;
+my $xt = $xlegend;
+my $yt = $ylegend;
+
+my $xtl = $xt+30;
 my $xtl2 = $xtl+85;
 my $xtl3 = $xtl2+100;
 my $xtl4 = $xtl2+50;
 
-my $yt = $height-400;
 my $yt2 = $yt+50;
 
-print SVG "<text font-size=\"2.2em\" x=\"$xt\" y=\"$yt\">Sequence alignment identity (%)</text>\n";
+print SVG "<text font-size=\"2.2em\" x=\"$xt\" y=\"$yt\">Sequence identity (%)</text>\n";
 print SVG "<text font-size=\"2em\" x=\"$xtl\" y=\"$yt2\">Forward | Reverse</text>\n";
 
 my $el=0;

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg width="2000" height="2000" xmlns="http://www.w3.org/2000/svg" style="background-color:white">
-<path d="M 950 1050 L 438.896288953336 1365.53990580326" stroke="black" stroke-width="5" fill="transparent"/>
-<text font-size="2.5em" x="238.896288953336" y="1370.53990580326">MERS-CoV</text>
 <path d="M 1000 950 L 1000 340.54" stroke="black" stroke-width="5" fill="transparent"/>
 <text font-size="2.5em" x="1005" y="335.54">2019-nCoV</text>
+<path d="M 950 1050 L 438.896288953336 1365.53990580326" stroke="black" stroke-width="5" fill="transparent"/>
+<text font-size="2.5em" x="238.896288953336" y="1370.53990580326">MERS-CoV</text>
 <path d="M 1050 1050 L 1556.30461516829 1362.57708978633" stroke="black" stroke-width="5" fill="transparent"/>
 <text font-size="2.5em" x="1561.30461516829" y="1367.57708978633">SARS-CoV</text>
 <path d="M 995 531.96 L 995 670.08 Q 713.006350346757 843.824226775171 713.006350346757 1191.31268032551 L 595.939043441353 1263.58647954706 Q 595.939043441353 775.835493182352 995 531.96" stroke="#edf8fb" stroke-width="0.5" fill="#edf8fb" fill-opacity="0.75"/>
 <path d="M 1005 352.6 L 1005 948.76 Q 1050.7317770311 980.990592303461 1050.7317770311 1045.45177691038 L 1555.62389234866 1357.15683219527 Q 1555.62389234866 687.452277398424 1005 352.6" stroke="#edf8fb" stroke-width="0.5" fill="#edf8fb" fill-opacity="0.75"/>
-<text font-size="2.2em" x="1300" y="1600">Sequence alignment identity (%)</text>
-<text font-size="2em" x="1350" y="1650">Forward | Reverse</text>
-<rect x="1435" y="1680" width="20" height="20" style="fill:#005824;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1700">100</text>
-<rect x="1485" y="1680" width="20" height="20" style="fill:#99000d;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1710" width="20" height="20" style="fill:#238b45;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1730">90+</text>
-<rect x="1485" y="1710" width="20" height="20" style="fill:#cb181d;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1740" width="20" height="20" style="fill:#41ae76;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1760">80+</text>
-<rect x="1485" y="1740" width="20" height="20" style="fill:#ef3b2c;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1770" width="20" height="20" style="fill:#66c2a4;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1790">70+</text>
-<rect x="1485" y="1770" width="20" height="20" style="fill:#fb6a4a;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1800" width="20" height="20" style="fill:#99d8c9;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1820">60+</text>
-<rect x="1485" y="1800" width="20" height="20" style="fill:#fc9272;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1830" width="20" height="20" style="fill:#ccece6;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1850">50+</text>
-<rect x="1485" y="1830" width="20" height="20" style="fill:#fcbba1;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<rect x="1435" y="1860" width="20" height="20" style="fill:#edf8fb;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
-<text font-size="2em" x="1535" y="1880">0-49</text>
-<rect x="1485" y="1860" width="20" height="20" style="fill:#fee5d9;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2.2em" x="1561.30461516829" y="335.54">Sequence identity (%)</text>
+<text font-size="2em" x="1591.30461516829" y="385.54">Forward | Reverse</text>
+<rect x="1676.30461516829" y="415.54" width="20" height="20" style="fill:#005824;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="435.54">100</text>
+<rect x="1726.30461516829" y="415.54" width="20" height="20" style="fill:#99000d;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="445.54" width="20" height="20" style="fill:#238b45;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="465.54">90+</text>
+<rect x="1726.30461516829" y="445.54" width="20" height="20" style="fill:#cb181d;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="475.54" width="20" height="20" style="fill:#41ae76;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="495.54">80+</text>
+<rect x="1726.30461516829" y="475.54" width="20" height="20" style="fill:#ef3b2c;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="505.54" width="20" height="20" style="fill:#66c2a4;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="525.54">70+</text>
+<rect x="1726.30461516829" y="505.54" width="20" height="20" style="fill:#fb6a4a;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="535.54" width="20" height="20" style="fill:#99d8c9;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="555.54">60+</text>
+<rect x="1726.30461516829" y="535.54" width="20" height="20" style="fill:#fc9272;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="565.54" width="20" height="20" style="fill:#ccece6;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="585.54">50+</text>
+<rect x="1726.30461516829" y="565.54" width="20" height="20" style="fill:#fcbba1;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<rect x="1676.30461516829" y="595.54" width="20" height="20" style="fill:#edf8fb;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
+<text font-size="2em" x="1776.30461516829" y="615.54">0-49</text>
+<rect x="1726.30461516829" y="595.54" width="20" height="20" style="fill:#fee5d9;stroke:black;stroke-width:0.5;fill-opacity:0.75;" />
 </svg>
