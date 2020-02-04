@@ -1,0 +1,98 @@
+cross_match 2019-nCoV.fa SARS-CoV.fa -minmatch 5 -minscore 10 -masklevel 101 
+cross_match version 1.080721
+
+Run date:time  200126:080543
+Query file(s):  2019-nCoV.fa
+Subject file(s):   SARS-CoV.fa
+Presumed sequence type (from score matrix): DNA
+
+Pairwise comparison algorithm: banded Smith-Waterman
+
+Score matrix (set by value of penalty: -2)
+    A   C   G   T   N   X
+A   1  -2  -2  -2   0  -3
+C  -2   1  -2  -2   0  -3
+G  -2  -2   1  -2   0  -3
+T  -2  -2  -2   1   0  -3
+N   0   0   0   0   0   0
+X  -3  -3  -3  -3   0  -3
+
+Gap penalties: gap_init: -4, gap_ext: -3, ins_gap_ext: -3, del_gap_ext: -3, 
+Using complexity-adjusted scores. Assumed background frequencies:
+ Aa: 0.250  Cc: 0.250  Gg: 0.250  Tt: 0.250  Nn: 0.000  : 0.000  
+
+minmatch: 5, maxmatch: 20, max_group_size: 0 (turned off), minscore: 10, near_minscore: 10, bandwidth: 14, indexwordsize: 5, indexwordsize2: 4
+word_raw: 0
+vector_bound: 0
+gap1_minscore: 17, gap1_dropoff: -12
+masklevel: 101 (minmargin irrelevant)
+splice_edge_length: 0, allocation: 1 bytes
+min_intron_length: 30, max_intron_length: 10000, max_overlap: 20, min_exon_length: 6 
+
+Sequence file: 2019-nCoV.fa    1 entries
+Residue counts:
+  A     9115
+  C     5605
+  G     5951
+  T     9802
+Total  30473 residues
+
+4 distinct alphabetic chars have freq > 1% -- 
+
+Allocated space: 60949 seqs, 11 ids, 2 descrips
+
+NO QUALITY FILE 2019-nCoV.fa.qual WAS FOUND. REMAINING INPUT QUALITIES SET TO 15.
+Base_llr -5.55, intron_coeff: -0.00288828
+Num. pairs: 18
+Maximal single base matches (low complexity regions):
+
+  23  0.00 0.00 0.00  2019-nCoV        4    28 (30445)    SARS-CoV    29193 29217 (534)  
+ 660 22.96 1.11 0.95  2019-nCoV       29  3173 (27300)    SARS-CoV       13  3162 (26589)  
+  57 24.55 1.03 1.03  2019-nCoV     3363  3749 (26724)    SARS-CoV     3280  3666 (26085)  
+  23 16.98 0.00 0.00  2019-nCoV     3972  4024 (26449)    SARS-CoV     3883  3935 (25816)  
+7577 17.13 0.29 0.28  2019-nCoV     4120 21589 (8884)    SARS-CoV     4031 21502 (8249)  
+  10  7.69 0.00 0.00  2019-nCoV    12326 12338 (18135)    SARS-CoV    12153 12165 (17586)  
+  10 20.69 0.00 0.00  2019-nCoV    21684 21712 (8761)    SARS-CoV    21609 21637 (8114)  
+  12 24.14 0.00 0.00  2019-nCoV    21724 21781 (8692)    SARS-CoV    21649 21706 (8045)  
+  30 25.33 0.00 0.00  2019-nCoV    21812 21961 (8512)    SARS-CoV    21716 21865 (7886)  
+  10 17.14 2.86 0.00  2019-nCoV    22070 22104 (8369)    SARS-CoV    21962 21997 (7754)  
+  12 14.89 2.13 2.13  2019-nCoV    22128 22174 (8299)    SARS-CoV    22020 22066 (7685)  
+  11 18.52 0.00 0.00  2019-nCoV    22203 22229 (8244)    SARS-CoV    22095 22121 (7630)  
+  10  0.00 0.00 0.00  2019-nCoV    22272 22282 (8191)    SARS-CoV    22164 22174 (7577)  
+  11 16.67 0.00 0.00  2019-nCoV    22362 22385 (8088)    SARS-CoV    22236 22259 (7492)  
+  19 15.38 0.00 0.00  2019-nCoV    22413 22451 (8022)    SARS-CoV    22287 22325 (7426)  
+2776 17.22 0.81 1.26  2019-nCoV    22555 29875 (598)    SARS-CoV    22429 29716 (35)  
+  10  0.00 0.00 0.00  2019-nCoV    27233 27242 (3231)    SARS-CoV    27133 27142 (2609)  
+  10  7.69 0.00 0.00  2019-nCoV    27884 27896 (2577)    SARS-CoV    27779 27791 (1960)  
+
+1 matching entries (first file).
+
+Discrepancy summary:
+Qual algn  cum    rcum    (%)    unalgn X    N  sub del ins  total (%)   cum  rcum (%)
+
+
+Score histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000    2     2 0.111      0     0 0.000      0     0 0.000      0     0 0.000  
+  660    1     3 0.167      0     0 0.000      0     0 0.000      0     0 0.000  
+   57    1     4 0.222      0     0 0.000      0     0 0.000      0     0 0.000  
+   30    1     5 0.278      0     0 0.000      0     0 0.000      0     0 0.000  
+   23    2     7 0.389      0     0 0.000      0     0 0.000      0     0 0.000  
+   19    1     8 0.444      0     0 0.000      0     0 0.000      0     0 0.000  
+   12    2    10 0.556      0     0 0.000      0     0 0.000      0     0 0.000  
+   11    2    12 0.667      0     0 0.000      0     0 0.000      0     0 0.000  
+   10    6    18 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+Start histogram: displayed unspliced matches/cum/frac, other unspliced, displayed spliced, other spliced:
+> 1000   16    16 0.889      0     0 0.000      0     0 0.000      0     0 0.000  
+   28    1    17 0.944      0     0 0.000      0     0 0.000      0     0 0.000  
+    3    1    18 1.000      0     0 0.000      0     0 0.000      0     0 0.000  
+
+
+Splice histogram : displayed 5' splice, other 5' splice: displayed 3' splice, other 3' splice:
+
+
+Times in secs (cum)
+read queries   0 (  0)
+sort queries   0 (  0)
+find matches   0 (  0)
+         end   0 (  0)
