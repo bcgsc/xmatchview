@@ -284,7 +284,7 @@ To test xmatchview-hive:
 <pre>
 cd ./test-hive
 # cross_match (.rep output)
-../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.rep -y 2019-nCoV.fa_vs_MERS-CoV.fa.rep -z MERS-CoV.fa_vs_SARS-CoV.fa.rep -i 0 -b 1 -c 50 -a 0.75
+../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.rep -y 2019-nCoV.fa_vs_MERS-CoV.fa.rep -z MERS-CoV.fa_vs_SARS-CoV.fa.rep -e SARScds.gff -i 0 -b 1 -c 30 -a 0.75
 </pre>
 
 If all went well, images such as those provided in the test folder should be generated

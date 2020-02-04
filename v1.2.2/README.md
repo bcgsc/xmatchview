@@ -23,7 +23,7 @@
    </pre>
 
 ### SYNOPSIS
-   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats (png, tiff). xmatchview-hive outputs xml-scalable vector graphics (svg)
+   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 (or 3) DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats (png, tiff). xmatchview-hive outputs xml-scalable vector graphics (svg)
 
 ## xmatchview
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv.png)
@@ -284,7 +284,7 @@ To test xmatchview-hive:
 <pre>
 cd ./test-hive
 # cross_match (.rep output)
-../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.rep -y 2019-nCoV.fa_vs_MERS-CoV.fa.rep -z MERS-CoV.fa_vs_SARS-CoV.fa.rep -i 0 -b 1 -c 50 -a 0.75
+../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.rep -y 2019-nCoV.fa_vs_MERS-CoV.fa.rep -z MERS-CoV.fa_vs_SARS-CoV.fa.rep -e SARScds.gff -i 0 -b 1 -c 30 -a 0.75
 </pre>
 
 If all went well, images such as those provided in the test folder should be generated
