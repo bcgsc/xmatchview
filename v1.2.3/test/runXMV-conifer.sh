@@ -11,4 +11,4 @@ if [ $# -ne 8 ]; then
 fi
 
 # source PATH-TO-SOURCE (IF NEEDED)
-python ../xmatchview-conifer.py -x $1 -s $3 -q $2 -a $4 -m $5 -b 10 -l FTL1 -c $6 -f png -y $7 -e $8 -p ../../tarballs/fonts
+python3 ../xmatchview-conifer.py -x $1 -s $3 -q $2 -a $4 -m $5 -b 10 -l FTL1 -c $6 -f png -y $7 -e $8 -p ../../tarballs/fonts
