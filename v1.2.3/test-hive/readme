@@ -1,0 +1,17 @@
+# xmatchview-hive
+# Test run instructions
+# RLW2020
+#
+# 1. Run minimap2 or cross_match between each pair of sequences.
+#
+# 2. Make a 3-way SVG hive synteny plot from 
+# minimap2 (.paf output) 
+../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.paf -y 2019-nCoV.fa_vs_MERS-CoV.fa.paf -z MERS-CoV.fa_vs_SARS-CoV.fa.paf -i 0 -b 1 -c 50 -a 0.75
+#
+# cross_match (.rep output)
+../xmatchview-hive.py -q 2019-nCoV.txt -r SARS-CoV.txt -s MERS-CoV.txt -x 2019-nCoV.fa_vs_SARS-CoV.fa.rep -y 2019-nCoV.fa_vs_MERS-CoV.fa.rep -z MERS-CoV.fa_vs_SARS-CoV.fa.rep -e SARScds.gff -i 0 -b 1 -c 30 -a 0.75
+#
+# 3. Compare your output to
+#
+# all.paf.success.svg
+# all.rep.success.svg
