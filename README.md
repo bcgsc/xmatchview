@@ -2,6 +2,7 @@
 [![Downloads](https://img.shields.io/github/downloads/bcgsc/xmatchview/total?logo=github)](https://github.com/bcgsc/xmatchview/releases/download/v1.2.0/xmatchview_1-2.tar)
 [![Conda](https://img.shields.io/conda/dn/bioconda/xmatchview?label=Conda)](https://anaconda.org/bioconda/xmatchview)
 [![Issues](https://img.shields.io/github/issues/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/issues)
+Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/xmatchview.svg)](https://github.com/bcgsc/xmatchview/stargazers)!
 
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
 
