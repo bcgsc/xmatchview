@@ -84,7 +84,7 @@ tar -xvf xmatchview_1-2-3.tar
 xmatchview and xmatchview-conifer:
 
 You will need to do the following before you can proceed:
-      1) Download python from: http://www.python.org/  (The code was developed and tested on python2.3 or 2.4 but may work with newer versions of python (not tested))
+      1) Download python3 from: http://www.python.org/  (The code was tested on python 3.7+)
       2) Download the Python Imaging Library (PIL) from: http://www.pythonware.com/products/pil/
       3) Either use PIL or true type fonts (ttf) and specify the full path to the font directory in xmatchview.py and xmatchview-conifer.py with the -p option. The fonts used by xmatchview and xmatchview-conifer include:
 
