@@ -25,7 +25,7 @@ Thank you for your [![Stars](https://img.shields.io/github/stars/bcgsc/xmatchvie
    </pre>
 
 ### SYNOPSIS
-   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for comparing the synteny between DNA sequences. It allows users to align 2 (or 3) DNA sequences in fasta format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats (png, tiff). xmatchview-hive outputs xml-scalable vector graphics (svg)
+   xmatchview, xmatchview-conifer and xmatchview-hive are imaging tools for visualizing DNA sequence synteny. It allows users to align 2 (or 3) DNA sequences in FASTA format using cross_match, minimap2 or any aligners with .paf output capabilities, and displays the alignments in a variety of image formats (png, tiff). xmatchview-hive outputs xml-scalable vector graphics (svg)
 
 ## xmatchview
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv.png)
