@@ -2,8 +2,9 @@ FROM  ubuntu:20.04 as builder
 
 USER  root
 
-# ideally the versions should be controlled by tags and support branches
-# but this will work too
+# ideally the repo would only have one code tree with versions controlled by tags and support branches
+# due to this not being the case using quay.io (or similar) to automatically build the tagged version
+# would be dangerous as this value MUST be manually updated to pick up the correct code
 ARG VER_FOLDER="v1.2.3"
 ARG VER_MINIMAP2="2.17"
 
@@ -41,7 +42,6 @@ RUN chmod +rx $OPT/bin/*.sh $OPT/bin/*.py
 FROM  ubuntu:20.04
 
 # LABEL maintainer="???"\
-#       uk.ac.sanger.cgp="???" \
 #       version="???" \
 #       description="xmatchview"
 
