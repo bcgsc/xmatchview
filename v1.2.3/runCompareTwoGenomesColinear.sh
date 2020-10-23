@@ -16,23 +16,31 @@ if [ $# -ne 11 ]; then
         exit 1
 fi
 
-echo Running: $(basename $0) $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${11}
+if [ ${11} == '.' ]; then
+   if [ -z ${XM_FONTS+x} ]; then
+      echo "WARN: No font path defined and ENV variable XM_FONTS not found"
+   fi
+else
+   XM_FONTS=${11}
+fi
 
-# source PATH-TO-SOURCE (IF NEEDED)
-
-echo "Make sure xmatchview.py, cross_match and minimap2 are in your PATH"
+echo Running: $(basename $0) $1 $2 $3 $4 $5 $6 $7 $8 $9 ${10} ${XM_FONTS}
 
 if [ ${10} == 'cross_match' ]; then
-
+   if ! command -v cross_match &> /dev/null; then
+      echo "ERROR: cross_match not found on path - for docker/singularity mount linux binary to /opt/cross_match/bin"
+   fi
    # cross_match pipeline
    cross_match $1 $2 -minmatch 29 -minscore 59 -masklevel 101 > $1_vs_$2.rep
-   xmatchview.py -x $1_vs_$2.rep -q $1 -s $2 -a $3 -m $4 -b $5 -r $6 -c $7 -f png -y $8 -e $9 -p ${11}
+   xmatchview.py -x $1_vs_$2.rep -q $1 -s $2 -a $3 -m $4 -b $5 -r $6 -c $7 -f png -y $8 -e $9 -p ${XM_FONTS}
 
 elif [ ${10} == 'minimap2' ]; then
-
+   if ! command -v minimap2 &> /dev/null; then
+      echo "ERROR: minimap2 not found on path"
+   fi
    # minimap pipeline
    minimap2 $2 $1 -N200 -p0.0001 > $1_vs_$2.paf
-   xmatchview.py -x $1_vs_$2.paf -q $1 -s $2 -a $3 -m $4 -b $5 -r $6 -c $7 -f png -y $8 -e $9 -p ${11}
+   xmatchview.py -x $1_vs_$2.paf -q $1 -s $2 -a $3 -m $4 -b $5 -r $6 -c $7 -f png -y $8 -e $9 -p ${XM_FONTS}
 
 else
 
