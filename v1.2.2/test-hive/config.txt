@@ -1,3 +1,0 @@
-1:2019-nCoV
-2:SARS-CoV
-3:MERS-CoV
