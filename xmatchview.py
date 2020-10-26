@@ -49,7 +49,7 @@ def readGFF(file,scale):
          if start not in feature[id]:
             feature[id][start] = {}
          if 'end' not in feature[id][start]:
-            feature[id][start]['end'] = "" 
+            feature[id][start]['end'] = ""
          if 'color' not in feature[id][start]:
             feature[id][start]['color'] = ""
 
@@ -83,11 +83,11 @@ def readPAF(paf_file,mismatch,block_length,reference,query,scale):
          #print "REVERSE: %s %s %s %s %s %s %s %s" % (rm.group(1), rm.group(2), rm.group(3), rm.group(4), rm.group(5), rm.group(6), rm.group(7), rm.group(8))
 
          alignLen = float(rm.group(6)) - float(rm.group(5)) + 1
-         percentMis = 100 * float(( alignLen - float(rm.group(7))) / alignLen ) 
+         percentMis = 100 * float(( alignLen - float(rm.group(7))) / alignLen )
          #print "=== %.2f === %.2f ===" % (alignLen,percentMis)
          #sys.exit(1)
          (primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(str(rm.group(1)), float(rm.group(2)), float(rm.group(3)), str(rm.group(4)), float(rm.group(6)), float(rm.group(5))) ### order of 5 and 6 is important to plot alignments in different colors
-         
+
          if (primary_match == secondary_match) and (startSecondMatch == startFirstMatch) and (endSecondMatch == endFirstMatch):
             print("Exact match over full coordinates, ignoring...")
          else:
@@ -241,7 +241,7 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,query,scale):
       #                                                                                                      start end
       # 16  4.55 0.00 0.00  JN039333.1_Picea_abies      484   505 (2106)    KT263970.1_Picea_sitchensis      341   362 (2013)
 
-      ###reverse matches                   s.i.                qry                       
+      ###reverse matches                   s.i.                qry
       rev_regex = re.compile("(\s+)?\d+\s+(\S+)\s+\S+\s+\S+\s+(\S+)\s+(\S+)\s+(\S+)\s+\S+\s+C\s+(\S+)\s+\S+\s+(\S+)\s+(\S+)")
       rm = rev_regex.match(line)
       ###forward matches
@@ -255,7 +255,7 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,query,scale):
 
          #(percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(rm.group(1)), rm.group(2), float(rm.group(3)), float(rm.group(4)), rm.group(5), float(rm.group(6)), float(rm.group(7)))
          (percentMis, primary_match, startFirstMatch, endFirstMatch, secondary_match, startSecondMatch, endSecondMatch)=(float(rm.group(2)), rm.group(3), float(rm.group(4)), float(rm.group(5)), rm.group(6), float(rm.group(7)), float(rm.group(8)))### has to be in this order to plot reverse align in diff color
-  
+
          if (primary_match == secondary_match) and (startSecondMatch == startFirstMatch) and (endSecondMatch == endFirstMatch):
             print("Exact match over full coordinates, ignoring...")
          else:
@@ -363,7 +363,7 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,query,scale):
                endSecondMatch = (endSecondMatch/scale) + reference[secondary_match]['offset_len']     #RLW
 
                print("%i-%i   ::   %i-%i" % (startFirstMatch,endFirstMatch,startSecondMatch,endSecondMatch))
- 
+
                if primary_match not in match:
                   match[primary_match]={}
                if secondary_match not in match[primary_match]:
@@ -380,7 +380,7 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,query,scale):
                match[primary_match][secondary_match][startFirstMatch][endFirstMatch][startSecondMatch][endSecondMatch]=percentMis
 
          #else:
-            #print "NO RE:%s" % line      
+            #print "NO RE:%s" % line
    xmatch_obj.close()
 
    if ctline == 0 :
@@ -391,7 +391,7 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,reference,query,scale):
 
 #---------------------------------------------
 def generateCoords(nocdt, size, leap, protein):
- 
+
    freq={}
 
    pos_range=list(range(0,size,leap))
@@ -419,7 +419,7 @@ def generateCoords(nocdt, size, leap, protein):
                            ss = start2 + buffer
                            ee = end2 - buffer
 
-                        if((pos >= ss and pos <= ee) or (pos >= ee and pos <= ss)): 
+                        if((pos >= ss and pos <= ee) or (pos >= ee and pos <= ss)):
                            current_mismatch=float(nocdt[query][comparison][start1][end1][start2][end2])
                            if pos not in freq:
                               freq[pos]={}
@@ -443,7 +443,7 @@ def readFasta(file, scale):
    tot_length = 0 #RLW
 
    file_obj = open(file, 'r')
-   
+
    for line in file_obj:
       head_match_regex = re.compile('>(\S+)')
       head_match = head_match_regex.match(line)
@@ -465,7 +465,7 @@ def readFasta(file, scale):
              tot_length += seq_length #RLW
              seq_length = 0                                        #resets the sequence length
           previous_contig = head_match.group(1)
-      else:     
+      else:
          seq_subset_regex = re.compile('(.*)', re.I)
          seq_subset = seq_subset_regex.match(line)
          if seq_subset != None:
@@ -486,7 +486,7 @@ def readFasta(file, scale):
 
    order.append(previous_contig) #RLW
    print("%s length = %i bp, scaled to %.0f pixels" % (previous_contig,seq_length,L1[previous_contig]['scaled_len'])) #RLW
-   tot_length += seq_length #RLW  
+   tot_length += seq_length #RLW
 
    file_obj.close()
 
@@ -526,8 +526,8 @@ def initColor(alpha):
 
 #---------------------------------------------
 def initGraph():
-   data={} 
-  
+   data={}
+
    #default data points
    data['width']=2400
    data['height']=1200
@@ -549,7 +549,7 @@ def initGraph():
 
 #---------------------------------------------
 def drawRectangle(draw,start,end,y,thickness,bar_color,text,font,text_color):
-   
+
    draw.rectangle((start,y,end,y+thickness), bar_color)
 
 #---------------------------------------------
@@ -573,7 +573,7 @@ def drawQryText(draw,start,end,y,thickness,bar_color,text,font,text_color):
 def plotFrequency(freq,size,scale,draw,color,data,leap):
 
    pos_range=list(range(0,size,leap))
-   
+
    for pos in pos_range:
       if pos in freq:
          freq_list=freq[pos]
@@ -584,13 +584,13 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
             for freq_keys in freq_list:
                if id >= freq_keys:
                   cumul += freq_list[freq_keys]
-            
+
             if cumul<1:
                color_now="white"
             elif cumul==1:
                color_now="blue"
             elif cumul==2:
-               color_now="cyan"       
+               color_now="cyan"
             elif cumul==3:
                color_now="green"
             elif cumul==4:
@@ -606,11 +606,11 @@ def plotFrequency(freq,size,scale,draw,color,data,leap):
 
             extension=((200-(2*id))+data['mis_bar'])   #RESTRICT SI AXIS y was 20
             compressed=(pos/scale)+data['x']           #x
-            
+
             if color_now != "white":
                #print "%i, %i, %i, %i %s" % (compressed,previous,compressed,extension,color_now)
                draw.line((compressed,previous,compressed,extension),color[color_now])
- 
+
             previous = extension
 
 
@@ -727,7 +727,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
       bdraw.rectangle((data['x_legend_picto']-5,y_legend,data['x_legend_picto']+25,y_legend+(data['reference_thick']/2)), outline=color['black'], fill=color['yellow'])
       bdraw.text((data['x_legend_picto']+30,y_legend), "Sequence features", font=font_20, fill=color['black'])
       y_legend+=30
-      
+
 
       bdraw.rectangle((data['x_legend_picto']+5,y_legend,data['x_legend_picto']+10,y_legend+data['reference_thick']), outline=color['red'], fill=color['red'])
       bdraw.text((data['x_legend_picto']+30,y_legend), "Ambiguous bases (Ns)", font=font_20, fill=color['black'])
@@ -738,7 +738,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
          scaled_offset_len = 0   #RLW
          if ref in reference_list: #RLW
             scaled_offset_len = reference_list[ref]['offset_len'] #RLW
- 
+
          init_coord=int(data['x']+scaled_offset_len) #RLW
          last_coord=int(data['x']+scaled_offset_len+reference_list[ref]['scaled_len']) #RLW
 
@@ -785,7 +785,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
       threshold_line= data['mis_bar'] + (200-(2*mismatch))
       draw.rectangle((data['x'],threshold_line,data['x']+scaled_reflength+5,threshold_line+2), color['red'])
 
-      ###Draw Query & Collinear blocks 
+      ###Draw Query & Collinear blocks
       (current_position, LCB)=(data['x'], 10)
 
       ####Draw Query (only if not in reference list)
@@ -805,7 +805,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
             drawQryText(bdraw, init_coord, last_coord,data['ref_y']+decay,data['query_thick'],color['black'],qry,fontb_20,color['black'])
 
       plotflag = 0
-      ###Draw blocks and relationships 
+      ###Draw blocks and relationships
       for match in match_list:
          allhit=match_list[match]
          for hit in allhit:
@@ -883,7 +883,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
                         else : #COMPARE
 
                            if protein:
-                           
+
                               if end2_list[end2] <= mismatch: ###does it pass the mismatch cutoff?
                                  draw.polygon((data['x']+ss1,data['ref_y']+data['reference_thick']+17,data['x']+ss2,data['ref_y']+decay-17,data['x']+ee2,data['ref_y']+decay-17,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color[outline_color], fill=color[fill_color])
                                  draw.rectangle((data['x']+ss1,data['ref_y']+data['reference_thick']+7,data['x']+ee1,data['ref_y']+data['reference_thick']+17), outline=color["black"], fill=color["red"]) ###REF
@@ -937,7 +937,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
 
       ### draw features on query
       for qry in order_qry:
-  
+
          if qry not in order_ref:  ### only draw if query not same as ref
 
             scaled_offset_len = 0   #RLW
@@ -957,7 +957,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
                for nstart in query_list[qry]['zpos']:
                   nstart = data['x'] + (nstart/scale) + scaled_offset_len
                   draw.line((nstart,data['ref_y']+decay+1,nstart,data['ref_y']+decay+data['reference_thick']-1),color['lime'],width=1)
-           
+
 
       #### FINAL IMAGE PROCESSING
       back.paste(poly, mask=poly)
@@ -969,7 +969,7 @@ def drawRelationship(reference_list, order_ref, query_list, order_qry, match_lis
 
 #---------------------------------------------
 def main():
-   
+
    opts, args = getopt.getopt(sys.argv[1:], "x:s:q:m:r:c:b:f:p:e:y:a:")
 
    (ref_gff_file, qry_gff_file, alignment_file, reference_file, query_file, format, fontpath)=(None,None,None,None,None,"png","")
@@ -984,7 +984,7 @@ def main():
         reference_file=str(v)
       if o == "-q":
         query_file=str(v)
-      if o == "-m": 
+      if o == "-m":
         mismatch=int(v)
       if o == "-b":
         block_length=int(v)
@@ -1094,6 +1094,3 @@ def main():
 #Main Call
 
 main()
-sys.exit(1)
-
-
