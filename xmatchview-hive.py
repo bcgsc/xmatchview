@@ -996,13 +996,13 @@ def main():
     data=initGraph()
     if 2 * length1 / data['width'] > scale:
        estscale = int(2 * length1 / data['width']) + 1
-       #sys.exit("\n\n! The 1st sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i --fatal." % (txt_file1, estscale))
+       #sys.exit("\n\n! The 1st sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i (we suggest rounding up to the next ten, hundred or thousand) -- fatal." % (txt_file1, estscale))
     if 2 * length2 / data['width'] > scale:
        estscale = int(2 * (length2) / data['width']) + 1
-       #sys.exit("\n\n! The 2nd sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i --fatal." % (txt_file2, estscale))
+       #sys.exit("\n\n! The 2nd sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i (we suggest rounding up to the next ten, hundred or thousand) -- fatal." % (txt_file2, estscale))
     if 2 * length3 / data['width'] > scale:
        estscale = int(2 * (length3) / data['width']) + 1
-       sys.exit("\n\n! The 3rd sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i --fatal." % (txt_file3, estscale))
+       sys.exit("\n\n! The 3rd sequence in %s is predicted to extend beyond the plot width, you must increase the scale to at least %i (we suggest rounding up to the next ten, hundred or thousand) -- fatal." % (txt_file3, estscale))
 
     mismatch = 100 - seqidentity 
 

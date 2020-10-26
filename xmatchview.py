@@ -1068,10 +1068,10 @@ def main():
    data=initGraph()
    if reflength / data['width'] > scale:
       estscale = int(reflength / data['width']) + 1
-      sys.exit("\n\n! The reference sequence is predicted to extend beyond the plot width, you must increase the scale to at least %i --fatal." % (estscale))
+      sys.exit("\n\n! The reference sequence is predicted to extend beyond the plot width, you must increase the scale to at least %i (we suggest rounding up to the next ten, hundred or thousand) -- fatal." % (estscale))
    if qrylength / data['width'] > scale:
       estscale = int(qrylength / data['width']) + 1
-      sys.exit("\n\n! The query sequence is predicted to extend beyond the plot width, you must increase the scale to at least %i --fatal." % (estscale))
+      sys.exit("\n\n! The query sequence is predicted to extend beyond the plot width, you must increase the scale to at least %i (we suggest rounding up to the next ten, hundred or thousand) -- fatal." % (estscale))
 
    print("Reading alignment file %s ..." % (alignment_file))
    (nocdt, match) = ({},{})
