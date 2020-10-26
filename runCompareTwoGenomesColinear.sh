@@ -9,10 +9,10 @@ if [ $# -ne 11 ]; then
         echo "  BLOCK LENGTH (bp)"
         echo "  LEAP LENGTH (bp)"
         echo "  SCALE (1:n)"
-        echo "  QUERY features GFF .tsv"
-        echo "  REFERENCE features GFF .tsv"
+        echo "  QUERY features GFF .tsv, '.' to skip"
+        echo "  REFERENCE features GFF .tsv, '.' to skip"
         echo "  cross_match/minimap2"
-        echo "  PATH-TO-FONTS"
+        echo "  PATH-TO-FONTS, '.' to use XM_FONTS env-var (docker image)"
         exit 1
 fi
 
@@ -31,7 +31,7 @@ if [ $8 != '.' ]; then
    FEATURE_OPTS=" -y $8"
 fi
 if [ $9 != '.' ]; then
-   FEATURE_OPTS=" -y $9"
+   FEATURE_OPTS="$FEATURE_OPTS -e $9"
 fi
 
 if [ ${10} == 'cross_match' ]; then
