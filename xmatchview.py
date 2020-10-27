@@ -1004,7 +1004,7 @@ def main():
         fontpath=str(v)
 
    if (alignment_file == None or reference_file == None or query_file == None or mismatch == 0 or block_length == 0 or scale ==0 or leap == 0):
-      print("Usage: %s v1.2.4" % (sys.argv[0:]))
+      print("Usage: %s v1.2.5" % (sys.argv[0:]))
       print("-x alignment file (cross_match .rep or Pairwise mApping Format .paf) ")
       print("-s reference genome fasta file")
       print("-q query contig/genome fasta file")

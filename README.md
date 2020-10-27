@@ -7,12 +7,12 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2.4 Rene L. Warren, 2005-2020
+## xmatchview v1.2.5 Rene L. Warren, 2005-2020
 ## email: rwarren [at] bcgsc [dot] ca
 
 ### NAME
    <pre>
-   xmatchview.py, xmatchview-hive.py, xmatchview-conifer.py v1.2.4  April/October 2020
+   xmatchview.py, xmatchview-hive.py, xmatchview-conifer.py v1.2.5  April/October 2020
    xmatchview-hive.pl v1.2.2 February 2020
    xmatchview.py v1.2.0	October 2019
    xmatchview.py v1.1.1   December 2018
@@ -73,7 +73,7 @@ I encourage the community to contribute to the development of this software, by 
 Download the tar file and extract the files on your system using:
 
 <pre>
-tar -xvf xmatchview_1-2-4.tar 
+tar -xvf xmatchview_1-2-5.tar 
 </pre>
 
 ### DEPENDENCIES
@@ -108,7 +108,7 @@ You will need to do the following before you can proceed:
 ### USAGE 
 ---------------
 <pre>
-Usage: ['./xmatchview.py'] v1.2.4
+Usage: ['./xmatchview.py'] v1.2.5
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf) 
 -s reference genome fasta file
 -q query contig/genome fasta file
@@ -123,7 +123,7 @@ Usage: ['./xmatchview.py'] v1.2.4
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-Usage: ['./xmatchview-conifer.py'] v1.2.4
+Usage: ['./xmatchview-conifer.py'] v1.2.55555
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf) 
 -s reference genome fasta file
 -q query contig/genome fasta file
@@ -138,7 +138,7 @@ Usage: ['./xmatchview-conifer.py'] v1.2.4
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-Usage: ['./xmatchview-hive.py'] v1.2.4
+Usage: ['./xmatchview-hive.py'] v1.2.5
 -x alignment file [1 vs. 2] (cross_match .rep or Pairwise mApping Format .paf)
 -y alignment file [1 vs. 3] (cross_match .rep or Pairwise mApping Format .paf)
 -z alignment file [3 vs. 2] (cross_match .rep or Pairwise mApping Format .paf)
@@ -308,6 +308,12 @@ Hive plots
 Krzywinski M, Birol I, Jones S, Marra M (2011). Hive Plots — Rational Approach to Visualizing Networks. Briefings in Bioinformatics (early access 9 December 2011, doi: 10.1093/bib/bbr069)
 </pre>
 
+
+### WHAT'S NEW in v1.2.5
+------------------
+<pre>
+-Adjustments to suggested scaling to factor in border around genomic features
+</pre>
 
 ### WHAT'S NEW in v1.2.4
 ------------------

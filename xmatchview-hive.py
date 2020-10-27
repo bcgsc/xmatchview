@@ -910,7 +910,7 @@ def main():
         alpha = float(v)
 
     if (txt_file1 == None or txt_file2 == None or txt_file3 == None or align_file1 == None or align_file2 == None or align_file3 == None or block_length == 0 or scale == 0):
-      print("Usage: %s v1.2.4" % (sys.argv[0:]))
+      print("Usage: %s v1.2.5" % (sys.argv[0:]))
       print("-x alignment file [1 vs. 2] (cross_match .rep or Pairwise mApping Format .paf)")
       print("-y alignment file [1 vs. 3] (cross_match .rep or Pairwise mApping Format .paf)")
       print("-z alignment file [3 vs. 2] (cross_match .rep or Pairwise mApping Format .paf)")
