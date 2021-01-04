@@ -7,7 +7,7 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2.5 Rene L. Warren, 2005-2020
+## xmatchview v1.2.5 Rene L. Warren, 2005-2021
 ## email: rwarren [at] bcgsc [dot] ca
 
 ### NAME
@@ -40,7 +40,7 @@
    Additional hive plot information available at: http://www.hiveplot.com/
 
 ### LICENSE PREAMBLE
-   Copyright (c) 2005-2020 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
+   Copyright (c) 2005-2021 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
    xmatchview is a utility for comparing, visually, two DNA/RNA sequences
 
    This program is free software: you can redistribute it and/or modify
