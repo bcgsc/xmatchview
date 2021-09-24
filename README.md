@@ -123,7 +123,7 @@ Usage: ['./xmatchview.py'] v1.2.5
 -p full path to the directory with fonts on your system (please refer to the documentation for fonts used)
 * Files for the -s and -q options must correspond to fasta files used to run cross_match
 
-Usage: ['./xmatchview-conifer.py'] v1.2.55555
+Usage: ['./xmatchview-conifer.py'] v1.2.5
 -x alignment file (cross_match .rep or Pairwise mApping Format .paf) 
 -s reference genome fasta file
 -q query contig/genome fasta file
