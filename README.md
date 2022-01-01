@@ -9,7 +9,7 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2.5 Rene L. Warren, 2005-2021
+## xmatchview v1.2.5 Rene L. Warren, 2005-2022
 ## email: rwarren [at] bcgsc [dot] ca
 
 ### NAME
