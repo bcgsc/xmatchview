@@ -10,7 +10,7 @@
 # xmatchview
 ## Genome alignment visualization
 ## xmatchview v1.2.5 Rene L. Warren, 2005-2023
-## email: rwarren [at] bcgsc [dot] ca
+
 
 ### NAME
    <pre>
@@ -386,5 +386,3 @@ Krzywinski M, Birol I, Jones S, Marra M (2011). Hive Plots — Rational Approach
 </pre>
 ---
 Please find the v0.2 release in the corresponding subdirectory
-
-Questions/Comments: Rene Warren : rwarren at bcgsc dot ca
