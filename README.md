@@ -14,7 +14,7 @@
 ### CONTENTS
 --------
 1. [VERSIONS](#ver)
-2. [SYNOPSIS](#syn)
+2. [SYNOPSIS](#synopsis)
 3. [LICENSE PREAMBLE](#license)
 4. [IMPLEMENTATION](#imp)
 5. [COMMUNITY GUIDELINES](#guide)
