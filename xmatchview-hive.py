@@ -157,8 +157,8 @@ def readPAF(paf_file,mismatch,block_length,query,reference,scale):
    xmatch_obj.close()
 
    if ctline == 0 :
-      print("There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % paf_file)
-      sys.exit(1)
+      print("There are no alignments to plot, is it expected? Make sure your file %s is reporting alignments -- warning." % paf_file)
+      #sys.exit(1)
 
    return match
 
@@ -263,8 +263,8 @@ def readCrossMatch(crossmatch_file,mismatch,block_length,query,reference,scale):
    xmatch_obj.close()
 
    if ctline == 0 :
-      print("There are no alignments to plot. Make sure your file %s is reporting alignments -- fatal." % crossmatch_file)
-      sys.exit(1)
+      print("There are no alignments to plot, is it expected? Make sure your file %s is reporting alignments -- warning." % paf_file)
+      #sys.exit(1)
 
    return match
 
