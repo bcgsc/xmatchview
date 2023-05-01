@@ -171,7 +171,7 @@ Usage: ['./xmatchview-hive.py'] v1.2.5
 -c scale (pixel to basepair scale, for displaying the image)
 -a alpha value, from 0 (transparent) to 1 (solid, default)
 * Files for the -q, -r and -s options must include header_names:base_length, with names that correspond to those in fasta files used to run cross_match or minimap2
-
+</pre>
 ! Ensure the config.txt file exists in your run directory
 
 Notes:
