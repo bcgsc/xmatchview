@@ -8,7 +8,7 @@
 ![Logo](https://github.com/warrenlr/xmatchview/blob/master/xmv-logo.png)
 
 # xmatchview
-## Genome alignment visualization
+## Genome synteny visualization
 
 
 ### CONTENTS
