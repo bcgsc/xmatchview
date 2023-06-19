@@ -9,7 +9,7 @@
 
 # xmatchview
 ## Genome alignment visualization
-## xmatchview v1.2.5 Rene L. Warren, 2005-2023
+
 
 ### CONTENTS
 --------
