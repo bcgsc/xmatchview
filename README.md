@@ -94,6 +94,12 @@ Download the tar file and extract the files on your system using:
 tar -xvf xmatchview_1-2-5.tar 
 </pre>
 
+To install this package with Conda, run one of the following:
+<pre>
+conda install -c bioconda xmatchview
+conda install -c "bioconda/label/cf201901" xmatchview
+</pre>
+
 ### DEPENDENCIES <a name=dep></a>
 -------------
 
