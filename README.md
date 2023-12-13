@@ -58,7 +58,7 @@
    Additional hive plot information available at: http://www.hiveplot.com/
 
 ### LICENSE PREAMBLE <a name=license></a>
-   Copyright (c) 2005-2023 Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
+   Copyright (c) 2005-present Rene Warren, Canada's Michael Smith Genome Science Centre.  All rights reserved.
    xmatchview is a utility for comparing, visually, two DNA/RNA sequences
 
    This program is free software: you can redistribute it and/or modify
